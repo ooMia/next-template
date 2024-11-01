@@ -1,0 +1,106 @@
+{
+  "task_id": "b7c4d7ed-f33a-4735-b2bd-2e4deb996ec0",
+  "status": "Success",
+  "result": {
+    "timeHash": "e2ee3ac068fd35b040b710440fbc629432d27bfffdad047e7aa6af084d67c2c1",
+    "poolKey": {
+      "hooks": "0x15F3F147eB0278b46363529083751363Be248c00",
+      "currency0": "0x6aD83000194DFCf9a0869091B2Ea7D121033163E",
+      "currency1": "0xe61398b1Cb0FBED8268808A983Ad71ECFE2e1Ee9",
+      "fee": 0,
+      "tickSpacing": 60
+    },
+    "mode": 2,
+    "result": {
+      "testList": [
+        {
+          "name": "test_afterDonate()",
+          "msg": "[PASS] test_afterDonate() (gas: 2493)",
+          "status": "PASS",
+          "statusCode": 1
+        },
+        {
+          "name": "test_afterInitialize()",
+          "msg": "[PASS] test_afterInitialize() (gas: 2625)",
+          "status": "PASS",
+          "statusCode": 1
+        },
+        {
+          "name": "test_afterRemoveLiquidity()",
+          "msg": "[PASS] test_afterRemoveLiquidity() (gas: 2933)",
+          "status": "PASS",
+          "statusCode": 1
+        },
+        {
+          "name": "test_afterSwap()",
+          "msg": "[PASS] test_afterSwap() (gas: 2603)",
+          "status": "PASS",
+          "statusCode": 1
+        },
+        {
+          "name": "test_beforeDonate()",
+          "msg": "[PASS] test_beforeDonate() (gas: 2537)",
+          "status": "PASS",
+          "statusCode": 1
+        },
+        {
+          "name": "test_beforeInitialize()",
+          "msg": "[PASS] test_beforeInitialize() (gas: 2647)",
+          "status": "PASS",
+          "statusCode": 1
+        },
+        {
+          "name": "test_beforeRemoveLiquidity()",
+          "msg": "[PASS] test_beforeRemoveLiquidity() (gas: 2295)",
+          "status": "PASS",
+          "statusCode": 1
+        },
+        {
+          "name": "test_beforeSwap()",
+          "msg": "[PASS] test_beforeSwap() (gas: 2383)",
+          "status": "PASS",
+          "statusCode": 1
+        },
+        {
+          "name": "test_afterAddLiquidity()",
+          "msg": "[FAIL: revert: Expected NotPoolManager : afterAddLiquidity must be called only by PoolManager] test_afterAddLiquidity() (gas: 24606)",
+          "status": "FAIL",
+          "statusCode": 0,
+          "description": "Expected NotPoolManager : afterAddLiquidity must be called only by PoolManager",
+          "impact": "High"
+        },
+        {
+          "name": "test_beforeAddLiquidity()",
+          "msg": "[FAIL: revert: Expected NotPoolManager : beforeAddLiquidity must be called only by PoolManager] test_beforeAddLiquidity() (gas: 22978)",
+          "status": "FAIL",
+          "statusCode": 0,
+          "description": "Expected NotPoolManager : beforeAddLiquidity must be called only by PoolManager",
+          "impact": "High"
+        }
+      ],
+      "failList": [
+        {
+          "name": "test_afterAddLiquidity()",
+          "msg": "[FAIL: revert: Expected NotPoolManager : afterAddLiquidity must be called only by PoolManager] test_afterAddLiquidity() (gas: 24606)",
+          "status": "FAIL",
+          "statusCode": 0,
+          "description": "Expected NotPoolManager : afterAddLiquidity must be called only by PoolManager",
+          "impact": "High"
+        },
+        {
+          "name": "test_beforeAddLiquidity()",
+          "msg": "[FAIL: revert: Expected NotPoolManager : beforeAddLiquidity must be called only by PoolManager] test_beforeAddLiquidity() (gas: 22978)",
+          "status": "FAIL",
+          "statusCode": 0,
+          "description": "Expected NotPoolManager : beforeAddLiquidity must be called only by PoolManager",
+          "impact": "High"
+        }
+      ],
+      "PASS": 8,
+      "FAIL": 2,
+      "name": "OnlyByPoolManager-Chk"
+    },
+    "idx": 4,
+    "time": 75.3567280769348
+  }
+}

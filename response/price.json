@@ -1,0 +1,254 @@
+{
+  "task_id": "d87c3ee7-9c95-40e1-9b29-a16687025569",
+  "status": "Success",
+  "result": {
+    "name": "Price-compare-using-Pyth",
+    "mode": 3,
+    "idx": 3,
+    "time": 78.4823338985443,
+    "poolKey": {
+      "hooks": "0x15F3F147eB0278b46363529083751363Be248c00",
+      "currency0": "0x6aD83000194DFCf9a0869091B2Ea7D121033163E",
+      "currency1": "0xe61398b1Cb0FBED8268808A983Ad71ECFE2e1Ee9",
+      "fee": 0,
+      "tickSpacing": 60
+    },
+    "data": {
+      "with_6909": {
+        "swap": [
+          {
+            "for-expected-current-price": "79228162514264337593543950336",
+            "for-expected-current-liquidity": "1000000000000000000",
+            "for-expected-amount0-specified": "100",
+            "for-expected-current-fee": "0",
+            "amount0delta": "-100",
+            "amount1delta": "99",
+            "managerAmount0delta": "0",
+            "managerAmount1delta": "-99",
+            "hookAmount0delta": "0",
+            "hookAmount1delta": "0",
+            "userAmount0delta": "0",
+            "userAmount1delta": "99",
+            "hook6909Amount0delta": "0",
+            "hook6909Amount1delta": "0",
+            "user6909Amount0delta": "-100",
+            "user6909Amount1delta": "0",
+            "calc": {
+              "price_expected": 1,
+              "sqrtP_expected": 7.922816251426433e28,
+              "amount_in": 100.000000000007,
+              "amount_out": 100.000000000007
+            },
+            "is_burn": true,
+            "is_exactIn": true
+          },
+          {
+            "for-expected-current-price": "79228162514264337593543950336",
+            "for-expected-current-liquidity": "1000000000000000000",
+            "for-expected-amount0-specified": "100",
+            "for-expected-current-fee": "0",
+            "amount0delta": "-100",
+            "amount1delta": "99",
+            "managerAmount0delta": "100",
+            "managerAmount1delta": "0",
+            "hookAmount0delta": "0",
+            "hookAmount1delta": "0",
+            "userAmount0delta": "-100",
+            "userAmount1delta": "0",
+            "hook6909Amount0delta": "0",
+            "hook6909Amount1delta": "0",
+            "user6909Amount0delta": "0",
+            "user6909Amount1delta": "99",
+            "calc": {
+              "price_expected": 1,
+              "sqrtP_expected": 7.922816251426433e28,
+              "amount_in": 100.000000000007,
+              "amount_out": 100.000000000007
+            },
+            "is_burn": false,
+            "is_exactIn": true
+          },
+          {
+            "for-expected-current-price": "79228162514264337593543950336",
+            "for-expected-current-liquidity": "1000000000000000000",
+            "for-expected-amount0-specified": "99",
+            "for-expected-current-fee": "0",
+            "amount0delta": "-100",
+            "amount1delta": "99",
+            "managerAmount0delta": "0",
+            "managerAmount1delta": "-99",
+            "hookAmount0delta": "0",
+            "hookAmount1delta": "0",
+            "userAmount0delta": "0",
+            "userAmount1delta": "99",
+            "hook6909Amount0delta": "0",
+            "hook6909Amount1delta": "0",
+            "user6909Amount0delta": "-100",
+            "user6909Amount1delta": "0",
+            "calc": {
+              "price_expected": 1,
+              "sqrtP_expected": 7.922816251426433e28,
+              "amount_in": 99.0000000000105,
+              "amount_out": 99.0000000000105
+            },
+            "is_burn": true,
+            "is_exactIn": false
+          },
+          {
+            "for-expected-current-price": "79228162514264337593543950336",
+            "for-expected-current-liquidity": "1000000000000000000",
+            "for-expected-amount0-specified": "99",
+            "for-expected-current-fee": "0",
+            "amount0delta": "-100",
+            "amount1delta": "99",
+            "managerAmount0delta": "100",
+            "managerAmount1delta": "0",
+            "hookAmount0delta": "0",
+            "hookAmount1delta": "0",
+            "userAmount0delta": "-100",
+            "userAmount1delta": "0",
+            "hook6909Amount0delta": "0",
+            "hook6909Amount1delta": "0",
+            "user6909Amount0delta": "0",
+            "user6909Amount1delta": "99",
+            "calc": {
+              "price_expected": 1,
+              "sqrtP_expected": 7.922816251426433e28,
+              "amount_in": 99.0000000000105,
+              "amount_out": 99.0000000000105
+            },
+            "is_burn": false,
+            "is_exactIn": false
+          }
+        ],
+        "addLiquidity": {
+          "amount0delta": "-1000000000000000000",
+          "amount1delta": "-1000000000000000000",
+          "managerAmount0delta": "0",
+          "managerAmount1delta": "0",
+          "hookAmount0delta": "0",
+          "hookAmount1delta": "0",
+          "userAmount0delta": "0",
+          "userAmount1delta": "0",
+          "hook6909Amount0delta": "0",
+          "hook6909Amount1delta": "0",
+          "user6909Amount0delta": "-1000000000000000000",
+          "user6909Amount1delta": "-1000000000000000000"
+        },
+        "removeLiquidity": {
+          "amount0delta": "999999999999999999",
+          "amount1delta": "999999999999999999",
+          "managerAmount0delta": "0",
+          "managerAmount1delta": "0",
+          "hookAmount0delta": "0",
+          "hookAmount1delta": "0",
+          "userAmount0delta": "0",
+          "userAmount1delta": "0",
+          "hook6909Amount0delta": "0",
+          "hook6909Amount1delta": "0",
+          "user6909Amount0delta": "999999999999999999",
+          "user6909Amount1delta": "999999999999999999"
+        }
+      },
+      "with_20": {
+        "swap": [
+          {
+            "for-expected-current-price": "79228162514264337593543950336",
+            "for-expected-current-liquidity": "1000000000000000000",
+            "for-expected-amount0-specified": "100",
+            "for-expected-current-fee": "0",
+            "amount0delta": "-100",
+            "amount1delta": "99",
+            "managerAmount0delta": "100",
+            "managerAmount1delta": "-99",
+            "hookAmount0delta": "0",
+            "hookAmount1delta": "0",
+            "userAmount0delta": "-100",
+            "userAmount1delta": "99",
+            "hook6909Amount0delta": "0",
+            "hook6909Amount1delta": "0",
+            "user6909Amount0delta": "0",
+            "user6909Amount1delta": "0",
+            "calc": {
+              "price_expected": 1,
+              "sqrtP_expected": 7.922816251426433e28,
+              "amount_in": 100.000000000007,
+              "amount_out": 100.000000000007
+            },
+            "is_burn": false,
+            "is_exactIn": true
+          },
+          {
+            "for-expected-current-price": "79228162514264337593543950336",
+            "for-expected-current-liquidity": "1000000000000000000",
+            "for-expected-amount0-specified": "99",
+            "for-expected-current-fee": "0",
+            "amount0delta": "-100",
+            "amount1delta": "99",
+            "managerAmount0delta": "100",
+            "managerAmount1delta": "-99",
+            "hookAmount0delta": "0",
+            "hookAmount1delta": "0",
+            "userAmount0delta": "-100",
+            "userAmount1delta": "99",
+            "hook6909Amount0delta": "0",
+            "hook6909Amount1delta": "0",
+            "user6909Amount0delta": "0",
+            "user6909Amount1delta": "0",
+            "calc": {
+              "price_expected": 1,
+              "sqrtP_expected": 7.922816251426433e28,
+              "amount_in": 99.0000000000105,
+              "amount_out": 99.0000000000105
+            },
+            "is_burn": false,
+            "is_exactIn": false
+          }
+        ],
+        "addLiquidity": {
+          "amount0delta": "-1000000000000000000",
+          "amount1delta": "-1000000000000000000",
+          "managerAmount0delta": "1000000000000000000",
+          "managerAmount1delta": "1000000000000000000",
+          "hookAmount0delta": "0",
+          "hookAmount1delta": "0",
+          "userAmount0delta": "-1000000000000000000",
+          "userAmount1delta": "-1000000000000000000",
+          "hook6909Amount0delta": "0",
+          "hook6909Amount1delta": "0",
+          "user6909Amount0delta": "0",
+          "user6909Amount1delta": "0"
+        },
+        "donate": {
+          "amount0delta": "-100",
+          "amount1delta": "-100",
+          "managerAmount0delta": "100",
+          "managerAmount1delta": "100",
+          "hookAmount0delta": "0",
+          "hookAmount1delta": "0",
+          "userAmount0delta": "-100",
+          "userAmount1delta": "-100",
+          "hook6909Amount0delta": "0",
+          "hook6909Amount1delta": "0",
+          "user6909Amount0delta": "0",
+          "user6909Amount1delta": "0"
+        },
+        "removeLiquidity": {
+          "amount0delta": "999999999999999999",
+          "amount1delta": "999999999999999999",
+          "managerAmount0delta": "-999999999999999999",
+          "managerAmount1delta": "-999999999999999999",
+          "hookAmount0delta": "0",
+          "hookAmount1delta": "0",
+          "userAmount0delta": "999999999999999999",
+          "userAmount1delta": "999999999999999999",
+          "hook6909Amount0delta": "0",
+          "hook6909Amount1delta": "0",
+          "user6909Amount0delta": "0",
+          "user6909Amount1delta": "0"
+        }
+      }
+    },
+    "price": 0.126241859238795
+  }
+}

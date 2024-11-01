@@ -1,0 +1,36 @@
+{
+  "task_id": "1bec331a-ea8f-4e8d-92f5-99a2efcd9447",
+  "status": "Success",
+  "result": {
+    "timeHash": "4fdddc1aeef5a6f8ce82b385aee9c88dbfd559b27b74d02f238bf4ff9afc30bf",
+    "poolkey": {
+      "hooks": "0x6caC2dcc5eCf5caac0382F1B4A77EABac0F6C0Cc",
+      "currency0": "0x0197481B0F5237eF312a78528e79667D8b33Dcff",
+      "currency1": "0xA56569Bd93dc4b9afCc871e251017dB0543920d4",
+      "fee": "3000",
+      "tickSpacing": "60"
+    },
+    "mode": 2,
+    "result": {
+      "name": "hook-NoHook-Compare",
+      "hook-Swap-tokenPrice": "79228162514264329749955861424",
+      "hook-Swap-protocolFee": "0",
+      "hook-Swap-lpFee": "3000",
+      "hook-Swap-balance-amount0": "-100",
+      "hook-Swap-balance-amount1": "98",
+      "hook-swap-gas": "138926",
+      "hook-swap-gasPrice": "1000252",
+      "hook-swap-totalGas": "138961009352",
+      "no-hook-Swap-tokenPrice": "79228162514264329749955861424",
+      "no-hook-Swap-protocolFee": "0",
+      "no-hook-Swap-lpFee": "3000",
+      "no-hook-Swap-balance-amount0": "-100",
+      "no-hook-Swap-balance-amount1": "98",
+      "no-hook-swap-gas": "117152",
+      "no-hook-swap-gasPrice": "1000252",
+      "no-hook-swap-totalGas": "117181522304"
+    },
+    "idx": 2,
+    "time": 34.24996066093445
+  }
+}
