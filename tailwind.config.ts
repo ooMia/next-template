@@ -1,7 +1,5 @@
 import type { Config } from "tailwindcss";
 const config: Config = {
-  darkMode: "selector",
-  darkTheme: "dark",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,6 +8,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+          "50": "#fff1f2",
+          "100": "#ffe4e7",
+          "200": "#fecdd4",
+          "300": "#fda4b2",
+          "400": "#fb7189",
+          "500": "#f43f63",
+          "600": "#e21d4e",
+          "700": "#be1241",
+          "800": "#9f123d",
+          "900": "#88133a",
+          "950": "#4c051b",
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -20,10 +33,7 @@ const config: Config = {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
         },
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
+
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",

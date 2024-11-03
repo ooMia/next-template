@@ -9,11 +9,6 @@ const Page: React.FC = () => {
           Scan for Uniswap V4 - Hook PoolKey
         </h1>
         <PoolKeyForm />
-
-        <h1 className="text-4xl font-bold">
-          Scan for Uniswap V4 - Hook PoolKey
-        </h1>
-        <PoolKeyForm />
       </>
     </div>
   );

@@ -1,0 +1,106 @@
+{
+  "task_id": "d032c355-ceb9-4fd3-8ee1-26ff9b036189",
+  "status": "Success",
+  "result": {
+    "timeHash": "d3d41fa1f93092cc7cfa548ae9e413c7985bacc9c5c107b269f2572e7cda9a21",
+    "poolKey": {
+      "hooks": "0x7Ba42C294124A8037707399823D56b8a589b6080",
+      "currency0": "0x0197481B0F5237eF312a78528e79667D8b33Dcff",
+      "currency1": "0xA56569Bd93dc4b9afCc871e251017dB0543920d4",
+      "fee": 3000,
+      "tickSpacing": 60
+    },
+    "mode": 2,
+    "result": {
+      "testList": [
+        {
+          "name": "test_afterAddLiquidity()",
+          "msg": "[PASS] test_afterAddLiquidity() (gas: 2273)",
+          "status": "PASS",
+          "statusCode": 1
+        },
+        {
+          "name": "test_afterDonate()",
+          "msg": "[PASS] test_afterDonate() (gas: 2493)",
+          "status": "PASS",
+          "statusCode": 1
+        },
+        {
+          "name": "test_afterInitialize()",
+          "msg": "[PASS] test_afterInitialize() (gas: 2625)",
+          "status": "PASS",
+          "statusCode": 1
+        },
+        {
+          "name": "test_afterRemoveLiquidity()",
+          "msg": "[PASS] test_afterRemoveLiquidity() (gas: 2933)",
+          "status": "PASS",
+          "statusCode": 1
+        },
+        {
+          "name": "test_afterSwap()",
+          "msg": "[PASS] test_afterSwap() (gas: 2603)",
+          "status": "PASS",
+          "statusCode": 1
+        },
+        {
+          "name": "test_beforeAddLiquidity()",
+          "msg": "[PASS] test_beforeAddLiquidity() (gas: 2911)",
+          "status": "PASS",
+          "statusCode": 1
+        },
+        {
+          "name": "test_beforeDonate()",
+          "msg": "[PASS] test_beforeDonate() (gas: 2537)",
+          "status": "PASS",
+          "statusCode": 1
+        },
+        {
+          "name": "test_beforeRemoveLiquidity()",
+          "msg": "[PASS] test_beforeRemoveLiquidity() (gas: 2295)",
+          "status": "PASS",
+          "statusCode": 1
+        },
+        {
+          "name": "test_beforeInitialize()",
+          "msg": "[FAIL: revert: Expected NotPoolManager : beforeInitialize must be called only by PoolManager] test_beforeInitialize() (gas: 25509)",
+          "status": "FAIL",
+          "statusCode": 0,
+          "description": "Expected NotPoolManager : beforeInitialize must be called only by PoolManager",
+          "impact": "High"
+        },
+        {
+          "name": "test_beforeSwap()",
+          "msg": "[FAIL: revert: Expected NotPoolManager : beforeSwap must be called only by PoolManager] test_beforeSwap() (gas: 53644)",
+          "status": "FAIL",
+          "statusCode": 0,
+          "description": "Expected NotPoolManager : beforeSwap must be called only by PoolManager",
+          "impact": "High"
+        }
+      ],
+      "failList": [
+        {
+          "name": "test_beforeInitialize()",
+          "msg": "[FAIL: revert: Expected NotPoolManager : beforeInitialize must be called only by PoolManager] test_beforeInitialize() (gas: 25509)",
+          "status": "FAIL",
+          "statusCode": 0,
+          "description": "Expected NotPoolManager : beforeInitialize must be called only by PoolManager",
+          "impact": "High"
+        },
+        {
+          "name": "test_beforeSwap()",
+          "msg": "[FAIL: revert: Expected NotPoolManager : beforeSwap must be called only by PoolManager] test_beforeSwap() (gas: 53644)",
+          "status": "FAIL",
+          "statusCode": 0,
+          "description": "Expected NotPoolManager : beforeSwap must be called only by PoolManager",
+          "impact": "High"
+        }
+      ],
+      "PASS": 8,
+      "FAIL": 2,
+      "name": "OnlyByPoolManager-Chk"
+    },
+    "idx": 4,
+    "time": 139.106193304062
+  }
+}

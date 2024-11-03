@@ -1,0 +1,44 @@
+{
+  "task_id": "8a1caea8-1628-42fd-ab35-cdabc9510eab",
+  "status": "Success",
+  "result": {
+    "timeHash": "02a8b8a88efe7e7686f5560c0cc788cc0ebd78687545fb6bf149e21689ee3234",
+    "poolKey": {
+      "hooks": "0x15F3F147eB0278b46363529083751363Be248c00",
+      "currency0": "0x6aD83000194DFCf9a0869091B2Ea7D121033163E",
+      "currency1": "0xe61398b1Cb0FBED8268808A983Ad71ECFE2e1Ee9",
+      "fee": 0,
+      "tickSpacing": 60
+    },
+    "mode": 2,
+    "result": {
+      "testList": [
+        {
+          "name": "test_isProxy()",
+          "msg": "[FAIL: Hook might be a proxy] test_isProxy() (gas: 8695)",
+          "status": "FAIL",
+          "statusCode": 0,
+          "description": "proxy upgradable detect.",
+          "impact": "critical",
+          "trace": "this contract is upgradable"
+        }
+      ],
+      "failList": [
+        {
+          "name": "test_isProxy()",
+          "msg": "[FAIL: Hook might be a proxy] test_isProxy() (gas: 8695)",
+          "status": "FAIL",
+          "statusCode": 0,
+          "description": "proxy upgradable detect.",
+          "impact": "critical",
+          "trace": "this contract is upgradable"
+        }
+      ],
+      "PASS": 0,
+      "FAIL": 1,
+      "name": "Proxy-Test"
+    },
+    "idx": 7,
+    "time": 52.8001637458801
+  }
+}

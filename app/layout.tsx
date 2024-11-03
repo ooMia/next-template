@@ -21,14 +21,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.className} antialiased h-[100vh] dark:bg-background`}
       >
         <Providers>
           <MenubarDemo />
           {children}
-          <ThemeSwitcher className="fixed bottom-0 right-0 p-4" />
+          <div className="flex items-center space-x-2 fixed bottom-0 right-0 p-4">
+            <ThemeSwitcher />
+          </div>
         </Providers>
       </body>
     </html>

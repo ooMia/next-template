@@ -1,7 +1,7 @@
-export interface InitialResponse {
+export interface TaskCreationResponseRoot {
   msg: string;
   info: Info;
-  testCache?: string[];
+  testCache: TestCache[];
 }
 
 export interface Info {
@@ -13,4 +13,9 @@ export interface Info {
 export interface Task {
   id: string;
   stat: string;
+}
+
+export interface TestCache {
+  task_id: string;
+  date_done: string;
 }

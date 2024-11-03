@@ -1,0 +1,23 @@
+{
+  "task_id": "a611ccf1-e0ce-45ef-96ed-119a1c36dc5d",
+  "status": "Success",
+  "result": {
+    "timeHash": "9c6edb44238add5dc78cfc7b41fb07196b3df8afc658620f0f96c97011adf532",
+    "poolKey": {
+      "hooks": "0x99526bC695695aae7d27B86Cc1C9808F70d80503",
+      "currency0": "0x0197481B0F5237eF312a78528e79667D8b33Dcff",
+      "currency1": "0xA56569Bd93dc4b9afCc871e251017dB0543920d4",
+      "fee": 3000,
+      "tickSpacing": 60
+    },
+    "mode": 2,
+    "result": {
+      "revertAt": null,
+      "name": "time-based-step-test",
+      "result": "time lock test clear!",
+      "trace": ""
+    },
+    "idx": 5,
+    "time": 606.660792112351
+  }
+}

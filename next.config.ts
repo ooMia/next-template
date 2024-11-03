@@ -12,16 +12,15 @@ const nextConfig = (
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
       ...defaultConfig,
-      reactStrictMode: true,
-      target: "server",
-      env: {
-        API_URL: "http://34.47.123.94:7777",
+      webpack: (config) => {
+        config.externals.push("pino-pretty", "lokijs", "encoding");
+        return config;
       },
       async rewrites() {
         return [
           {
             source: "/api/:path*",
-            destination: "http://34.47.123.94:7777/api/:path*",
+            destination: process.env.API_URL + "/api/:path*",
           },
         ];
       },
@@ -31,15 +30,15 @@ const nextConfig = (
   if (phase === PHASE_PRODUCTION_BUILD) {
     return {
       ...defaultConfig,
-      target: "server",
-      env: {
-        API_URL: "http://34.47.123.94:7777",
+      webpack: (config) => {
+        config.externals.push("pino-pretty", "lokijs", "encoding");
+        return config;
       },
       async rewrites() {
         return [
           {
             source: "/api/:path*",
-            destination: "http://34.47.123.94:7777/api/:path*",
+            destination: process.env.API_URL + "/api/:path*",
           },
         ];
       },

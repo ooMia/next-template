@@ -1,8 +1,8 @@
 "use client";
 
-import RecursiveJson, { RecursiveSkeleton } from "@/components/RecursiveJson";
-import AnalysisResponseType from "@/types/AnalysisResponse";
+import { DynamicAnalysisResponseType } from "@/types/AnalysisResponse";
 import { useState, useEffect } from "react";
+import { DynamicTransactionPriceResult } from "@/components/result/dynamic";
 
 export default function Comp0() {
   // @see https://www.notion.so/entropy1110/56bbf3e1fc6e4e0ab31e222d0cf1e3dd?pvs=4#d33935afa8ab40e78250bf74e83544fa
@@ -18,7 +18,7 @@ export default function Comp0() {
   const hooks = parsedStorage.info.hooks;
   const endpoint = `/api/noti/${timeHash}/${hooks}/${mode}/${cpnt}`;
 
-  const [data, setData] = useState<AnalysisResponseType | null>(null);
+  const [data, setData] = useState<DynamicAnalysisResponseType | null>(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -57,11 +57,15 @@ export default function Comp0() {
     }
 
     fetchData();
-  }, []);
+  }, [endpoint]);
 
   return (
     <div>
-      {data ? <RecursiveJson data={data} depth={0} /> : <RecursiveSkeleton />}
+      {data ? (
+        <DynamicTransactionPriceResult data={data} />
+      ) : (
+        <p> Loading... </p>
+      )}
     </div>
   );
 }
