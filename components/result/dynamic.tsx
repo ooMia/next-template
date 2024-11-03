@@ -16,12 +16,12 @@ import {
   TableHead,
   TableBody,
 } from "@/components/ui/table";
-import { PoolKeyType } from "@/types/AnalysisResponse";
 import {
   ERC20DeltaDifferenceProps,
   TokenPriceProps,
   TransactionGasCostProps,
 } from "@/types/DynamicAnalysis";
+import { PoolKeyType } from "@/types/Property";
 
 import { useState } from "react";
 
