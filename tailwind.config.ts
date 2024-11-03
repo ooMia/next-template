@@ -8,20 +8,73 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-          "50": "#fff1f2",
-          "100": "#ffe4e7",
-          "200": "#fecdd4",
-          "300": "#fda4b2",
-          "400": "#fb7189",
-          "500": "#f43f63",
-          "600": "#e21d4e",
-          "700": "#be1241",
-          "800": "#9f123d",
-          "900": "#88133a",
-          "950": "#4c051b",
+        colors: {
+          primary: {
+            DEFAULT: "hsl(var(--primary))",
+            foreground: "hsl(var(--primary-foreground))",
+            100: "#FFE2F5",
+            200: "#FFC6F1",
+            300: "#FFAAF2",
+            400: "#FF95F8",
+            500: "#FC72FF",
+            600: "#CC53DB",
+            700: "#9F39B7",
+            800: "#742493",
+            900: "#55157A",
+          },
+
+          secondary: {
+            DEFAULT: "hsl(var(--secondary))",
+            foreground: "hsl(var(--secondary-foreground))",
+          },
+          accent: {
+            DEFAULT: "hsl(var(--accent))",
+            foreground: "hsl(var(--accent-foreground))",
+          },
+          success: {
+            100: "#EFFBDB",
+            200: "#DBF8B7",
+            300: "#BDEC8F",
+            400: "#9DD96F",
+            500: "#72C143",
+            600: "#55A530",
+            700: "#3C8A21",
+            800: "#266F15",
+            900: "#175C0C",
+          },
+          info: {
+            100: "#D1FCF4",
+            200: "#A4F9F1",
+            300: "#75EFED",
+            400: "#50D7E0",
+            500: "#1EB4CC",
+            600: "#158EAF",
+            700: "#0F6C92",
+            800: "#094D76",
+            900: "#053861",
+          },
+          warning: {
+            100: "#FEF5CE",
+            200: "#FDEA9E",
+            300: "#FBD96D",
+            400: "#F8C948",
+            500: "#F4AF0E",
+            600: "#D18F0A",
+            700: "#AF7207",
+            800: "#8D5704",
+            900: "#754402",
+          },
+          danger: {
+            100: "#F9D4C8",
+            200: "#F3A395",
+            300: "#DD635C",
+            400: "#BB3237",
+            500: "#8f0416",
+            600: "#7A021D",
+            700: "#660221",
+            800: "#520122",
+            900: "#440022",
+          },
         },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -34,18 +87,11 @@ const config: Config = {
           foreground: "hsl(var(--popover-foreground))",
         },
 
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
+
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",

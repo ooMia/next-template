@@ -1,3 +1,4 @@
 {
+  "ignorePatterns": ["node_modules/*", ".next/*", "out/*", "components/ui/*"],
   "extends": ["next/core-web-vitals", "next/typescript"]
 }

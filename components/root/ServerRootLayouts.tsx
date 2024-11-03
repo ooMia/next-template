@@ -17,7 +17,7 @@ export function MenubarDemo() {
     ));
   };
   return (
-    <Menubar className="flex space-x-4 p-4 sticky w-full top-0 bg-primary rounded-[0px] border-0">
+    <Menubar className="flex space-x-4 p-4 sticky w-screen top-0 bg-primary rounded-[0px] border-0">
       <Link href="/" className="pr-8">
         <Image src="Logo.svg" alt="Logo" width={100} height={37} />
       </Link>

@@ -4,8 +4,11 @@ import "./globals.css";
 import { MenubarDemo } from "@/components/root/ServerRootLayouts";
 import { Providers } from "./providers";
 import { ThemeSwitcher } from "@/components/root/ClientRootLayouts";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
-const inter = Lora({
+const inter1 = Lora({
   subsets: ["latin"],
   display: "swap",
 });
@@ -23,30 +26,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.className} antialiased h-[100vh] dark:bg-background`}
+        className={`${inter1.className}  antialiased overflow-y-hidden ${GeistSans.className} ${GeistMono.className}`}
       >
         <Providers>
           <MenubarDemo />
-          {children}
-          <div className="flex items-center space-x-2 fixed bottom-0 right-0 p-4">
-            <ThemeSwitcher />
-          </div>
+          <ScrollArea className="h-[90vh] w-screen p-8">{children}</ScrollArea>
+          <ThemeSwitcher />
         </Providers>
       </body>
     </html>
   );
 }
-
-// import localFont from "next/font/local";
-
-// const geistSans = localFont({
-//   src: "./fonts/GeistVF.woff",
-//   variable: "--font-geist-sans",
-//   weight: "100 900",
-// });
-
-// const geistMono = localFont({
-//   src: "./fonts/GeistMonoVF.woff",
-//   variable: "--font-geist-mono",
-//   weight: "100 900",
-// });

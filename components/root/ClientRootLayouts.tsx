@@ -16,7 +16,7 @@ export function ThemeSwitcher({ className }: { className?: string }) {
   if (!mounted) return null;
 
   return (
-    <>
+    <div className="flex items-center space-x-2 fixed bottom-0 right-0 p-4">
       <Switch
         id="dark-mode"
         checked={theme === "light"}
@@ -24,6 +24,6 @@ export function ThemeSwitcher({ className }: { className?: string }) {
         className={className}
       />
       <Label htmlFor="dark-mode">{theme} Mode</Label>
-    </>
+    </div>
   );
 }
