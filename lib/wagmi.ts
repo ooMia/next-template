@@ -34,6 +34,8 @@ export const unichain = /*#__PURE__*/ defineChain({
   testnet: true,
 });
 
+// @see https://www.rainbowkit.com/docs/installation
+
 export const config = getDefaultConfig({
   appName: "RainbowKit App",
   projectId: "YOUR_PROJECT_ID",
