@@ -1,14 +1,15 @@
 import { Menubar, MenubarMenu } from "@/components/ui/menubar";
 import Image from "next/image";
 import Link from "next/link";
-export function MenubarDemo() {
+
+export function TopStickMenuBar() {
   const SimpleRouteMenubarMenu = () => {
     const routes = [/*"Overview",*/ "Scan", /*"Docs",*/ "Result", "Dev"];
     return routes.map((route) => (
       <MenubarMenu key={`MenubarMenu-${route}`}>
         <Link
           href={`/${route.toLowerCase()}`}
-          className="text-white space-x-2 p-2 opacity-80 hover:opacity-100 hover:text-accent"
+          className="p-2 text-white opacity-80 space-x-2 hover:text-accent hover:opacity-100"
           key={`Link-${route}`}
         >
           {route}
@@ -17,7 +18,7 @@ export function MenubarDemo() {
     ));
   };
   return (
-    <Menubar className="flex space-x-4 p-4 sticky w-screen top-0 bg-primary rounded-[0px] border-0">
+    <Menubar className="sticky top-0 flex w-full border-0 p-4 space-x-4 bg-primary rounded-[0px] z-50">
       <Link href="/" className="pr-8">
         <Image src="Logo.svg" alt="Logo" width={100} height={37} />
       </Link>

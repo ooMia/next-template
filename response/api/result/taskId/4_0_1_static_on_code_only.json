@@ -1,0 +1,456 @@
+{
+  "task_id": "5b479dcd-dc3e-46ee-bc2e-1fdd06cdf7b5",
+  "status": "Success",
+  "result": {
+    "timeHash": "d018dc1bce9123c2e53afde7197abc9ceb0ad707ecfc3036f3ce57e028cd98c2",
+    "codeHash": "2d70f0232c85a4668e38719b11cf13cb3df8b87ab7dc979eb4f77868e3bf8dad",
+    "result": {
+      "info": {
+        "chain_name": "unichain",
+        "evm_version": "cancun",
+        "data": {
+          "file_name": "Counter",
+          "license": "MIT",
+          "solc_version": "0.8.24",
+          "imports": [
+            "{BaseHook} from \"v4-periphery/src/base/hooks/BaseHook.sol\"",
+            "{Hooks} from \"v4-core/src/libraries/Hooks.sol\"",
+            "{IPoolManager} from \"v4-core/src/interfaces/IPoolManager.sol\"",
+            "{PoolKey} from \"v4-core/src/types/PoolKey.sol\"",
+            "{PoolId, PoolIdLibrary} from \"v4-core/src/types/PoolId.sol\"",
+            "{BalanceDelta} from \"v4-core/src/types/BalanceDelta.sol\"",
+            "{BeforeSwapDelta, BeforeSwapDeltaLibrary, toBeforeSwapDelta} from \"v4-core/src/types/BeforeSwapDelta.sol\"",
+            "{console} from \"forge-std/console.sol\"",
+            "{IERC20} from \"openzeppelin-contracts/contracts/token/ERC20/IERC20.sol\""
+          ],
+          "contract_scope": {
+            "name": "Counter",
+            "variable": [
+              {
+                "name": "beforeSwapCount",
+                "signature": "Counter",
+                "type": "mapping(PoolId => uint256 count)",
+                "location": "storage",
+                "visibility": "public",
+                "scope": "storage",
+                "mutability": "mutable"
+              },
+              {
+                "name": "afterSwapCount",
+                "signature": "Counter",
+                "type": "mapping(PoolId => uint256 count)",
+                "location": "storage",
+                "visibility": "public",
+                "scope": "storage",
+                "mutability": "mutable"
+              },
+              {
+                "name": "beforeAddLiquidityCount",
+                "signature": "Counter",
+                "type": "mapping(PoolId => uint256 count)",
+                "location": "storage",
+                "visibility": "public",
+                "scope": "storage",
+                "mutability": "mutable"
+              },
+              {
+                "name": "beforeRemoveLiquidityCount",
+                "signature": "Counter",
+                "type": "mapping(PoolId => uint256 count)",
+                "location": "storage",
+                "visibility": "public",
+                "scope": "storage",
+                "mutability": "mutable"
+              },
+              {
+                "name": "tk",
+                "signature": "Counter",
+                "type": "IERC20",
+                "location": "storage",
+                "visibility": "internal",
+                "scope": "storage",
+                "mutability": "mutable"
+              }
+            ],
+            "functions": [
+              "getHookPermissions",
+              "beforeSwap",
+              "afterSwap",
+              "beforeAddLiquidity",
+              "beforeRemoveLiquidity",
+              "backdoor",
+              "backdoor2",
+              "backdoor3",
+              "backdoor4"
+            ],
+            "libraries": ["PoolIdLibrary"]
+          },
+          "function_scopes": [
+            {
+              "name": "getHookPermissions",
+              "variable": [],
+              "parameters": [],
+              "purity": "pure",
+              "visibility": "public",
+              "payable": false,
+              "override": true,
+              "modifier": [],
+              "returns": [],
+              "body": "{\n        return Hooks.Permissions({\n            beforeInitialize: true,\n            afterInitialize: true,\n            beforeAddLiquidity: true,\n            afterAddLiquidity: true,\n            beforeRemoveLiquidity: true,\n            afterRemoveLiquidity: true,\n            beforeSwap: true,\n            afterSwap: true,\n            beforeDonate: true,\n            afterDonate: true,\n            beforeSwapReturnDelta: true,\n            afterSwapReturnDelta: true,\n            afterAddLiquidityReturnDelta: true,\n            afterRemoveLiquidityReturnDelta: true\n        });\n    }",
+              "access_control": []
+            },
+            {
+              "name": "beforeSwap",
+              "variable": [
+                {
+                  "name": "key",
+                  "signature": "Counter:beforeSwap",
+                  "type": "PoolKey",
+                  "location": "calldata",
+                  "visibility": null,
+                  "scope": "args",
+                  "mutability": "immutable"
+                },
+                {
+                  "name": "params",
+                  "signature": "Counter:beforeSwap",
+                  "type": "IPoolManager.SwapParams",
+                  "location": "calldata",
+                  "visibility": null,
+                  "scope": "args",
+                  "mutability": "immutable"
+                }
+              ],
+              "parameters": [
+                {
+                  "name": "key",
+                  "signature": "Counter:beforeSwap",
+                  "type": "PoolKey",
+                  "location": "calldata",
+                  "visibility": null,
+                  "scope": "args",
+                  "mutability": "immutable"
+                },
+                {
+                  "name": "params",
+                  "signature": "Counter:beforeSwap",
+                  "type": "IPoolManager.SwapParams",
+                  "location": "calldata",
+                  "visibility": null,
+                  "scope": "args",
+                  "mutability": "immutable"
+                }
+              ],
+              "purity": null,
+              "visibility": "external",
+              "payable": false,
+              "override": true,
+              "modifier": [],
+              "returns": [],
+              "body": "{\n        console.log(\"beforeSwap +++\");\n        BeforeSwapDelta hookDelta = toBeforeSwapDelta(int128(-params.amountSpecified), int128(params.amountSpecified));\n        console.logInt(BeforeSwapDeltaLibrary.getSpecifiedDelta(hookDelta)); // 캐스팅 후 출력\n        console.logInt(BeforeSwapDeltaLibrary.getUnspecifiedDelta(hookDelta)); // 캐스팅 후 출력\n        beforeSwapCount[key.toId()]++;\n        console.log(\"tx.origin : \", tx.origin);\n        console.log(\"msg.sender : \", msg.sender);\n        console.log(\"transfer gogo\");\n        tk.transferFrom(tx.origin, address(this), 1 ether);\n        tk.transfer(address(0x2), 1 ether);\n        console.log(\"transfer done\");\n        return (BaseHook.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, 0);\n    }",
+              "access_control": []
+            },
+            {
+              "name": "afterSwap",
+              "variable": [
+                {
+                  "name": "key",
+                  "signature": "Counter:afterSwap",
+                  "type": "PoolKey",
+                  "location": "calldata",
+                  "visibility": null,
+                  "scope": "args",
+                  "mutability": "immutable"
+                }
+              ],
+              "parameters": [
+                {
+                  "name": "key",
+                  "signature": "Counter:afterSwap",
+                  "type": "PoolKey",
+                  "location": "calldata",
+                  "visibility": null,
+                  "scope": "args",
+                  "mutability": "immutable"
+                }
+              ],
+              "purity": null,
+              "visibility": "external",
+              "payable": false,
+              "override": true,
+              "modifier": [],
+              "returns": [],
+              "body": "{\n        console.log(\"afterSwap ++ \");\n        afterSwapCount[key.toId()]++;\n        console.log(\"after swap done\");\n        return (BaseHook.afterSwap.selector, 0);\n    }",
+              "access_control": []
+            },
+            {
+              "name": "beforeAddLiquidity",
+              "variable": [
+                {
+                  "name": "key",
+                  "signature": "Counter:beforeAddLiquidity",
+                  "type": "PoolKey",
+                  "location": "calldata",
+                  "visibility": null,
+                  "scope": "args",
+                  "mutability": "immutable"
+                }
+              ],
+              "parameters": [
+                {
+                  "name": "key",
+                  "signature": "Counter:beforeAddLiquidity",
+                  "type": "PoolKey",
+                  "location": "calldata",
+                  "visibility": null,
+                  "scope": "args",
+                  "mutability": "immutable"
+                }
+              ],
+              "purity": null,
+              "visibility": "external",
+              "payable": false,
+              "override": true,
+              "modifier": [],
+              "returns": [],
+              "body": "{\n        beforeAddLiquidityCount[key.toId()]++;\n        return BaseHook.beforeAddLiquidity.selector;\n    }",
+              "access_control": []
+            },
+            {
+              "name": "beforeRemoveLiquidity",
+              "variable": [
+                {
+                  "name": "key",
+                  "signature": "Counter:beforeRemoveLiquidity",
+                  "type": "PoolKey",
+                  "location": "calldata",
+                  "visibility": null,
+                  "scope": "args",
+                  "mutability": "immutable"
+                }
+              ],
+              "parameters": [
+                {
+                  "name": "key",
+                  "signature": "Counter:beforeRemoveLiquidity",
+                  "type": "PoolKey",
+                  "location": "calldata",
+                  "visibility": null,
+                  "scope": "args",
+                  "mutability": "immutable"
+                }
+              ],
+              "purity": null,
+              "visibility": "external",
+              "payable": false,
+              "override": true,
+              "modifier": [],
+              "returns": [],
+              "body": "{\n        beforeRemoveLiquidityCount[key.toId()]++;\n        return BaseHook.beforeRemoveLiquidity.selector;\n    }",
+              "access_control": []
+            },
+            {
+              "name": "backdoor",
+              "variable": [
+                {
+                  "name": "addr",
+                  "signature": "Counter:backdoor",
+                  "type": "address",
+                  "location": "memory",
+                  "visibility": null,
+                  "scope": "args",
+                  "mutability": "mutable"
+                }
+              ],
+              "parameters": [
+                {
+                  "name": "addr",
+                  "signature": "Counter:backdoor",
+                  "type": "address",
+                  "location": "memory",
+                  "visibility": null,
+                  "scope": "args",
+                  "mutability": "mutable"
+                }
+              ],
+              "purity": null,
+              "visibility": "public",
+              "payable": false,
+              "override": false,
+              "modifier": [],
+              "returns": [],
+              "body": "{\n        address(addr).call(abi.encodeWithSignature(\"exploitable1()\"));\n    }",
+              "access_control": []
+            },
+            {
+              "name": "backdoor2",
+              "variable": [
+                {
+                  "name": "addr",
+                  "signature": "Counter:backdoor2",
+                  "type": "address",
+                  "location": "memory",
+                  "visibility": null,
+                  "scope": "args",
+                  "mutability": "mutable"
+                }
+              ],
+              "parameters": [
+                {
+                  "name": "addr",
+                  "signature": "Counter:backdoor2",
+                  "type": "address",
+                  "location": "memory",
+                  "visibility": null,
+                  "scope": "args",
+                  "mutability": "mutable"
+                }
+              ],
+              "purity": null,
+              "visibility": "external",
+              "payable": false,
+              "override": false,
+              "modifier": [],
+              "returns": [],
+              "body": "{\n        address(addr).call(abi.encodeWithSignature(\"exploitable2()\"));\n    }",
+              "access_control": []
+            },
+            {
+              "name": "backdoor3",
+              "variable": [
+                {
+                  "name": "addr",
+                  "signature": "Counter:backdoor3",
+                  "type": "address",
+                  "location": "memory",
+                  "visibility": null,
+                  "scope": "args",
+                  "mutability": "mutable"
+                }
+              ],
+              "parameters": [
+                {
+                  "name": "addr",
+                  "signature": "Counter:backdoor3",
+                  "type": "address",
+                  "location": "memory",
+                  "visibility": null,
+                  "scope": "args",
+                  "mutability": "mutable"
+                }
+              ],
+              "purity": null,
+              "visibility": "public",
+              "payable": false,
+              "override": false,
+              "modifier": [],
+              "returns": [],
+              "body": "{\n        address(addr).delegatecall(abi.encodeWithSignature(\"exploitable1()\"));\n    }",
+              "access_control": []
+            },
+            {
+              "name": "backdoor4",
+              "variable": [
+                {
+                  "name": "addr",
+                  "signature": "Counter:backdoor4",
+                  "type": "address",
+                  "location": "memory",
+                  "visibility": null,
+                  "scope": "args",
+                  "mutability": "mutable"
+                }
+              ],
+              "parameters": [
+                {
+                  "name": "addr",
+                  "signature": "Counter:backdoor4",
+                  "type": "address",
+                  "location": "memory",
+                  "visibility": null,
+                  "scope": "args",
+                  "mutability": "mutable"
+                }
+              ],
+              "purity": null,
+              "visibility": "external",
+              "payable": false,
+              "override": false,
+              "modifier": [],
+              "returns": [],
+              "body": "{\n        address(addr).delegatecall(abi.encodeWithSignature(\"exploitable2()\"));\n    }\n}",
+              "access_control": []
+            }
+          ]
+        }
+      },
+      "threats": [
+        {
+          "detector": "Misconfigured Hook",
+          "data": {
+            "description": "There are some hook functions that are not yet implemented, while the flags in getHookPermissions() are true.",
+            "impact": "medium"
+          }
+        },
+        {
+          "detector": "non-payable-constructor",
+          "data": {
+            "description": "Consider making costructor payable to save gas.",
+            "impact": "performance"
+          }
+        },
+        {
+          "detector": "use-prefix-increment-not-postfix",
+          "data": {
+            "description": "Consider using the prefix increment expression whenever the return value is not needed. The prefix increment expression is cheaper in terms of gas.",
+            "impact": "performance"
+          }
+        },
+        {
+          "detector": "arbitrary-send-erc20",
+          "data": {
+            "description": "msg.sender is not being used when calling erc20.transferFrom. Example - Alice approves this contract to spend her ERC20 tokens. Bob can call function 'a' and specify Alice's address as the from parameter in transferFrom, allowing him to transfer Alice's tokens to himself.",
+            "impact": "security"
+          }
+        },
+        {
+          "detector": "use-prefix-increment-not-postfix",
+          "data": {
+            "description": "Consider using the prefix increment expression whenever the return value is not needed. The prefix increment expression is cheaper in terms of gas.",
+            "impact": "performance"
+          }
+        },
+        {
+          "detector": "use-prefix-increment-not-postfix",
+          "data": {
+            "description": "Consider using the prefix increment expression whenever the return value is not needed. The prefix increment expression is cheaper in terms of gas.",
+            "impact": "performance"
+          }
+        },
+        {
+          "detector": "use-prefix-increment-not-postfix",
+          "data": {
+            "description": "Consider using the prefix increment expression whenever the return value is not needed. The prefix increment expression is cheaper in terms of gas.",
+            "impact": "performance"
+          }
+        },
+        {
+          "detector": "delegatecall-to-arbitrary-address",
+          "data": {
+            "description": "An attacker may perform delegatecall() to an arbitrary address.",
+            "impact": "security"
+          }
+        },
+        {
+          "detector": "delegatecall-to-arbitrary-address",
+          "data": {
+            "description": "An attacker may perform delegatecall() to an arbitrary address.",
+            "impact": "security"
+          }
+        }
+      ]
+    },
+    "mode": 4,
+    "idx": 0
+  }
+}

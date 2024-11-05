@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "pages/_document.js",
-    "next.config.ts"
+    "next.config.ts",
+    "components/form/CodeHighlighter.jsx"
   ],
   "exclude": ["node_modules"]
 }

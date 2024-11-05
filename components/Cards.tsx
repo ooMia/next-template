@@ -1,11 +1,11 @@
 import { Button } from "./ui/button";
 import {
   Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
 } from "./ui/card";
 
 export function TestLogPreviewCard({
@@ -13,12 +13,12 @@ export function TestLogPreviewCard({
   description,
   content,
   footer,
-}: {
+}: Readonly<{
   title: string;
   description: string;
   content: string;
   footer?: string;
-}) {
+}>) {
   return (
     <Card>
       <CardHeader>

@@ -1,5 +1,5 @@
-import { SeverityBadgeProp } from "@/types/Property";
 import { Badge } from "@/components/ui/badge";
+import { SeverityBadgeProp } from "@/types/Property";
 
 const SeverityBadge = ({ severity }: { severity: SeverityBadgeProp }) => {
   const getColor = (severity: string) => {

@@ -9,41 +9,35 @@ const nextConfig = (
   phase: string,
   { defaultConfig }: { defaultConfig: NextConfig },
 ): NextConfig => {
-  if (phase === PHASE_DEVELOPMENT_SERVER) {
-    return {
-      ...defaultConfig,
-      webpack: (config) => {
-        config.externals.push("pino-pretty", "lokijs", "encoding");
-        return config;
-      },
-      async rewrites() {
-        return [
-          {
-            source: "/api/:path*",
-            destination: process.env.API_URL + "/api/:path*",
-          },
-        ];
-      },
-    };
-  }
+  // TODO: use environment variables
 
-  if (phase === PHASE_PRODUCTION_BUILD) {
-    return {
-      ...defaultConfig,
-      webpack: (config) => {
-        config.externals.push("pino-pretty", "lokijs", "encoding");
-        return config;
-      },
-      async rewrites() {
-        return [
-          {
-            source: "/api/:path*",
-            destination: process.env.API_URL + "/api/:path*",
-          },
-        ];
-      },
-    };
-  }
+  // if (phase === PHASE_DEVELOPMENT_SERVER) {
+  //   return {
+  //     ...defaultConfig,
+  //     async rewrites() {
+  //       return [
+  //         {
+  //           source: "/api/:path*",
+  //           destination: "/api/:path*",
+  //         },
+  //       ];
+  //     },
+  //   };
+  // }
+
+  // if (phase === PHASE_PRODUCTION_BUILD) {
+  //   return {
+  //     ...defaultConfig,
+  //     async rewrites() {
+  //       return [
+  //         {
+  //           source: "/api/:path*",
+  //           destination: "/api/:path*",
+  //         },
+  //       ];
+  //     },
+  //   };
+  // }
 
   return defaultConfig;
 };

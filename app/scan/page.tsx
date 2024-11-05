@@ -1,17 +1,27 @@
-import PoolKeyForm from "@/components/PoolKeyForm";
+"use client";
 
-// TODO: Layout
-const Page: React.FC = () => {
+import HookCodeForm from "@/components/form/HookCodeForm";
+import PoolKeyForm from "@/components/form/PoolKeyForm";
+import { TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs } from "@radix-ui/react-tabs";
+import { useRouter } from "next/navigation";
+
+export default function ScanInputFormPage(): React.ReactNode {
+  const router = useRouter();
   return (
-    <div className="flex flex-col ">
-      <>
-        <h1 className="text-4xl font-bold">
-          Scan for Uniswap V4 - Hook PoolKey
-        </h1>
-        <PoolKeyForm />
-      </>
+    <div className="flex flex-col justify-center items-center">
+      <Tabs defaultValue="PoolKey" className="w-3/4">
+        <TabsList>
+          <TabsTrigger value="PoolKey">PoolKey</TabsTrigger>
+          <TabsTrigger value="HookCode">HookCode</TabsTrigger>
+        </TabsList>
+        <TabsContent value="PoolKey">
+          <PoolKeyForm router={router} />
+        </TabsContent>
+        <TabsContent value="HookCode">
+          <HookCodeForm router={router} />
+        </TabsContent>
+      </Tabs>
     </div>
   );
-};
-
-export default Page;
+}

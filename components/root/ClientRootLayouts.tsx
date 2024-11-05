@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 export function ThemeSwitcher({ className }: { className?: string }) {
   const [mounted, setMounted] = useState(false);
@@ -16,14 +16,25 @@ export function ThemeSwitcher({ className }: { className?: string }) {
   if (!mounted) return null;
 
   return (
-    <div className="flex items-center space-x-2 fixed bottom-0 right-0 p-4">
+    <div className="fixed right-0 bottom-0 flex items-center p-4 space-x-2 text-xs">
       <Switch
         id="dark-mode"
         checked={theme === "light"}
         onCheckedChange={() => setTheme(theme === "light" ? "dark" : "light")}
         className={className}
       />
-      <Label htmlFor="dark-mode">{theme} Mode</Label>
     </div>
+  );
+}
+
+export function BackToTop() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  return (
+    <Button className="fixed bottom-8 right-4" onClick={scrollToTop}>
+      Back to top
+    </Button>
   );
 }

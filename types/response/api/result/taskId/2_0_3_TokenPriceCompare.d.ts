@@ -51,12 +51,12 @@ interface TokenPriceCompareUnionAmountDelta {
   user6909Amount1delta: string;
 }
 
-export interface TokenPriceCompareAddLiquidity
-  extends TokenPriceCompareUnionAmountDelta {}
-export interface TokenPriceCompareRemoveLiquidity
-  extends TokenPriceCompareUnionAmountDelta {}
-export interface TokenPriceCompareDonate
-  extends TokenPriceCompareUnionAmountDelta {}
+export type TokenPriceCompareAddLiquidity = TokenPriceCompareUnionAmountDelta;
+
+export type TokenPriceCompareRemoveLiquidity =
+  TokenPriceCompareUnionAmountDelta;
+
+export type TokenPriceCompareDonate = TokenPriceCompareUnionAmountDelta;
 
 export interface TokenPriceCompareSwap
   extends TokenPriceCompareUnionAmountDelta {

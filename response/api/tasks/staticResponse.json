@@ -1,0 +1,11 @@
+{
+  "msg": "Task created",
+  "info": {
+    "hooks": "2d70f0232c85a4668e38719b11cf13cb3df8b87ab7dc979eb4f77868e3bf8dad",
+    "timeHash": "733c23afec89801b6a52ca76f40a3b9f2c07b74eb1b37d3236cd0b6a44022abe",
+    "codeHash": "2d70f0232c85a4668e38719b11cf13cb3df8b87ab7dc979eb4f77868e3bf8dad",
+    "tasks": [
+      { "id": "9e35ab0e-2197-4808-aaa8-07644fc059ad", "stat": "PENDING" }
+    ]
+  }
+}

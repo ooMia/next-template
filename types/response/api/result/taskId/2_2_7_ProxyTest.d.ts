@@ -1,5 +1,3 @@
-import { PoolKeyType } from "@/types/Property";
-
 // Failed case
 // @see https://www.notion.so/entropy1110/proxy-hook-c041f4d7934745fe9637ed6ba431167b?pvs=4#c07b768af35e46c491748cfd0755bd92
 

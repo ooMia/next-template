@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,12 +11,12 @@ import {
 } from "@/components/ui/card";
 import {
   Table,
-  TableRow,
-  TableCell,
-  TableCaption,
-  TableHeader,
-  TableHead,
   TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
 import {
   ERC20DeltaDifferenceProps,
@@ -86,10 +88,10 @@ function DynamicERC20DeltaDifferenceResult({
           <TableHeader>
             <TableRow>
               <TableHead className="text-center text-primary">Type</TableHead>
-              <TableHead className="w-[100px] text-center text-primary">
+              <TableHead className="text-center w-[100px] text-primary">
                 amount0
               </TableHead>
-              <TableHead className="w-[100px] text-center text-primary">
+              <TableHead className="text-center w-[100px] text-primary">
                 amount1
               </TableHead>
             </TableRow>
@@ -142,11 +144,11 @@ function DynamicTransactionGasResult({
           <TableHeader className="bg-gray-200">
             <TableRow>
               <TableHead className="text-center">Mehtod</TableHead>
-              <TableHead className="w-[100px] text-center">With Hook</TableHead>
-              <TableHead className="w-[100px] text-center">
+              <TableHead className="text-center w-[100px]">With Hook</TableHead>
+              <TableHead className="text-center w-[100px]">
                 Without Hook
               </TableHead>
-              <TableHead className="w-[100px] text-center">Delta</TableHead>
+              <TableHead className="text-center w-[100px]">Delta</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -177,18 +179,15 @@ function DynamicPoolKeyResult({
         <CardTitle>PoolKey</CardTitle>
         <CardDescription>Component Description</CardDescription>
       </CardHeader>
-      <CardContent>
-        <div className="grid grid-cols-2 w-[600px] grid-cols-[150px,auto] border gap-4 p-4">
-          <p>Currency0</p> <p>{currency0}</p>
-          <p>Currency1</p> <p>{currency1}</p>
-          <p>Fee</p> <p>{fee}</p>
-          <p>TickSpacing</p> <p>{tickSpacing}</p>
-          <p>Hooks</p> <p>{hooks}</p>
+      <CardContent className="font-fira-code">
+        <div className="grid grid-cols-[auto,1fr] border gap-4 p-4">
+          <p className="font-bold">Currency0</p> <p>{currency0}</p>
+          <p className="font-bold">Currency1</p> <p>{currency1}</p>
+          <p className="font-bold">Fee</p> <p>{fee}</p>
+          <p className="font-bold">TickSpacing</p> <p>{tickSpacing}</p>
+          <p className="font-bold">Hooks</p> <p>{hooks}</p>
         </div>
       </CardContent>
-      <CardFooter>
-        <p></p>
-      </CardFooter>
     </Card>
   );
 }
@@ -198,8 +197,28 @@ function DynamicTokenPriceResult({
   expectedPrice,
   oraclePrice,
 }: TokenPriceProps) {
+  // const [oraclePrice, setOraclePrice] = useState(0);
+  // const [currentTime, setCurrentTime] = useState<string>();
+
   const expectedDiff = ((expectedPrice / realPrice) * 100).toFixed(2);
   const oracleDiff = ((oraclePrice / realPrice) * 100).toFixed(2);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const data = await getPythEthUsdPrice();
+  //     setOraclePrice(parseInt(data) ** 2 / 1e8);
+  //     setCurrentTime(new Date().toLocaleTimeString());
+
+  //     const interval = setInterval(async () => {
+  //       const data = await getPythEthUsdPrice();
+  //       setOraclePrice(parseInt(data) ** 2 / 1e8);
+  //       setCurrentTime(new Date().toLocaleTimeString());
+  //     }, 10000);
+  //     return () => clearInterval(interval);
+  //   };
+  //   fetchData();
+  // }, []);
+
   return (
     <Card>
       <CardHeader>
@@ -207,23 +226,26 @@ function DynamicTokenPriceResult({
         <CardDescription>Component Description</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-2 grid-flow-row border gap-4 w-[500px] justify-items-center p-4">
+        <div className="grid grid-flow-row grid-cols-2  gap-4 border p-4 w-[500px]">
           <p>Real Price</p> <p>{realPrice}</p>
           <p>Expected Price</p>
           <p>
             <span>{expectedPrice} </span>
-            <span className="text-xs">({expectedDiff}%)</span>
+            <span className="text-xs"> ({expectedDiff}%)</span>
           </p>
           <p>Oracle Price</p>
           <p>
             <span>{oraclePrice} </span>
-            <span className="text-xs">({oracleDiff}%)</span>
+            <span
+              className={`text-xs ${parseFloat(oracleDiff) >= 105 ? "text-primary" : ""}`}
+            >
+              ({oracleDiff}%)
+            </span>
+            {/* <br /> */}
+            {/* <span className='text-xs'> at {currentTime}</span> */}
           </p>
         </div>
       </CardContent>
-      <CardFooter>
-        <p></p>
-      </CardFooter>
     </Card>
   );
 }

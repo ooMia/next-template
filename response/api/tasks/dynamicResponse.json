@@ -1,0 +1,74 @@
+{
+  "msg": "Task created",
+  "info": {
+    "hooks": "0x6caC2dcc5eCf5caac0382F1B4A77EABac0F6C0Cc",
+    "timeHash": "ce5823b674dcc8308f6624fd2144d6cdbf28f4d79cb889c2ddc1b0006775454b",
+    "tasks": [
+      { "id": "d410694e-2294-49bf-8074-2dda6539f9fa", "stat": "PENDING" },
+      { "id": "de1a9490-6ebc-485b-94c9-4d08333dc47c", "stat": "PENDING" },
+      { "id": "e3d8cacd-be47-4590-85ad-6c7e598ff06f", "stat": "PENDING" },
+      { "id": "83097d43-9e31-462a-94ef-f4d062ab2a55", "stat": "PENDING" },
+      { "id": "6a8fdac0-a72e-4fc5-a59c-d0826f8ed4e9", "stat": "PENDING" },
+      { "id": "5d5bf4b1-7f90-4565-934d-08062d0c77b7", "stat": "PENDING" },
+      { "id": "ec72765a-295e-4ce9-9704-7bd5a3f82603", "stat": "PENDING" }
+    ]
+  },
+  "testCache": [
+    {
+      "task_id": "4bf48cd9-ddec-41fc-af42-4b28f77faf87",
+      "date_done": "2024-11-04 13:40:49"
+    },
+    {
+      "task_id": "2324dfe5-8acd-40f1-a5b8-3443b761ff93",
+      "date_done": "2024-11-04 13:40:40"
+    },
+    {
+      "task_id": "100cec64-0a45-498c-bbe6-8217dfe8099d",
+      "date_done": "2024-11-04 13:35:05"
+    },
+    {
+      "task_id": "3ea0fee4-3ace-4e8d-9db4-32da5bef532c",
+      "date_done": "2024-11-04 13:40:41"
+    },
+    {
+      "task_id": "458a270b-990f-459b-8c98-8fb4d0471e80",
+      "date_done": "2024-11-04 13:40:49"
+    },
+    {
+      "task_id": "52d215c5-02e6-46fc-aabb-0d97fae7e5eb",
+      "date_done": "2024-11-04 13:40:05"
+    },
+    {
+      "task_id": "8f861eeb-b3a1-4ac1-9edf-d7b49476bf3c",
+      "date_done": "2024-11-04 13:36:50"
+    },
+    {
+      "task_id": "8058cb46-a2f4-40f2-8f8e-dfa4d9cdc8c3",
+      "date_done": "2024-11-04 13:40:50"
+    },
+    {
+      "task_id": "91b37315-aa3e-41ab-a055-809f30f653b6",
+      "date_done": "2024-11-04 13:39:53"
+    },
+    {
+      "task_id": "d34b364e-7e27-4cba-a9df-669e7b74cb48",
+      "date_done": "2024-11-04 13:40:07"
+    },
+    {
+      "task_id": "07629fc8-b74d-4fdf-9d5b-5094f3771714",
+      "date_done": "2024-11-04 13:40:05"
+    },
+    {
+      "task_id": "b15ae041-0b14-42cd-b613-1d1e94c1a337",
+      "date_done": "2024-11-04 13:39:52"
+    },
+    {
+      "task_id": "ddeed5b6-a956-46dd-b9e1-5edfbefd3be7",
+      "date_done": "2024-11-04 13:39:53"
+    },
+    {
+      "task_id": "0f9b3d3b-037c-4469-bfaf-25aa603c03a4",
+      "date_done": "2024-11-04 13:40:39"
+    }
+  ]
+}

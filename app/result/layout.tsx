@@ -6,41 +6,44 @@ import {
 
 export default function Layout({
   children,
-  gas,
-  token,
+  StaticAnalysis,
+  TraceLog,
+  PoolKey,
+  TokenPrice,
+  EstimatedGasUsage,
+  AmountDeltaSummary,
 }: {
   children: React.ReactNode;
-  gas: React.ReactNode;
-  token: React.ReactNode;
+  StaticAnalysis: React.ReactNode;
+  TraceLog: React.ReactNode;
+  PoolKey: React.ReactNode;
+  TokenPrice: React.ReactNode;
+  EstimatedGasUsage: React.ReactNode;
+  AmountDeltaSummary: React.ReactNode;
 }) {
   return (
-    <div>
-      <ResizablePanelGroup
-        direction="horizontal"
-        className="w-screen rounded-lg border md:min-w-[450px] "
-      >
-        <ResizablePanel defaultSize={50}>
-          <div className="flex h-[200px] items-center justify-center p-6">
-            {children}
-          </div>
-        </ResizablePanel>
-        <ResizableHandle />
-        <ResizablePanel defaultSize={50}>
-          <ResizablePanelGroup direction="vertical">
-            <ResizablePanel defaultSize={25} className="overflow-y-auto">
-              <div className="flex h-full items-center justify-center p-6">
-                {gas}
+    <div className="flex flex-col">
+      {StaticAnalysis}
+      {TraceLog}
+      <div className="z-49">
+        <ResizablePanelGroup
+          direction="horizontal"
+          className="min-h-[200px] rounded-lg border md:min-w-[450px]"
+        >
+          <ResizablePanel defaultSize={75}>
+            <div className="flex flex-col gap-4">
+              <div className="flex justify-between">
+                {PoolKey}
+                {TokenPrice}
               </div>
-            </ResizablePanel>
-            <ResizableHandle />
-            <ResizablePanel defaultSize={75}>
-              <div className="flex h-full items-center justify-center p-6">
-                {token}
-              </div>
-            </ResizablePanel>
-          </ResizablePanelGroup>
-        </ResizablePanel>
-      </ResizablePanelGroup>
+              {AmountDeltaSummary}
+            </div>
+          </ResizablePanel>
+          <ResizableHandle withHandle />
+          <ResizablePanel defaultSize={32}>{EstimatedGasUsage}</ResizablePanel>
+        </ResizablePanelGroup>
+      </div>
+      {children}
     </div>
   );
 }

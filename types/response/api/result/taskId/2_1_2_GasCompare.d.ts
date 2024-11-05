@@ -46,6 +46,7 @@ export interface GasCompareMethodBase {
 type GasCompareAddLiquidity = GasCompareMethodBase;
 type GasCompareRemoveLiquidity = GasCompareMethodBase;
 type GasCompareDonate = GasCompareMethodBase;
+
 export interface GasCompareSwap extends GasCompareMethodBase {
   priceData: GasCompareSwapPrice;
 }

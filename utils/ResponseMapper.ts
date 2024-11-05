@@ -1,17 +1,13 @@
-// Description: This file contains utility functions that map the response data to the UI components props.
-// TODO: @55hnnn @Entropy1110 Implement these functions
-// 배열로 입력받거나 출력되어야 한다면,
-// 1. 직접 배열을 기반으로 구현하거나,
-// 2. 0번째 인덱스를 가정하고 구현한 후 주석을 통해 명시하면 됩니다.
-
 import {
   ERC20DeltaDifferenceProps,
   ERC6909DeltaDifferenceProps,
   TokenPriceProps,
   TransactionGasCostProps,
 } from "@/types/DynamicAnalysis";
+import { Comp2IntegratedAnalysisRoot2 } from "@/types/response/api/result/Comp2IntegratedAnalysisResult";
 import { TokenPriceCompareRoot } from "@/types/response/api/result/taskId/2_0_3_TokenPriceCompare";
 import { GasCompareRoot } from "@/types/response/api/result/taskId/2_1_2_GasCompare";
+import { component2IntegratedResponse } from "./Constants";
 
 function toGasCompareProps(response: GasCompareRoot): TransactionGasCostProps {
   const data = response.result.result;
@@ -185,7 +181,7 @@ export function getResponseMetadataByComponentName(
     MinimumTest: { cpnt: 2, idx: 0, mode: 2 },
     TimeBasedMinimumTest: { cpnt: 2, idx: 1, mode: 2 },
     PoolManagerTest: { cpnt: 2, idx: 4, mode: 2 },
-    TimeBasedStepTest: { cpnt: 2, idx: 5, mode: 2 },
+    // TimeBasedStepTest: { cpnt: 2, idx: 5, mode: 2 }, // deleted
     DoubleInitializeTest: { cpnt: 2, idx: 6, mode: 2 },
     ProxyTest: { cpnt: 2, idx: 7, mode: 2 },
   };
@@ -202,8 +198,19 @@ export const componentNames = [
   "GasCompare", // idx: 2
   "TokenPriceCompare", // idx: 3
   "PoolManagerTest", // idx: 4
-  "TimeBasedStepTest", // idx: 5
+  "", // "TimeBasedStepTest", // idx: 5 // deleted
   "DoubleInitializeTest", // idx: 6
   "ProxyTest", // idx: 7
 ] as const;
 export type ComponentNameType = (typeof componentNames)[number];
+
+export function getMockedComponent2ResponseByIndex(
+  index: number,
+): Comp2IntegratedAnalysisRoot2 | undefined {
+  const rawData = component2IntegratedResponse;
+  for (const data of rawData) {
+    if (data.result.idx === index) {
+      return data;
+    }
+  }
+}

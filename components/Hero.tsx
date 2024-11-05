@@ -12,7 +12,7 @@ function Background({ children }: { children: React.ReactNode }) {
 
 function HerbicideTypography() {
   return (
-    <p className="select-none font-lora font-semibold text-[128px] text-primary-600">
+    <p className="select-none font-semibold font-lora text-[128px] text-primary-600">
       Herbicide
     </p>
   );

@@ -1,21 +1,21 @@
 export interface TaskCreationResponseRoot {
   msg: string;
-  info: Info;
-  testCache: TestCache[];
+  info: TaskCreationResponseInfo;
+  testCache: TaskCreationResponseTestCache[];
 }
 
-export interface Info {
+export interface TaskCreationResponseInfo {
   hooks: string;
   timeHash: string;
-  tasks: Task[];
+  tasks: TaskCreationResponseTask[];
 }
 
-export interface Task {
+export interface TaskCreationResponseTask {
   id: string;
   stat: string;
 }
 
-export interface TestCache {
+export interface TaskCreationResponseTestCache {
   task_id: string;
   date_done: string;
 }
