@@ -58,7 +58,7 @@ export default function StaticAnalysisResultPage() {
 
   return (
     <div className="flex flex-col my-4 max-h-[800px] ml-2">
-      <div className="relative w-[96%] mt-14">
+      <div className="relative w-[96%] ">
         <span className="absolute left-3 top-1/2 transform -translate-y-1/2">
           🔍
         </span>

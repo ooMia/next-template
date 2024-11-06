@@ -1,13 +1,16 @@
 import { SetStateAction } from "react";
 import { Label } from "../ui/label";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { Checkbox } from "../ui/checkbox";
 
 export function RadioStateHandler({
   labels,
   setter,
+  isDisabled = false,
 }: {
   labels: string[];
   setter: SetStateAction<any>;
+  isDisabled?: boolean;
 }) {
   const handleValueChange = (value: string) => {
     setter(value);
@@ -30,11 +33,45 @@ export function RadioStateHandler({
         </div> */}
         {labels.map((label) => (
           <div className="flex items-center space-x-2" key={label}>
-            <RadioGroupItem value={label} id={label} />
+            {<RadioGroupItem value={label} id={label} disabled={isDisabled} />}
             <Label htmlFor={label}>{label}</Label>
           </div>
         ))}
       </RadioGroup>
+    </div>
+  );
+}
+
+export function CheckBoxBooleanStateHandler({
+  label,
+  setter,
+  isDisabled = false,
+}: {
+  label: string;
+  setter: SetStateAction<any>;
+  isDisabled?: boolean;
+}) {
+  const handleValueChange = (value: boolean) => {
+    setter(value);
+  };
+
+  return (
+    <div className="select-none flex items-center space-x-2">
+      {
+        <Checkbox
+          className="disabled:cursor-not-allowed disabled:opacity-30 disabled:line-through "
+          id={label}
+          defaultChecked={false}
+          onCheckedChange={handleValueChange}
+          disabled={isDisabled}
+        />
+      }
+      <label
+        htmlFor={label}
+        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+      >
+        {label}
+      </label>
     </div>
   );
 }

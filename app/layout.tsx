@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`antialiased  ${GeistSans.className} ${GeistMono.className}`}
+        className={`antialiased ${GeistSans.className} ${GeistMono.className}`}
       >
         <Providers>
           <TopStickMenuBar />

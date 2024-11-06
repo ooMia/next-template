@@ -177,7 +177,7 @@ function DynamicPoolKeyResult({
     <Card className="rounded-[15px] border m-2">
       <CardHeader>
         <CardTitle>PoolKey</CardTitle>
-        <CardDescription>Component Description</CardDescription>
+        {/* <CardDescription>Component Description</CardDescription> */}
       </CardHeader>
       <CardContent className="font-fira-code">
         <div className="grid grid-cols-[auto,1fr] border gap-4 p-4">
@@ -223,7 +223,7 @@ function DynamicTokenPriceResult({
     <Card>
       <CardHeader>
         <CardTitle>Token Price</CardTitle>
-        <CardDescription>Component Description</CardDescription>
+        {/* <CardDescription>Component Description</CardDescription> */}
       </CardHeader>
       <CardContent>
         <div className="grid grid-flow-row grid-cols-2  gap-4 border p-4 w-[500px]">
