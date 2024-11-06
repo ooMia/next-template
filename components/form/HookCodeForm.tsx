@@ -83,7 +83,7 @@ export default function HookCodeForm({
               <Button
                 className="rounded-full p-2 m-2 text-xl w-fit-content text-align-center bg-blue-500 text-white hover:bg-blue-600 select-none"
                 onClick={() => {
-                  setFontSize(fontSize - 0.5);
+                  setFontSize(fontSize > 1 ? fontSize - 0.5 : 1);
                 }}
               >
                 🔍➖
@@ -102,7 +102,7 @@ export default function HookCodeForm({
           onClick={(e) => {
             e.preventDefault();
             doRequest(makeHookCodeRequestBody()).then(() => {
-              router.push("/result/code");
+              router.push("/result");
             });
           }}
         >

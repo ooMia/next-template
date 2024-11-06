@@ -8,7 +8,7 @@ export default function Layout({
   children,
   StaticAnalysis,
   TraceLog,
-  PoolKey,
+  poolKey,
   TokenPrice,
   EstimatedGasUsage,
   AmountDeltaSummary,
@@ -16,7 +16,7 @@ export default function Layout({
   children: React.ReactNode;
   StaticAnalysis: React.ReactNode;
   TraceLog: React.ReactNode;
-  PoolKey: React.ReactNode;
+  poolKey: React.ReactNode;
   TokenPrice: React.ReactNode;
   EstimatedGasUsage: React.ReactNode;
   AmountDeltaSummary: React.ReactNode;
@@ -33,7 +33,7 @@ export default function Layout({
           <ResizablePanel defaultSize={75}>
             <div className="flex flex-col gap-4">
               <div className="flex justify-between">
-                {PoolKey}
+                {poolKey}
                 {TokenPrice}
               </div>
               {AmountDeltaSummary}

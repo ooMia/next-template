@@ -21,3 +21,18 @@ const CodeHighlighter = ({ codeString, fontSize = 1 }) => {
   );
 };
 export default CodeHighlighter;
+
+const CodeHighlighterNoLine = ({ codeString, fontSize = 1 }) => {
+  return (
+    <div style={{ fontSize: `${fontSize}rem` }}>
+      <Prism
+        language="solidity"
+        style={solarizedlight}
+        // @todo try wrap lines: checkout https://react-syntax-highlighter.github.io/react-syntax-highlighter/demo/
+      >
+        {codeString}
+      </Prism>
+    </div>
+  );
+};
+export { CodeHighlighterNoLine };

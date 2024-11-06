@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export function TopStickMenuBar() {
   const SimpleRouteMenubarMenu = () => {
-    const routes = [/*"Overview",*/ "Scan", /*"Docs",*/ "Result", "Dev"];
+    const routes = [/*"Overview",*/ "Scan", /*"Docs",*/ "Result"];
     return routes.map((route) => (
       <MenubarMenu key={`MenubarMenu-${route}`}>
         <Link

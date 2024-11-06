@@ -1,3 +1,5 @@
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+
 export default function StaticAnalysisLayout({
   children,
   Code,
@@ -11,7 +13,6 @@ export default function StaticAnalysisLayout({
   return (
     <div className="flex flex-col">
       {children}
-
       <div className="flex">
         {Code}
         {List}

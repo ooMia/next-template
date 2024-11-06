@@ -67,13 +67,15 @@ export default function ERC6909DeltaBurnResultPage() {
 
   return (
     <Card>
-      <CardHeader className="relative">
-        <div>
-          <EtherLogo className="absolute justify-center left-[340]" />
-          <TetherLogo className="absolute justify-center left-[395]" />
+      <CardHeader>
+        <div className="flex">
+          <div className="flex flex-col px-4">
+            <CardTitle>Amount0/1 Delta Summary</CardTitle>
+            <CardDescription>Amount0/1 Delta Summary</CardDescription>
+          </div>
+          <EtherLogo className="justify-center mx-2" />
+          <TetherLogo className="justify-center mx-2" />
         </div>
-        <CardTitle>Amount0/1 Delta Summary</CardTitle>
-        <CardDescription>Amount0/1 Delta Summary</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="p-4">

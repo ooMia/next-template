@@ -30,7 +30,7 @@ const Page = () => {
 
   return (
     <div>
-      <div className="py-2">
+      <div className="py-2 flex items-end">
         <Button
           className="rounded-full p-2 m-2 text-xl w-fit-content text-align-center bg-blue-500 text-white hover:bg-blue-600 select-none"
           onClick={() => {
@@ -47,6 +47,7 @@ const Page = () => {
         >
           🔍➖
         </Button>
+        <h1 className="text-3xl my-2 mx-4">Trace Log</h1>
       </div>
       <ScrollArea className="max-h-[60vh] flex flex-col items-center">
         <Suspense fallback={<Skeleton />}>

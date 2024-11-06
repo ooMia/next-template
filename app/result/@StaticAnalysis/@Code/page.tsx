@@ -33,7 +33,7 @@ export default function StaticAnalysisResultPage() {
           <Button
             className="rounded-full p-2 m-2 text-xl w-fit-content text-align-center bg-blue-500 text-white hover:bg-blue-600 select-none"
             onClick={() => {
-              setFontSize(fontSize - 0.5);
+              setFontSize(fontSize > 1 ? fontSize - 0.5 : 1);
             }}
           >
             🔍➖
@@ -55,6 +55,7 @@ export default function StaticAnalysisResultPage() {
             {staticResponseOnPoolKey.result.result.info.evm_version}
           </h2>
 
+          {/* @todo https://ui.shadcn.com/docs/components/hover-card */}
           <a
             className="text-info-500 hover:underline cursor-pointer max-w-[100px] truncate"
             target="_blank"
