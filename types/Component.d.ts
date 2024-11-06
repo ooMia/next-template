@@ -4,13 +4,21 @@ export default interface TestLogPreviewCardType {
   content: string;
   footer: string;
 }
+export interface TokenDeltaSummaryProps {
+  Asset: "General" | "ERC20" | "ERC6909";
 
-export type TokenDeltaSummaryProps = {
-  Asset: string;
-  Method: string;
-  MintBurn: string;
-  ExactInOut: string;
-  PoolHookUser: string;
-  Amount0Delta: number;
-  Amount1Delta: number;
-}[];
+  Method: "Swap" | "AddLiquidity" | "RemoveLiquidity" | "Donate";
+
+  MintBurn: "Burn" | "Mint" | "N/A" | "Neither";
+
+  ExactInOut: "ExactIn" | "ExactOut" | "N/A";
+
+  PoolHookUser: "PoolManager" | "Hook" | "User" | "Delta";
+
+  Amount0Delta: string;
+
+  Amount1Delta: string;
+
+  [key: string]: any;
+}
+[];

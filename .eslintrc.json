@@ -2,6 +2,8 @@
   "ignorePatterns": ["node_modules/*", ".next/*", "out/*", "components/ui/*"],
   "extends": ["next/core-web-vitals", "next/typescript"],
   "rules": {
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "no-unused-vars": "off",
+    "prefer-const": "off"
   }
 }

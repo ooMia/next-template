@@ -5,7 +5,10 @@ import {
   TransactionGasCostProps,
 } from "@/types/DynamicAnalysis";
 import { Comp2IntegratedAnalysisRoot2 } from "@/types/response/api/result/Comp2IntegratedAnalysisResult";
-import { TokenPriceCompareRoot } from "@/types/response/api/result/taskId/2_0_3_TokenPriceCompare";
+import {
+  TokenPriceCompareRoot,
+  TokenPriceCompareUnionAmountDelta,
+} from "@/types/response/api/result/taskId/2_0_3_TokenPriceCompare";
 import { GasCompareRoot } from "@/types/response/api/result/taskId/2_1_2_GasCompare";
 import { component2IntegratedResponse } from "./Constants";
 import { TokenDeltaSummaryProps } from "@/types/Component";
@@ -216,260 +219,260 @@ export function getMockedComponent2ResponseByIndex(
   }
 }
 
-const maliciousHookDeltaResponse: TokenPriceCompareRoot = {
-  task_id: "f7d3848f-47e4-42eb-b35a-9ef4f6c6fe16",
-  status: "Success",
-  result: {
-    name: "Price-compare-using-Pyth",
-    mode: 3,
-    idx: 3,
-    time: 155.035403251648,
-    poolKey: {
-      hooks: "0x7b41FbaE73D2ACc9F2353Aa716A3FdE657eBc547",
-      currency0: "0x0197481B0F5237eF312a78528e79667D8b33Dcff",
-      currency1: "0xA56569Bd93dc4b9afCc871e251017dB0543920d4",
-      fee: 3000,
-      tickSpacing: 60,
-    },
-    data: {
-      with_6909: {
-        swap: [
-          {
-            "for-expected-current-price": "79228162514264337593543950336",
-            "for-expected-current-liquidity": "1000000000000000000",
-            "for-expected-amount0-specified": "100",
-            "for-expected-current-fee": "3000",
-            amount0delta: "-100",
-            amount1delta: "97",
-            managerAmount0delta: "0",
-            managerAmount1delta: "-98",
-            hookAmount0delta: "0",
-            hookAmount1delta: "1",
-            userAmount0delta: "0",
-            userAmount1delta: "97",
-            hook6909Amount0delta: "0",
-            hook6909Amount1delta: "0",
-            user6909Amount0delta: "-100",
-            user6909Amount1delta: "0",
-            calc: {
-              price_expected: 1,
-              sqrtP_expected: 7.922816251426433e28,
-              amount_in: 100.000000000007,
-              amount_out: 70.000000000005,
-            },
-            is_burn: true,
-            is_exactIn: true,
-          },
-          {
-            "for-expected-current-price": "79228162514264337593543950336",
-            "for-expected-current-liquidity": "1000000000000000000",
-            "for-expected-amount0-specified": "100",
-            "for-expected-current-fee": "3000",
-            amount0delta: "-100",
-            amount1delta: "97",
-            managerAmount0delta: "100",
-            managerAmount1delta: "-1",
-            hookAmount0delta: "0",
-            hookAmount1delta: "1",
-            userAmount0delta: "-100",
-            userAmount1delta: "0",
-            hook6909Amount0delta: "0",
-            hook6909Amount1delta: "0",
-            user6909Amount0delta: "0",
-            user6909Amount1delta: "97",
-            calc: {
-              price_expected: 1,
-              sqrtP_expected: 7.922816251426433e28,
-              amount_in: 100.000000000007,
-              amount_out: 70.000000000005,
-            },
-            is_burn: false,
-            is_exactIn: true,
-          },
-          {
-            "for-expected-current-price": "79228162514264337593543950336",
-            "for-expected-current-liquidity": "1000000000000000000",
-            "for-expected-amount0-specified": "99",
-            "for-expected-current-fee": "3000",
-            amount0delta: "-102",
-            amount1delta: "99",
-            managerAmount0delta: "-1",
-            managerAmount1delta: "-99",
-            hookAmount0delta: "1",
-            hookAmount1delta: "0",
-            userAmount0delta: "0",
-            userAmount1delta: "99",
-            hook6909Amount0delta: "0",
-            hook6909Amount1delta: "0",
-            user6909Amount0delta: "-102",
-            user6909Amount1delta: "0",
-            calc: {
-              price_expected: 1,
-              sqrtP_expected: 7.922816251426433e28,
-              amount_in: 99.0000000000105,
-              amount_out: 69.3000000000073,
-            },
-            is_burn: true,
-            is_exactIn: false,
-          },
-          {
-            "for-expected-current-price": "79228162514264337593543950336",
-            "for-expected-current-liquidity": "1000000000000000000",
-            "for-expected-amount0-specified": "99",
-            "for-expected-current-fee": "3000",
-            amount0delta: "-102",
-            amount1delta: "99",
-            managerAmount0delta: "101",
-            managerAmount1delta: "0",
-            hookAmount0delta: "1",
-            hookAmount1delta: "0",
-            userAmount0delta: "-102",
-            userAmount1delta: "0",
-            hook6909Amount0delta: "0",
-            hook6909Amount1delta: "0",
-            user6909Amount0delta: "0",
-            user6909Amount1delta: "99",
-            calc: {
-              price_expected: 1,
-              sqrtP_expected: 7.922816251426433e28,
-              amount_in: 99.0000000000105,
-              amount_out: 69.3000000000073,
-            },
-            is_burn: false,
-            is_exactIn: false,
-          },
-        ],
-        addLiquidity: {
-          amount0delta: "-1054300000000000000",
-          amount1delta: "-1054300000000000000",
-          managerAmount0delta: "-54300000000000000",
-          managerAmount1delta: "-54300000000000000",
-          hookAmount0delta: "54300000000000000",
-          hookAmount1delta: "54300000000000000",
-          userAmount0delta: "0",
-          userAmount1delta: "0",
-          hook6909Amount0delta: "0",
-          hook6909Amount1delta: "0",
-          user6909Amount0delta: "-1054300000000000000",
-          user6909Amount1delta: "-1054300000000000000",
-        },
-        removeLiquidity: {
-          amount0delta: "945700000000000000",
-          amount1delta: "945700000000000000",
-          managerAmount0delta: "-54299999999999999",
-          managerAmount1delta: "-54299999999999999",
-          hookAmount0delta: "54299999999999999",
-          hookAmount1delta: "54299999999999999",
-          userAmount0delta: "0",
-          userAmount1delta: "0",
-          hook6909Amount0delta: "0",
-          hook6909Amount1delta: "0",
-          user6909Amount0delta: "945700000000000000",
-          user6909Amount1delta: "945700000000000000",
-        },
-      },
-      with_20: {
-        swap: [
-          {
-            "for-expected-current-price": "79228162514264337593543950336",
-            "for-expected-current-liquidity": "1000000000000000000",
-            "for-expected-amount0-specified": "100",
-            "for-expected-current-fee": "3000",
-            amount0delta: "-100",
-            amount1delta: "97",
-            managerAmount0delta: "100",
-            managerAmount1delta: "-98",
-            hookAmount0delta: "0",
-            hookAmount1delta: "1",
-            userAmount0delta: "-100",
-            userAmount1delta: "97",
-            hook6909Amount0delta: "0",
-            hook6909Amount1delta: "0",
-            user6909Amount0delta: "0",
-            user6909Amount1delta: "0",
-            calc: {
-              price_expected: 1,
-              sqrtP_expected: 7.922816251426433e28,
-              amount_in: 100.000000000007,
-              amount_out: 70.000000000005,
-            },
-            is_burn: false,
-            is_exactIn: true,
-          },
-          {
-            "for-expected-current-price": "79228162514264337593543950336",
-            "for-expected-current-liquidity": "1000000000000000000",
-            "for-expected-amount0-specified": "99",
-            "for-expected-current-fee": "3000",
-            amount0delta: "-102",
-            amount1delta: "99",
-            managerAmount0delta: "101",
-            managerAmount1delta: "-99",
-            hookAmount0delta: "1",
-            hookAmount1delta: "0",
-            userAmount0delta: "-102",
-            userAmount1delta: "99",
-            hook6909Amount0delta: "0",
-            hook6909Amount1delta: "0",
-            user6909Amount0delta: "0",
-            user6909Amount1delta: "0",
-            calc: {
-              price_expected: 1,
-              sqrtP_expected: 7.922816251426433e28,
-              amount_in: 99.0000000000105,
-              amount_out: 69.3000000000073,
-            },
-            is_burn: false,
-            is_exactIn: false,
-          },
-        ],
-        addLiquidity: {
-          amount0delta: "-1054300000000000000",
-          amount1delta: "-1054300000000000000",
-          managerAmount0delta: "1000000000000000000",
-          managerAmount1delta: "1000000000000000000",
-          hookAmount0delta: "54300000000000000",
-          hookAmount1delta: "54300000000000000",
-          userAmount0delta: "-1054300000000000000",
-          userAmount1delta: "-1054300000000000000",
-          hook6909Amount0delta: "0",
-          hook6909Amount1delta: "0",
-          user6909Amount0delta: "0",
-          user6909Amount1delta: "0",
-        },
-        donate: {
-          amount0delta: "-100",
-          amount1delta: "-100",
-          managerAmount0delta: "100",
-          managerAmount1delta: "100",
-          hookAmount0delta: "0",
-          hookAmount1delta: "0",
-          userAmount0delta: "-100",
-          userAmount1delta: "-100",
-          hook6909Amount0delta: "0",
-          hook6909Amount1delta: "0",
-          user6909Amount0delta: "0",
-          user6909Amount1delta: "0",
-        },
-        removeLiquidity: {
-          amount0delta: "945700000000000000",
-          amount1delta: "945700000000000000",
-          managerAmount0delta: "-999999999999999999",
-          managerAmount1delta: "-999999999999999999",
-          hookAmount0delta: "54299999999999999",
-          hookAmount1delta: "54299999999999999",
-          userAmount0delta: "945700000000000000",
-          userAmount1delta: "945700000000000000",
-          hook6909Amount0delta: "0",
-          hook6909Amount1delta: "0",
-          user6909Amount0delta: "0",
-          user6909Amount1delta: "0",
-        },
-      },
-    },
-    price: -1,
-  },
-};
+// const maliciousHookDeltaResponse: TokenPriceCompareRoot = {
+//   task_id: "f7d3848f-47e4-42eb-b35a-9ef4f6c6fe16",
+//   status: "Success",
+//   result: {
+//     name: "Price-compare-using-Pyth",
+//     mode: 3,
+//     idx: 3,
+//     time: 155.035403251648,
+//     poolKey: {
+//       hooks: "0x7b41FbaE73D2ACc9F2353Aa716A3FdE657eBc547",
+//       currency0: "0x0197481B0F5237eF312a78528e79667D8b33Dcff",
+//       currency1: "0xA56569Bd93dc4b9afCc871e251017dB0543920d4",
+//       fee: 3000,
+//       tickSpacing: 60,
+//     },
+//     data: {
+//       with_6909: {
+//         swap: [
+//           {
+//             "for-expected-current-price": "79228162514264337593543950336",
+//             "for-expected-current-liquidity": "1000000000000000000",
+//             "for-expected-amount0-specified": "100",
+//             "for-expected-current-fee": "3000",
+//             amount0delta: "-100",
+//             amount1delta: "97",
+//             managerAmount0delta: "0",
+//             managerAmount1delta: "-98",
+//             hookAmount0delta: "0",
+//             hookAmount1delta: "1",
+//             userAmount0delta: "0",
+//             userAmount1delta: "97",
+//             hook6909Amount0delta: "0",
+//             hook6909Amount1delta: "0",
+//             user6909Amount0delta: "-100",
+//             user6909Amount1delta: "0",
+//             calc: {
+//               price_expected: 1,
+//               sqrtP_expected: 7.922816251426433e28,
+//               amount_in: 100.000000000007,
+//               amount_out: 70.000000000005,
+//             },
+//             is_burn: true,
+//             is_exactIn: true,
+//           },
+//           {
+//             "for-expected-current-price": "79228162514264337593543950336",
+//             "for-expected-current-liquidity": "1000000000000000000",
+//             "for-expected-amount0-specified": "100",
+//             "for-expected-current-fee": "3000",
+//             amount0delta: "-100",
+//             amount1delta: "97",
+//             managerAmount0delta: "100",
+//             managerAmount1delta: "-1",
+//             hookAmount0delta: "0",
+//             hookAmount1delta: "1",
+//             userAmount0delta: "-100",
+//             userAmount1delta: "0",
+//             hook6909Amount0delta: "0",
+//             hook6909Amount1delta: "0",
+//             user6909Amount0delta: "0",
+//             user6909Amount1delta: "97",
+//             calc: {
+//               price_expected: 1,
+//               sqrtP_expected: 7.922816251426433e28,
+//               amount_in: 100.000000000007,
+//               amount_out: 70.000000000005,
+//             },
+//             is_burn: false,
+//             is_exactIn: true,
+//           },
+//           {
+//             "for-expected-current-price": "79228162514264337593543950336",
+//             "for-expected-current-liquidity": "1000000000000000000",
+//             "for-expected-amount0-specified": "99",
+//             "for-expected-current-fee": "3000",
+//             amount0delta: "-102",
+//             amount1delta: "99",
+//             managerAmount0delta: "-1",
+//             managerAmount1delta: "-99",
+//             hookAmount0delta: "1",
+//             hookAmount1delta: "0",
+//             userAmount0delta: "0",
+//             userAmount1delta: "99",
+//             hook6909Amount0delta: "0",
+//             hook6909Amount1delta: "0",
+//             user6909Amount0delta: "-102",
+//             user6909Amount1delta: "0",
+//             calc: {
+//               price_expected: 1,
+//               sqrtP_expected: 7.922816251426433e28,
+//               amount_in: 99.0000000000105,
+//               amount_out: 69.3000000000073,
+//             },
+//             is_burn: true,
+//             is_exactIn: false,
+//           },
+//           {
+//             "for-expected-current-price": "79228162514264337593543950336",
+//             "for-expected-current-liquidity": "1000000000000000000",
+//             "for-expected-amount0-specified": "99",
+//             "for-expected-current-fee": "3000",
+//             amount0delta: "-102",
+//             amount1delta: "99",
+//             managerAmount0delta: "101",
+//             managerAmount1delta: "0",
+//             hookAmount0delta: "1",
+//             hookAmount1delta: "0",
+//             userAmount0delta: "-102",
+//             userAmount1delta: "0",
+//             hook6909Amount0delta: "0",
+//             hook6909Amount1delta: "0",
+//             user6909Amount0delta: "0",
+//             user6909Amount1delta: "99",
+//             calc: {
+//               price_expected: 1,
+//               sqrtP_expected: 7.922816251426433e28,
+//               amount_in: 99.0000000000105,
+//               amount_out: 69.3000000000073,
+//             },
+//             is_burn: false,
+//             is_exactIn: false,
+//           },
+//         ],
+//         addLiquidity: {
+//           amount0delta: "-1054300000000000000",
+//           amount1delta: "-1054300000000000000",
+//           managerAmount0delta: "-54300000000000000",
+//           managerAmount1delta: "-54300000000000000",
+//           hookAmount0delta: "54300000000000000",
+//           hookAmount1delta: "54300000000000000",
+//           userAmount0delta: "0",
+//           userAmount1delta: "0",
+//           hook6909Amount0delta: "0",
+//           hook6909Amount1delta: "0",
+//           user6909Amount0delta: "-1054300000000000000",
+//           user6909Amount1delta: "-1054300000000000000",
+//         },
+//         removeLiquidity: {
+//           amount0delta: "945700000000000000",
+//           amount1delta: "945700000000000000",
+//           managerAmount0delta: "-54299999999999999",
+//           managerAmount1delta: "-54299999999999999",
+//           hookAmount0delta: "54299999999999999",
+//           hookAmount1delta: "54299999999999999",
+//           userAmount0delta: "0",
+//           userAmount1delta: "0",
+//           hook6909Amount0delta: "0",
+//           hook6909Amount1delta: "0",
+//           user6909Amount0delta: "945700000000000000",
+//           user6909Amount1delta: "945700000000000000",
+//         },
+//       },
+//       with_20: {
+//         swap: [
+//           {
+//             "for-expected-current-price": "79228162514264337593543950336",
+//             "for-expected-current-liquidity": "1000000000000000000",
+//             "for-expected-amount0-specified": "100",
+//             "for-expected-current-fee": "3000",
+//             amount0delta: "-100",
+//             amount1delta: "97",
+//             managerAmount0delta: "100",
+//             managerAmount1delta: "-98",
+//             hookAmount0delta: "0",
+//             hookAmount1delta: "1",
+//             userAmount0delta: "-100",
+//             userAmount1delta: "97",
+//             hook6909Amount0delta: "0",
+//             hook6909Amount1delta: "0",
+//             user6909Amount0delta: "0",
+//             user6909Amount1delta: "0",
+//             calc: {
+//               price_expected: 1,
+//               sqrtP_expected: 7.922816251426433e28,
+//               amount_in: 100.000000000007,
+//               amount_out: 70.000000000005,
+//             },
+//             is_burn: false,
+//             is_exactIn: true,
+//           },
+//           {
+//             "for-expected-current-price": "79228162514264337593543950336",
+//             "for-expected-current-liquidity": "1000000000000000000",
+//             "for-expected-amount0-specified": "99",
+//             "for-expected-current-fee": "3000",
+//             amount0delta: "-102",
+//             amount1delta: "99",
+//             managerAmount0delta: "101",
+//             managerAmount1delta: "-99",
+//             hookAmount0delta: "1",
+//             hookAmount1delta: "0",
+//             userAmount0delta: "-102",
+//             userAmount1delta: "99",
+//             hook6909Amount0delta: "0",
+//             hook6909Amount1delta: "0",
+//             user6909Amount0delta: "0",
+//             user6909Amount1delta: "0",
+//             calc: {
+//               price_expected: 1,
+//               sqrtP_expected: 7.922816251426433e28,
+//               amount_in: 99.0000000000105,
+//               amount_out: 69.3000000000073,
+//             },
+//             is_burn: false,
+//             is_exactIn: false,
+//           },
+//         ],
+//         addLiquidity: {
+//           amount0delta: "-1054300000000000000",
+//           amount1delta: "-1054300000000000000",
+//           managerAmount0delta: "1000000000000000000",
+//           managerAmount1delta: "1000000000000000000",
+//           hookAmount0delta: "54300000000000000",
+//           hookAmount1delta: "54300000000000000",
+//           userAmount0delta: "-1054300000000000000",
+//           userAmount1delta: "-1054300000000000000",
+//           hook6909Amount0delta: "0",
+//           hook6909Amount1delta: "0",
+//           user6909Amount0delta: "0",
+//           user6909Amount1delta: "0",
+//         },
+//         donate: {
+//           amount0delta: "-100",
+//           amount1delta: "-100",
+//           managerAmount0delta: "100",
+//           managerAmount1delta: "100",
+//           hookAmount0delta: "0",
+//           hookAmount1delta: "0",
+//           userAmount0delta: "-100",
+//           userAmount1delta: "-100",
+//           hook6909Amount0delta: "0",
+//           hook6909Amount1delta: "0",
+//           user6909Amount0delta: "0",
+//           user6909Amount1delta: "0",
+//         },
+//         removeLiquidity: {
+//           amount0delta: "945700000000000000",
+//           amount1delta: "945700000000000000",
+//           managerAmount0delta: "-999999999999999999",
+//           managerAmount1delta: "-999999999999999999",
+//           hookAmount0delta: "54299999999999999",
+//           hookAmount1delta: "54299999999999999",
+//           userAmount0delta: "945700000000000000",
+//           userAmount1delta: "945700000000000000",
+//           hook6909Amount0delta: "0",
+//           hook6909Amount1delta: "0",
+//           user6909Amount0delta: "0",
+//           user6909Amount1delta: "0",
+//         },
+//       },
+//     },
+//     price: -1,
+//   },
+// };
 
 // export function TokenPriceCompareRootToTokenDeltaSummaryProps(
 //   { result }: TokenPriceCompareRoot,
@@ -487,3 +490,215 @@ const maliciousHookDeltaResponse: TokenPriceCompareRoot = {
 //     });
 //   }
 // }
+
+///////
+
+export type AnalysisMode = 1 | 2 | 3 | 4;
+
+export const AnalysisModeDescription: { [key in AnalysisMode]: string } = {
+  1: "all",
+  2: "dynamic",
+  3: "static",
+  4: "code-only",
+};
+
+export type ComponentType =
+  | "0-3"
+  | "1-2"
+  | "2-0"
+  | "2-1"
+  | "2-4"
+  | "2-6"
+  | "2-7";
+
+export const ComponentTypeDescription: {
+  [key in ComponentType]: ComponentNameType;
+} = {
+  "0-3": "TokenPriceCompare",
+  "1-2": "GasCompare",
+  "2-0": "MinimumTest",
+  "2-1": "TimeBasedMinimumTest",
+  "2-4": "PoolManagerTest",
+  // "2-5": "TimeBasedStepTest",
+  "2-6": "DoubleInitializeTest",
+  "2-7": "ProxyTest",
+};
+
+// @todo getMapperByComponentName
+// export function getMapperByComponentName(
+//   mode: AnalysisMode,
+//   componentName: typeof componentNames[number]
+// ){
+// }
+
+// export function getMapperByResponseMetadata(
+//   mode: AnalysisMode,
+//   componentId: ComponentType
+// ) {
+//   return true;
+// }
+
+//@todo implement
+export function TokenPriceCompareJsonToTokenDeltaSummaryProps({
+  json,
+}: {
+  json: TokenPriceCompareRoot;
+}): TokenDeltaSummaryProps[] {
+  let res: TokenDeltaSummaryProps[] = [];
+
+  const kv = [
+    ["amount", "General"],
+    ["userAmount", "ERC20"],
+    ["managerAmount", "ERC20"],
+    ["hookAmount", "ERC20"],
+    ["hook6909Amount", "ERC6909"],
+    ["user6909Amount", "ERC6909"],
+  ];
+
+  {
+    const data0 = json.result.data.with_20;
+
+    const methods = ["addLiquidity", "removeLiquidity", "donate"] as const;
+
+    methods.forEach((method) => {
+      const data1 = data0[method];
+      res.push({
+        Asset: "General",
+        Method: toPascalCase(method) as any,
+        MintBurn: "N/A",
+        ExactInOut: "N/A",
+        PoolHookUser: "Delta",
+        Amount0Delta: data1.amount0delta,
+        Amount1Delta: data1.amount1delta,
+      });
+      res.push({
+        Asset: "ERC20",
+        Method: toPascalCase(method) as any,
+        MintBurn: "N/A",
+        ExactInOut: "N/A",
+        PoolHookUser: "User",
+        Amount0Delta: data1.userAmount0delta,
+        Amount1Delta: data1.userAmount1delta,
+      });
+      res.push({
+        Asset: "ERC20",
+        Method: toPascalCase(method) as any,
+        MintBurn: "N/A",
+        ExactInOut: "N/A",
+        PoolHookUser: "PoolManager",
+        Amount0Delta: data1.managerAmount0delta,
+        Amount1Delta: data1.managerAmount1delta,
+      });
+      res.push({
+        Asset: "ERC20",
+        Method: toPascalCase(method) as any,
+        MintBurn: "N/A",
+        ExactInOut: "N/A",
+        PoolHookUser: "Hook",
+        Amount0Delta: data1.hookAmount0delta,
+        Amount1Delta: data1.hookAmount1delta,
+      });
+    });
+
+    const method = "swap";
+
+    for (const data1 of data0[method]) {
+      res.push({
+        Asset: "General",
+        Method: "Swap",
+        MintBurn: data1.is_burn ? "Burn" : "Mint",
+        ExactInOut: data1.is_exactIn ? "ExactIn" : "ExactOut",
+        PoolHookUser: "Delta",
+        Amount0Delta: data1.amount0delta,
+        Amount1Delta: data1.amount1delta,
+      });
+      res.push({
+        Asset: "ERC20",
+        Method: "Swap",
+        MintBurn: data1.is_burn ? "Burn" : "Mint",
+        ExactInOut: data1.is_exactIn ? "ExactIn" : "ExactOut",
+        PoolHookUser: "User",
+        Amount0Delta: data1.userAmount0delta,
+        Amount1Delta: data1.userAmount1delta,
+      });
+      res.push({
+        Asset: "ERC20",
+        Method: "Swap",
+        MintBurn: data1.is_burn ? "Burn" : "Mint",
+        ExactInOut: data1.is_exactIn ? "ExactIn" : "ExactOut",
+        PoolHookUser: "PoolManager",
+        Amount0Delta: data1.managerAmount0delta,
+        Amount1Delta: data1.managerAmount1delta,
+      });
+      res.push({
+        Asset: "ERC20",
+        Method: "Swap",
+        MintBurn: data1.is_burn ? "Burn" : "Mint",
+        ExactInOut: data1.is_exactIn ? "ExactIn" : "ExactOut",
+        PoolHookUser: "Hook",
+        Amount0Delta: data1.hookAmount0delta,
+        Amount1Delta: data1.hookAmount1delta,
+      });
+    }
+  }
+
+  {
+    const data = json.result.data.with_6909;
+    const methods = ["addLiquidity", "removeLiquidity"];
+
+    methods.forEach((method) => {
+      const data1 = data[method] as TokenPriceCompareUnionAmountDelta;
+      res.push({
+        Asset: "General",
+        Method: toPascalCase(method) as any,
+        MintBurn: "N/A",
+        ExactInOut: "N/A",
+        PoolHookUser: "Delta",
+        Amount0Delta: data1.amount0delta,
+        Amount1Delta: data1.amount1delta,
+      });
+      res.push({
+        Asset: "ERC6909",
+        Method: toPascalCase(method) as any,
+        MintBurn: "N/A",
+        ExactInOut: "N/A",
+        PoolHookUser: "User",
+        Amount0Delta: data1.user6909Amount0delta!,
+        Amount1Delta: data1.user6909Amount1delta!,
+      });
+      res.push({
+        Asset: "ERC6909",
+        Method: toPascalCase(method) as any,
+        MintBurn: "N/A",
+        ExactInOut: "N/A",
+        PoolHookUser: "Hook",
+        Amount0Delta: data1.hook6909Amount0delta!,
+        Amount1Delta: data1.hook6909Amount1delta!,
+      });
+    });
+    const method = "swap";
+
+    // @todo do the rest of the work
+  }
+
+  return res;
+}
+
+function getGeneralDeltaPair(
+  data: TokenPriceCompareUnionAmountDelta,
+): [string, string] {
+  return [data.amount0delta, data.amount1delta];
+}
+
+function isHookUserManagerOrDelta(
+  target: string,
+): "PoolManager" | "Hook" | "User" | "Delta" {
+  if (target.toLowerCase().includes("manager")) return "PoolManager";
+  if (target.toLowerCase().includes("hook")) return "Hook";
+  if (target.toLowerCase().includes("user")) return "User";
+  return "Delta";
+}
+
+function toPascalCase(str: string): string {
+  return str[0].toUpperCase() + str.slice(1);
+}

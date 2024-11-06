@@ -25,14 +25,14 @@ import {
   CardContent,
 } from "@/components/ui/card";
 
-const priceDataSet: {
+let priceDataSet: {
   Asset: string;
   Method: string;
   MintBurn: string;
   ExactInOut: string;
   PoolHookUser: string;
-  Amount0Delta: BigInt | number;
-  Amount1Delta: BigInt | number;
+  Amount0Delta: bigint | number;
+  Amount1Delta: bigint | number;
 }[] = tokenPriceCasesWithKeys2;
 
 // @todo modify data as given

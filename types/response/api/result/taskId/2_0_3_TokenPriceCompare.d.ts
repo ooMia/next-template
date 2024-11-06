@@ -21,12 +21,16 @@ export interface TokenPriceCompareResult {
 export interface TokenPriceCompareData {
   with_6909: TokenPriceCompareWith6909;
   with_20: TokenPriceCompareWith20;
+
+  [key: string]: TokenPriceCompareWith6909 | TokenPriceCompareWith20;
 }
 
 export interface TokenPriceCompareWith6909 {
   swap: TokenPriceCompareSwap[];
   addLiquidity: TokenPriceCompareAddLiquidity;
   removeLiquidity: TokenPriceCompareRemoveLiquidity;
+
+  [key: string]: TokenPriceCompareUnionAmountDelta | TokenPriceCompareSwap[];
 }
 
 export interface TokenPriceCompareWith20 {
@@ -34,6 +38,8 @@ export interface TokenPriceCompareWith20 {
   addLiquidity: TokenPriceCompareAddLiquidity;
   donate: TokenPriceCompareDonate;
   removeLiquidity: TokenPriceCompareRemoveLiquidity;
+
+  [key: string]: TokenPriceCompareUnionAmountDelta | TokenPriceCompareSwap[];
 }
 
 interface TokenPriceCompareUnionAmountDelta {
@@ -45,10 +51,12 @@ interface TokenPriceCompareUnionAmountDelta {
   hookAmount1delta: string;
   userAmount0delta: string;
   userAmount1delta: string;
-  hook6909Amount0delta: string;
-  hook6909Amount1delta: string;
-  user6909Amount0delta: string;
-  user6909Amount1delta: string;
+  hook6909Amount0delta?: string;
+  hook6909Amount1delta?: string;
+  user6909Amount0delta?: string;
+  user6909Amount1delta?: string;
+
+  [key: string]: string;
 }
 
 export type TokenPriceCompareAddLiquidity = TokenPriceCompareUnionAmountDelta;
