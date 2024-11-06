@@ -50,7 +50,7 @@ const Page = () => {
               <h1 className="text-3xl my-2 mx-4">Trace Log</h1>
               <div className="py-2 flex items-end">
                 {/* <div className='gap-1 grid grid-rows-2 auto-rows-max grid-flow-col'> */}
-                <div className="gap-1 flex">
+                <div className="gap-3 flex">
                   {testNames.map((test) =>
                     test.index != 1 ? (
                       <Button
@@ -67,7 +67,7 @@ const Page = () => {
                           padding: "0px",
                           width: "158px",
                           height: "20px",
-                          background: "rgba(239, 124, 249, 0.1)",
+                          background: "",
                           backdropFilter: "blur(2px)",
                           borderRadius: "23px",
                           flex: "none",
@@ -82,6 +82,7 @@ const Page = () => {
                           color: "#EF7BF9",
                           margin: "0px",
                         }}
+                        className={`${test.index === testNumber ? "bg-primary-100" : "bg-[#rgba(239, 124, 249, 0.1)]"} opacity-80 hover:bg-primary-100 select-none border dark:border-white`}
                       >
                         {test.name === "Minimum_Test"
                           ? "Minimum"
@@ -106,7 +107,7 @@ const Page = () => {
                             padding: "0px",
                             width: "158px",
                             height: "20px",
-                            background: "rgba(239, 124, 249, 0.1)",
+
                             backdropFilter: "blur(2px)",
                             borderRadius: "23px",
                             flex: "none",
@@ -122,6 +123,7 @@ const Page = () => {
                             margin: "0px",
                             userSelect: "none",
                           }}
+                          className={`${test.index === testNumber ? "bg-primary-100" : "bg-[#rgba(239, 124, 249, 0.1)]"} opacity-80 hover:bg-primary-100 select-none border dark:border-white`}
                         >
                           {test.name === "Minimum_Test"
                             ? "Minimum"
@@ -157,7 +159,7 @@ const Page = () => {
                                 setIndexNumber(0);
                               }}
                             >
-                              Continue
+                              › Continue
                             </AlertDialogAction>
                           </AlertDialogFooter>
                         </AlertDialogContent>
@@ -173,7 +175,6 @@ const Page = () => {
                       padding: "0px",
                       width: "158px",
                       height: "20px",
-                      background: "rgba(239, 124, 249, 0.1)",
                       backdropFilter: "blur(2px)",
                       borderRadius: "23px",
                       flex: "none",
@@ -188,6 +189,7 @@ const Page = () => {
                       color: "#EF7BF9",
                       margin: "0px",
                     }}
+                    className={`bg-[#rgba(239, 124, 249, 0.1)] opacity-80 hover:bg-primary-100 select-none border dark:border-white`}
                     onClick={() => {
                       setIndexNumber(
                         (indexNumber + 1) %

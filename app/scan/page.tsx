@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 export default function ScanInputFormPage(): React.ReactNode {
   const router = useRouter();
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center select-none">
       <Tabs defaultValue="PoolKey" className="w-3/4">
         <TabsList>
           <TabsTrigger value="PoolKey">PoolKey</TabsTrigger>

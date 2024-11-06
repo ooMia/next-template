@@ -16,12 +16,12 @@ export function ThemeSwitcher({ className }: { className?: string }) {
   if (!mounted) return null;
 
   return (
-    <div className="fixed right-0 bottom-0 flex items-center p-4 space-x-2 text-xs">
+    <div className="fixed right-0 bottom-0 flex items-center p-4 space-x-2 text-xs ">
       <Switch
         id="dark-mode"
         checked={theme === "light"}
         onCheckedChange={() => setTheme(theme === "light" ? "dark" : "light")}
-        className={className}
+        className={`${className} dark:bg-white`}
       />
     </div>
   );

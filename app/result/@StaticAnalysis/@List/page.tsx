@@ -195,74 +195,76 @@ import {
 
 function ResultDetailModal() {
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="secondary" className="select-none">
-          Detail
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="max-w-lg w-full overflow-auto">
-        <DialogHeader>
-          <DialogTitle>
-            ERC-20 Representation of Native Currency Can Be Used to Drain Native
-            Currency Pools
-          </DialogTitle>
-          <Badge
-            className={`hover:bg-yellow-300 mr-2 text-xs select-none cursor-default font-fira-code py-0 w-min ${getBadgeStyles("Info", 100)} mx-2`}
-          >
-            Semgrep
-          </Badge>
-          <DialogDescription>
-            <Alert className="bg-yellow-300 bg-opacity-30 my-4">
-              <LightbulbIcon className="h-4 w-4 text-xs" />
-              <AlertTitle>Notice</AlertTitle>
-              <AlertDescription>
-                Our features are still under development. This kind of
-                information will be available for all threats in the future.
-              </AlertDescription>
-            </Alert>
-          </DialogDescription>
-        </DialogHeader>
-        <div className="grid grid-cols-[auto,1fr] border gap-4 p-4 text-xs">
-          <p className="font-bold flex justify-center items-center">
-            Description
-          </p>
-          <p>
-            The settle function, responsible for settling a user&apos;s debt,
-            increases the account delta of the specified currency. There are two
-            settlement flows: one for the native currency and another for all
-            other currencies. If the currency is native, the amount used for
-            increasing the delta is msg.value. Otherwise, if the currency is a
-            regular ERC-20 token, the amount is the balance difference between
-            the last time sync or settle were called and the current settle
-            invocation.
-          </p>
-          <p className="font-bold flex flex-col justify-center items-center">
-            Impact
-            <Badge
-              className={`hover:bg-yellow-300 text-xs select-none cursor-default font-fira-code py-0  ${getBadgeStyles("Medium", 100)} w-min my-2`}
-            >
-              Medium
-            </Badge>
-          </p>
-          <p>
-            The attacker has 2000 CELO and zero balance deltas, allowing them to
-            finish the transaction with a profit of 1000 CELO. By repeating the
-            steps above, it is possible to completely drain the native currency
-            pool.
-          </p>
-          <p className="font-bold flex justify-center items-center">
-            Recommendation
-          </p>
-          <p>
-            Consider changing the way native currency pools work on chains where
-            the native currency has a corresponding ERC-20 token. For example,
-            make the NATIVE variable immutable and set it to the ERC-20 token
-            address for chains where native currency has a corresponding ERC-20
-            token.
-          </p>
-        </div>
-      </DialogContent>
-    </Dialog>
+    <div>
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant="secondary" className="select-none">
+            Detail
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="max-w-lg w-full overflow-auto">
+          <DialogHeader>
+            <DialogTitle>
+              ERC-20 Representation of Native Currency Can Be Used to Drain
+              Native Currency Pools
+            </DialogTitle>
+            <DialogDescription>
+              <Alert className="bg-yellow-300 bg-opacity-30 my-4">
+                <LightbulbIcon className="h-4 w-4 text-xs" />
+                <AlertTitle>Notice</AlertTitle>
+                <AlertDescription>
+                  Our features are still under development. This kind of
+                  information will be available for all threats in the future.
+                </AlertDescription>
+              </Alert>
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid grid-cols-[auto,1fr] border gap-4 p-4 text-xs">
+            <p className="font-bold flex justify-center items-center">
+              Description
+            </p>
+            <p>
+              The settle function, responsible for settling a user&apos;s debt,
+              increases the account delta of the specified currency. There are
+              two settlement flows: one for the native currency and another for
+              all other currencies. If the currency is native, the amount used
+              for increasing the delta is msg.value. Otherwise, if the currency
+              is a regular ERC-20 token, the amount is the balance difference
+              between the last time sync or settle were called and the current
+              settle invocation.
+            </p>
+            <p className="font-bold flex flex-col justify-center items-center">
+              Impact
+              <Badge
+                className={`hover:bg-yellow-300 text-xs select-none cursor-default font-fira-code py-0  ${getBadgeStyles("Medium", 100)} my-2`}
+              >
+                Medium
+              </Badge>
+            </p>
+            <p>
+              The attacker has 2000 CELO and zero balance deltas, allowing them
+              to finish the transaction with a profit of 1000 CELO. By repeating
+              the steps above, it is possible to completely drain the native
+              currency pool.
+            </p>
+            <p className="font-bold flex justify-center items-center">
+              Recommendation
+            </p>
+            <p>
+              Consider changing the way native currency pools work on chains
+              where the native currency has a corresponding ERC-20 token. For
+              example, make the NATIVE variable immutable and set it to the
+              ERC-20 token address for chains where native currency has a
+              corresponding ERC-20 token.
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
+      <Badge
+        className={`hover:bg-yellow-300 mr-2 text-xs select-none cursor-default font-fira-code py-0 w-min ${getBadgeStyles("Info", 100)} mx-2`}
+      >
+        Semgrep
+      </Badge>
+    </div>
   );
 }
