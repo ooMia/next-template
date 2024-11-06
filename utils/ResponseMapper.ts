@@ -539,12 +539,15 @@ export const ComponentTypeDescription: {
 // }
 
 //@todo implement
-export function TokenPriceCompareJsonToTokenDeltaSummaryProps({
-  json,
-}: {
-  json: TokenPriceCompareRoot;
-}): TokenDeltaSummaryProps[] {
+export function TokenPriceCompareJsonToTokenDeltaSummaryProps(
+  json: TokenPriceCompareRoot,
+): TokenDeltaSummaryProps[] {
   let res: TokenDeltaSummaryProps[] = [];
+
+  if (!json.result || !json.result.data) {
+    console.error("Invalid JSON structure: ", json);
+    return res;
+  }
 
   const kv = [
     ["amount", "General"],
@@ -677,6 +680,36 @@ export function TokenPriceCompareJsonToTokenDeltaSummaryProps({
       });
     });
     const method = "swap";
+
+    for (const data1 of data[method]) {
+      res.push({
+        Asset: "General",
+        Method: "Swap",
+        MintBurn: data1.is_burn ? "Burn" : "Mint",
+        ExactInOut: data1.is_exactIn ? "ExactIn" : "ExactOut",
+        PoolHookUser: "Delta",
+        Amount0Delta: data1.amount0delta,
+        Amount1Delta: data1.amount1delta,
+      });
+      res.push({
+        Asset: "ERC6909",
+        Method: "Swap",
+        MintBurn: data1.is_burn ? "Burn" : "Mint",
+        ExactInOut: data1.is_exactIn ? "ExactIn" : "ExactOut",
+        PoolHookUser: "User",
+        Amount0Delta: data1.user6909Amount0delta!,
+        Amount1Delta: data1.user6909Amount1delta!,
+      });
+      res.push({
+        Asset: "ERC6909",
+        Method: "Swap",
+        MintBurn: data1.is_burn ? "Burn" : "Mint",
+        ExactInOut: data1.is_exactIn ? "ExactIn" : "ExactOut",
+        PoolHookUser: "Hook",
+        Amount0Delta: data1.hook6909Amount0delta!,
+        Amount1Delta: data1.hook6909Amount1delta!,
+      });
+    }
 
     // @todo do the rest of the work
   }

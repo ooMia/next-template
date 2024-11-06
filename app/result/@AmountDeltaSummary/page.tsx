@@ -31,9 +31,14 @@ let priceDataSet: {
   MintBurn: string;
   ExactInOut: string;
   PoolHookUser: string;
-  Amount0Delta: bigint | number;
-  Amount1Delta: bigint | number;
+  Amount0Delta: bigint | number | string;
+  Amount1Delta: bigint | number | string;
 }[] = tokenPriceCasesWithKeys2;
+
+// @todo test this
+// priceDataSet = TokenPriceCompareJsonToTokenDeltaSummaryProps(
+//   tokenPriceRawResponse as any
+// );
 
 // @todo modify data as given
 
@@ -148,36 +153,40 @@ export default function ERC6909DeltaBurnResultPage() {
                 <TableCell>General</TableCell>
                 <TableCell>Delta</TableCell>
                 <TableCell>
-                  {/*general - amount0*/
+                  {
+                    /*general - amount0*/
 
-                  priceDataSet
-                    .find(
-                      (
-                        item, // TODO: general is unique within the test, not bound to the asset and user
-                      ) =>
-                        item.Asset === "General" &&
-                        item.PoolHookUser === "User" &&
-                        item.Method === methodType &&
-                        isMintBurnMatch(item.MintBurn) &&
-                        isExactInOutMatch(item.ExactInOut),
-                    )
-                    ?.Amount0Delta.toString()}
+                    priceDataSet
+                      .find(
+                        (
+                          item, // TODO: general is unique within the test, not bound to the asset and user
+                        ) =>
+                          item.Asset === "General" &&
+                          ["Delta", "User"].includes(item.PoolHookUser) &&
+                          item.Method === methodType &&
+                          isMintBurnMatch(item.MintBurn) &&
+                          isExactInOutMatch(item.ExactInOut),
+                      )
+                      ?.Amount0Delta.toString() || "0"
+                  }
                 </TableCell>
                 <TableCell>
-                  {/*general - amount1*/
+                  {
+                    /*general - amount1*/
 
-                  priceDataSet
-                    .find(
-                      (
-                        item, // TODO: general is unique within the test, not bound to the asset and user
-                      ) =>
-                        item.Asset === "General" &&
-                        item.PoolHookUser === "User" &&
-                        item.Method === methodType &&
-                        isMintBurnMatch(item.MintBurn) &&
-                        isExactInOutMatch(item.ExactInOut),
-                    )
-                    ?.Amount1Delta.toString()}
+                    priceDataSet
+                      .find(
+                        (
+                          item, // TODO: general is unique within the test, not bound to the asset and user
+                        ) =>
+                          item.Asset === "General" &&
+                          ["Delta", "User"].includes(item.PoolHookUser) &&
+                          item.Method === methodType &&
+                          isMintBurnMatch(item.MintBurn) &&
+                          isExactInOutMatch(item.ExactInOut),
+                      )
+                      ?.Amount0Delta.toString() || "0"
+                  }
                 </TableCell>
               </TableRow>
               <TableRow
@@ -188,108 +197,120 @@ export default function ERC6909DeltaBurnResultPage() {
                 <TableCell>ERC20</TableCell>
                 <TableCell>User</TableCell>
                 <TableCell>
-                  {/*ERC20 - User - amount0*/
+                  {
+                    /*ERC20 - User - amount0*/
 
-                  priceDataSet
-                    .find(
-                      (
-                        item, // TODO: general is unique within the test, not bound to the asset and user
-                      ) =>
-                        item.Asset === "ERC20" &&
-                        item.PoolHookUser === "User" &&
-                        item.Method === methodType &&
-                        isMintBurnMatch(item.MintBurn) &&
-                        isExactInOutMatch(item.ExactInOut),
-                    )
-                    ?.Amount0Delta.toString()}
+                    priceDataSet
+                      .find(
+                        (
+                          item, // TODO: general is unique within the test, not bound to the asset and user
+                        ) =>
+                          item.Asset === "ERC20" &&
+                          item.PoolHookUser === "User" &&
+                          item.Method === methodType &&
+                          isMintBurnMatch(item.MintBurn) &&
+                          isExactInOutMatch(item.ExactInOut),
+                      )
+                      ?.Amount0Delta.toString() || "0"
+                  }
                 </TableCell>
                 <TableCell>
-                  {/*ERC20 - User - amount1*/
+                  {
+                    /*ERC20 - User - amount1*/
 
-                  priceDataSet
-                    .find(
-                      (
-                        item, // TODO: general is unique within the test, not bound to the asset and user
-                      ) =>
-                        item.Asset === "ERC20" &&
-                        item.PoolHookUser === "User" &&
-                        item.Method === methodType &&
-                        isMintBurnMatch(item.MintBurn) &&
-                        isExactInOutMatch(item.ExactInOut),
-                    )
-                    ?.Amount1Delta.toString()}
+                    priceDataSet
+                      .find(
+                        (
+                          item, // TODO: general is unique within the test, not bound to the asset and user
+                        ) =>
+                          item.Asset === "ERC20" &&
+                          item.PoolHookUser === "User" &&
+                          item.Method === methodType &&
+                          isMintBurnMatch(item.MintBurn) &&
+                          isExactInOutMatch(item.ExactInOut),
+                      )
+                      ?.Amount0Delta.toString() || "0"
+                  }
                 </TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>ERC20</TableCell>
                 <TableCell>Manager</TableCell>
                 <TableCell>
-                  {/*ERC20 - Manager - amount0*/
+                  {
+                    /*ERC20 - Manager - amount0*/
 
-                  priceDataSet
-                    .find(
-                      (
-                        item, // TODO: general is unique within the test, not bound to the asset and user
-                      ) =>
-                        item.Asset === "ERC20" &&
-                        item.PoolHookUser === "PoolManager" &&
-                        item.Method === methodType &&
-                        isMintBurnMatch(item.MintBurn) &&
-                        isExactInOutMatch(item.ExactInOut),
-                    )
-                    ?.Amount0Delta.toString()}
+                    priceDataSet
+                      .find(
+                        (
+                          item, // TODO: general is unique within the test, not bound to the asset and user
+                        ) =>
+                          item.Asset === "ERC20" &&
+                          item.PoolHookUser === "PoolManager" &&
+                          item.Method === methodType &&
+                          isMintBurnMatch(item.MintBurn) &&
+                          isExactInOutMatch(item.ExactInOut),
+                      )
+                      ?.Amount0Delta.toString() || "0"
+                  }
                 </TableCell>
                 <TableCell>
-                  {/*ERC20 - Manager - amount1*/
+                  {
+                    /*ERC20 - Manager - amount1*/
 
-                  priceDataSet
-                    .find(
-                      (
-                        item, // TODO: general is unique within the test, not bound to the asset and user
-                      ) =>
-                        item.Asset === "ERC20" &&
-                        item.PoolHookUser === "PoolManager" &&
-                        item.Method === methodType &&
-                        isMintBurnMatch(item.MintBurn) &&
-                        isExactInOutMatch(item.ExactInOut),
-                    )
-                    ?.Amount1Delta.toString()}
+                    priceDataSet
+                      .find(
+                        (
+                          item, // TODO: general is unique within the test, not bound to the asset and user
+                        ) =>
+                          item.Asset === "ERC20" &&
+                          item.PoolHookUser === "PoolManager" &&
+                          item.Method === methodType &&
+                          isMintBurnMatch(item.MintBurn) &&
+                          isExactInOutMatch(item.ExactInOut),
+                      )
+                      ?.Amount0Delta.toString() || "0"
+                  }
                 </TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>ERC20</TableCell>
                 <TableCell>Hook</TableCell>
                 <TableCell>
-                  {/*ERC20 - Hook - amount0*/
+                  {
+                    /*ERC20 - Hook - amount0*/
 
-                  priceDataSet
-                    .find(
-                      (
-                        item, // TODO: general is unique within the test, not bound to the asset and user
-                      ) =>
-                        item.Asset === "ERC20" &&
-                        item.PoolHookUser === "Hook" &&
-                        item.Method === methodType &&
-                        isMintBurnMatch(item.MintBurn) &&
-                        isExactInOutMatch(item.ExactInOut),
-                    )
-                    ?.Amount0Delta.toString()}
+                    priceDataSet
+                      .find(
+                        (
+                          item, // TODO: general is unique within the test, not bound to the asset and user
+                        ) =>
+                          item.Asset === "ERC20" &&
+                          item.PoolHookUser === "Hook" &&
+                          item.Method === methodType &&
+                          isMintBurnMatch(item.MintBurn) &&
+                          isExactInOutMatch(item.ExactInOut),
+                      )
+                      ?.Amount0Delta.toString() || "0"
+                  }
                 </TableCell>
                 <TableCell>
-                  {/*ERC20 - Hook - amount1*/
+                  {
+                    /*ERC20 - Hook - amount1*/
 
-                  priceDataSet
-                    .find(
-                      (
-                        item, // TODO: general is unique within the test, not bound to the asset and user
-                      ) =>
-                        item.Asset === "ERC20" &&
-                        item.PoolHookUser === "Hook" &&
-                        item.Method === methodType &&
-                        isMintBurnMatch(item.MintBurn) &&
-                        isExactInOutMatch(item.ExactInOut),
-                    )
-                    ?.Amount1Delta.toString()}
+                    priceDataSet
+                      .find(
+                        (
+                          item, // TODO: general is unique within the test, not bound to the asset and user
+                        ) =>
+                          item.Asset === "ERC20" &&
+                          item.PoolHookUser === "Hook" &&
+                          item.Method === methodType &&
+                          isMintBurnMatch(item.MintBurn) &&
+                          isExactInOutMatch(item.ExactInOut),
+                      )
+                      ?.Amount0Delta.toString() || "0"
+                  }
                 </TableCell>
               </TableRow>
 
@@ -301,36 +322,40 @@ export default function ERC6909DeltaBurnResultPage() {
                 <TableCell>ERC6909</TableCell>
                 <TableCell>User</TableCell>
                 <TableCell>
-                  {/*ERC6909 - User - amount0*/
+                  {
+                    /*ERC6909 - User - amount0*/
 
-                  priceDataSet
-                    .find(
-                      (
-                        item, // TODO: general is unique within the test, not bound to the asset and user
-                      ) =>
-                        item.Asset === "ERC6909" &&
-                        item.PoolHookUser === "User" &&
-                        item.Method === methodType &&
-                        isMintBurnMatch(item.MintBurn) &&
-                        isExactInOutMatch(item.ExactInOut),
-                    )
-                    ?.Amount0Delta.toString()}
+                    priceDataSet
+                      .find(
+                        (
+                          item, // TODO: general is unique within the test, not bound to the asset and user
+                        ) =>
+                          item.Asset === "ERC6909" &&
+                          item.PoolHookUser === "User" &&
+                          item.Method === methodType &&
+                          isMintBurnMatch(item.MintBurn) &&
+                          isExactInOutMatch(item.ExactInOut),
+                      )
+                      ?.Amount0Delta.toString() || "0"
+                  }
                 </TableCell>
                 <TableCell>
-                  {/*ERC6909 - User - amount1*/
+                  {
+                    /*ERC6909 - User - amount1*/
 
-                  priceDataSet
-                    .find(
-                      (
-                        item, // TODO: general is unique within the test, not bound to the asset and user
-                      ) =>
-                        item.Asset === "ERC6909" &&
-                        item.PoolHookUser === "User" &&
-                        item.Method === methodType &&
-                        isMintBurnMatch(item.MintBurn) &&
-                        isExactInOutMatch(item.ExactInOut),
-                    )
-                    ?.Amount1Delta.toString()}
+                    priceDataSet
+                      .find(
+                        (
+                          item, // TODO: general is unique within the test, not bound to the asset and user
+                        ) =>
+                          item.Asset === "ERC6909" &&
+                          item.PoolHookUser === "User" &&
+                          item.Method === methodType &&
+                          isMintBurnMatch(item.MintBurn) &&
+                          isExactInOutMatch(item.ExactInOut),
+                      )
+                      ?.Amount0Delta.toString() || "0"
+                  }
                 </TableCell>
               </TableRow>
 
@@ -338,36 +363,40 @@ export default function ERC6909DeltaBurnResultPage() {
                 <TableCell>ERC6909</TableCell>
                 <TableCell>Hook</TableCell>
                 <TableCell>
-                  {/*ERC6909 - Hook - amount0*/
+                  {
+                    /*ERC6909 - Hook - amount0*/
 
-                  priceDataSet
-                    .find(
-                      (
-                        item, // TODO: general is unique within the test, not bound to the asset and user
-                      ) =>
-                        item.Asset === "ERC6909" &&
-                        item.PoolHookUser === "Hook" &&
-                        item.Method === methodType &&
-                        isMintBurnMatch(item.MintBurn) &&
-                        isExactInOutMatch(item.ExactInOut),
-                    )
-                    ?.Amount0Delta.toString()}
+                    priceDataSet
+                      .find(
+                        (
+                          item, // TODO: general is unique within the test, not bound to the asset and user
+                        ) =>
+                          item.Asset === "ERC6909" &&
+                          item.PoolHookUser === "Hook" &&
+                          item.Method === methodType &&
+                          isMintBurnMatch(item.MintBurn) &&
+                          isExactInOutMatch(item.ExactInOut),
+                      )
+                      ?.Amount0Delta.toString() || "0"
+                  }
                 </TableCell>
                 <TableCell>
-                  {/*ERC6909 - Hook - amount1*/
+                  {
+                    /*ERC6909 - Hook - amount1*/
 
-                  priceDataSet
-                    .find(
-                      (
-                        item, // TODO: general is unique within the test, not bound to the asset and user
-                      ) =>
-                        item.Asset === "ERC6909" &&
-                        item.PoolHookUser === "Hook" &&
-                        item.Method === methodType &&
-                        isMintBurnMatch(item.MintBurn) &&
-                        isExactInOutMatch(item.ExactInOut),
-                    )
-                    ?.Amount1Delta.toString()}
+                    priceDataSet
+                      .find(
+                        (
+                          item, // TODO: general is unique within the test, not bound to the asset and user
+                        ) =>
+                          item.Asset === "ERC6909" &&
+                          item.PoolHookUser === "Hook" &&
+                          item.Method === methodType &&
+                          isMintBurnMatch(item.MintBurn) &&
+                          isExactInOutMatch(item.ExactInOut),
+                      )
+                      ?.Amount0Delta.toString() || "0"
+                  }
                 </TableCell>
               </TableRow>
             </TableBody>

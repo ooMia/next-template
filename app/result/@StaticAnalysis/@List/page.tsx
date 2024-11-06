@@ -6,6 +6,14 @@ import React, { useEffect, useState } from "react";
 
 const response = staticResponseOnPoolKey;
 type Threat = {
+  detail?:
+    | {
+        title: string;
+        description: string;
+        impact: string;
+        recommendation: string;
+      }
+    | undefined;
   check?: string;
   name: string;
   description: string;
@@ -196,7 +204,7 @@ const additionalThreatDetails: {
 
 const object3 = [
   ...object2,
-  ...additionalThreats.map((threat, index) => {
+  ...additionalThreats.map((threat) => {
     return {
       name: threat.name,
       description: threat.description,
@@ -204,7 +212,6 @@ const object3 = [
       severity: threat.severity,
       check: "",
       type: threat.type,
-      detail: additionalThreatDetails[index],
     };
   }),
 ];
@@ -247,6 +254,10 @@ export default function StaticAnalysisResultPage() {
                   severity={item.severity}
                   check={item.check}
                   type={item.type}
+                  query={query}
+                  detail={additionalThreatDetails.find(
+                    (threat) => threat.title === item.name,
+                  )}
                 />
               );
             })}
@@ -282,6 +293,7 @@ export function AnalysisResultLog({
   description,
   markdown,
   severity,
+  detail,
 }: {
   title: string;
   description: string;
@@ -290,6 +302,12 @@ export function AnalysisResultLog({
   check?: string;
   type: string;
   query?: string;
+  detail?: {
+    title: string;
+    description: string;
+    impact: string;
+    recommendation: string;
+  };
 }) {
   // const regex = new RegExp(
   //   `\\-? \\[([\\s\\S]+?)\\]\\(\\S+${contractName}\\.sol#L(\\d+)\\)`,
@@ -308,35 +326,51 @@ export function AnalysisResultLog({
   const extractedTitle = titleMatch ? titleMatch[1].trim() : title;
 
   return (
-    <ResultDetailModal>
-      <Alert className={`max-w-[40vw] ${getCardStyles(severity)}`}>
-        <AlertTitle className="flex">
-          <ExclamationTriangleIcon className="h-8 w-8 mx-2 opacity-100 text-yellow-700" />
-
-          <Badge
-            className={`hover:bg-yellow-300 mr-2 text-xs select-none cursor-default font-fira-code py-0  ${getBadgeStyles(severity)}`}
-          >
-            {severity}
-          </Badge>
-          <span className="text-[15px] text-black font-bold flex flex-col">
-            {extractedTitle.charAt(0).toUpperCase() + extractedTitle.slice(1)}
-            <span className="text-xs text-gray-400">
-              {description.slice(0, 60)}...
+    <Dialog>
+      <DialogTrigger asChild>
+        <Alert className={`max-w-[40vw] ${getCardStyles(severity)}`}>
+          <AlertTitle className="flex">
+            <ExclamationTriangleIcon className="h-8 w-8 mx-2 opacity-100 text-yellow-700" />
+            <Badge
+              className={`hover:bg-yellow-300 mr-2 text-xs select-none cursor-default font-fira-code py-0  ${getBadgeStyles(severity)}`}
+            >
+              {severity}
+            </Badge>
+            <span className="text-[15px] text-black font-bold flex flex-col">
+              {extractedTitle.charAt(0).toUpperCase() + extractedTitle.slice(1)}
+              <span className="text-xs text-gray-400">
+                {description.slice(0, 60)}...
+              </span>
             </span>
-          </span>
-        </AlertTitle>
-
-        <AlertDescription>
-          {/* {results.map((result, index) => (
-            <div key={index}>
-              <CodeHighlighterNoLine
-                codeString={`L#${result.lineNumber}: ${result.text}`}
-              />
-            </div>
-          ))} */}
-        </AlertDescription>
-      </Alert>
-    </ResultDetailModal>
+          </AlertTitle>
+          <AlertDescription></AlertDescription>
+        </Alert>
+      </DialogTrigger>
+      <DialogContent className="max-w-lg w-full overflow-auto">
+        <DialogHeader>
+          <DialogTitle>{detail?.title}</DialogTitle>
+        </DialogHeader>
+        <div className="grid grid-cols-[1fr,auto] border gap-4 p-4 text-xs">
+          <p className="font-bold flex justify-center items-center">
+            Description
+          </p>
+          <p>{description}</p>
+          <p className="font-bold flex flex-col justify-center items-center">
+            Impact
+            {/* <Badge
+              className={`hover:bg-yellow-300 text-xs select-none cursor-default font-fira-code py-0  ${getCardStyles("Medium")} my-2`}
+            >
+              {detail?.impact}
+            </Badge> */}
+          </p>
+          <p>{detail?.impact}</p>
+          <p className="font-bold flex justify-center items-center">
+            Recommendation
+          </p>
+          <p>{detail?.recommendation}</p>
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 }
 
@@ -376,83 +410,120 @@ const getBadgeStyles = (severity: string) => {
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-function ResultDetailModal({ children }: { children: React.ReactNode }) {
-  return (
-    <div>
-      <Dialog>
-        <DialogTrigger asChild>{children}</DialogTrigger>
-        <DialogContent className="max-w-lg w-full overflow-auto">
-          <DialogHeader>
-            <DialogTitle>
-              ERC-20 Representation of Native Currency Can Be Used to Drain
-              Native Currency Pools
-            </DialogTitle>
-            <DialogDescription>
-              <Alert className="  my-4">
-                <LightbulbIcon className="h-4 w-4 text-xs" />
-                <AlertTitle>Notice</AlertTitle>
-                <AlertDescription>
-                  Our features are still under development. This kind of
-                  information will be available for all threats in the future.
-                </AlertDescription>
-              </Alert>
-            </DialogDescription>
-          </DialogHeader>
-          <div className="grid grid-cols-[auto,1fr] border gap-4 p-4 text-xs">
-            <p className="font-bold flex justify-center items-center">
-              Description
-            </p>
-            <p>
-              The settle function, responsible for settling a user&apos;s debt,
-              increases the account delta of the specified currency. There are
-              two settlement flows: one for the native currency and another for
-              all other currencies. If the currency is native, the amount used
-              for increasing the delta is msg.value. Otherwise, if the currency
-              is a regular ERC-20 token, the amount is the balance difference
-              between the last time sync or settle were called and the current
-              settle invocation.
-            </p>
-            <p className="font-bold flex flex-col justify-center items-center">
-              Impact
-              <Badge
-                className={`hover:bg-yellow-300 text-xs select-none cursor-default font-fira-code py-0  ${getCardStyles("Medium")} my-2`}
-              >
-                Medium
-              </Badge>
-            </p>
-            <p>
-              The attacker has 2000 CELO and zero balance deltas, allowing them
-              to finish the transaction with a profit of 1000 CELO. By repeating
-              the steps above, it is possible to completely drain the native
-              currency pool.
-            </p>
-            <p className="font-bold flex justify-center items-center">
-              Recommendation
-            </p>
-            <p>
-              Consider changing the way native currency pools work on chains
-              where the native currency has a corresponding ERC-20 token. For
-              example, make the NATIVE variable immutable and set it to the
-              ERC-20 token address for chains where native currency has a
-              corresponding ERC-20 token.
-            </p>
-          </div>
-        </DialogContent>
-      </Dialog>
-      {/* <Badge
-        className={`hover:bg-yellow-300 mr-2 text-xs select-none cursor-default font-fira-code py-0 w-min ${getBadgeStyles("Info", 100)} mx-2`}
-      >
-        Semgrep
-      </Badge> */}
-    </div>
-  );
-}
+// function ResultDetailModal({
+//   children,
+//   title,
+//   description,
+//   impact,
+//   recommendation,
+// }: {
+//   children: React.ReactNode;
+//   title: string;
+//   description: string;
+//   impact: string;
+//   recommendation: string;
+// }) {
+//   return (
+//     <div>
+//       {!title && !description && !impact && !recommendation && (
+//         <Dialog>
+//           <DialogTrigger asChild>{children}</DialogTrigger>
+//           <DialogContent className='max-w-lg w-full overflow-auto'>
+//             <DialogHeader>
+//               <DialogTitle>
+//                 ERC-20 Representation of Native Currency Can Be Used to Drain
+//                 Native Currency Pools
+//               </DialogTitle>
+//               <DialogDescription>
+//                 <Alert className='  my-4'>
+//                   <LightbulbIcon className='h-4 w-4 text-xs' />
+//                   <AlertTitle>Notice</AlertTitle>
+//                   <AlertDescription>
+//                     Our features are still under development. This kind of
+//                     information will be available for all threats in the future.
+//                   </AlertDescription>
+//                 </Alert>
+//               </DialogDescription>
+//             </DialogHeader>
+//             <div className='grid grid-cols-[auto,1fr] border gap-4 p-4 text-xs'>
+//               <p className='font-bold flex justify-center items-center'>
+//                 Description
+//               </p>
+//               <p>
+//                 The settle function, responsible for settling a user&apos;s
+//                 debt, increases the account delta of the specified currency.
+//                 There are two settlement flows: one for the native currency and
+//                 another for all other currencies. If the currency is native, the
+//                 amount used for increasing the delta is msg.value. Otherwise, if
+//                 the currency is a regular ERC-20 token, the amount is the
+//                 balance difference between the last time sync or settle were
+//                 called and the current settle invocation.
+//               </p>
+//               <p className='font-bold flex flex-col justify-center items-center'>
+//                 Impact
+//                 <Badge
+//                   className={`hover:bg-yellow-300 text-xs select-none cursor-default font-fira-code py-0  ${getCardStyles("Medium")} my-2`}
+//                 >
+//                   Medium
+//                 </Badge>
+//               </p>
+//               <p>
+//                 The attacker has 2000 CELO and zero balance deltas, allowing
+//                 them to finish the transaction with a profit of 1000 CELO. By
+//                 repeating the steps above, it is possible to completely drain
+//                 the native currency pool.
+//               </p>
+//               <p className='font-bold flex justify-center items-center'>
+//                 Recommendation
+//               </p>
+//               <p>
+//                 Consider changing the way native currency pools work on chains
+//                 where the native currency has a corresponding ERC-20 token. For
+//                 example, make the NATIVE variable immutable and set it to the
+//                 ERC-20 token address for chains where native currency has a
+//                 corresponding ERC-20 token.
+//               </p>
+//             </div>
+//           </DialogContent>
+//         </Dialog>
+//       )}
+//       {
+//         <Dialog>
+//           <DialogTrigger asChild>{children}</DialogTrigger>
+//           <DialogContent className='max-w-lg w-full overflow-auto'>
+//             <DialogHeader>
+//               <DialogTitle>{title}</DialogTitle>
+//             </DialogHeader>
+//             <div className='grid grid-cols-[auto,1fr] border gap-4 p-4 text-xs'>
+//               <p className='font-bold flex justify-center items-center'>
+//                 Description
+//               </p>
+//               <p>{description}</p>
+//               <p className='font-bold flex flex-col justify-center items-center'>
+//                 Impact
+//                 <Badge
+//                   className={`hover:bg-yellow-300 text-xs select-none cursor-default font-fira-code py-0  ${getCardStyles("Medium")} my-2`}
+//                 >
+//                   {impact}
+//                 </Badge>
+//               </p>
+//               <p>{impact}</p>
+//               <p className='font-bold flex justify-center items-center'>
+//                 Recommendation
+//               </p>
+//               <p>{recommendation}</p>
+//             </div>
+//           </DialogContent>
+//         </Dialog>
+//       }
+//     </div>
+//   );
+// }
 
 // function ResultDetailModalTemplate({
 //   children,
