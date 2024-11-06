@@ -8,7 +8,7 @@ export default function NotFound() {
   const data = getSiteData(); // TODO fetch data from async API using await
   return (
     <div className="min-h-screen hero">
-      <div className="flex w-min flex-col rounded-lg p-8 text-center hero-content bg-base-100">
+      <div className="flex w-min flex-col rounded-[15px] p-8 text-center hero-content bg-base-100">
         <h1 className="text-2xl">
           404 Not Found
           <p className="text-base">Start from links below</p>

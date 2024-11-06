@@ -46,7 +46,7 @@ function DynamicERC20DeltaDifferenceResult({
     );
   };
   const getButtonClass = (currentMethod: string) =>
-    `rounded-[0px] ${
+    `rounded-[15px] ${
       method === currentMethod ? "bg-primary" : "bg-primary-300 bg-opacity-50"
     }`;
 
@@ -174,7 +174,7 @@ function DynamicPoolKeyResult({
   hooks,
 }: PoolKeyType) {
   return (
-    <Card>
+    <Card className="rounded-[15px] border m-2">
       <CardHeader>
         <CardTitle>PoolKey</CardTitle>
         <CardDescription>Component Description</CardDescription>

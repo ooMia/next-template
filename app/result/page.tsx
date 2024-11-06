@@ -39,7 +39,7 @@ export default function PoolKeyInputResultPage() {
   return (
     // getMockedComponent2ResponseByIndex
     <div>
-      <div>children</div>
+      <div>{/* //add here */}</div>
     </div>
   );
 }
@@ -63,7 +63,7 @@ function DynamicERC20DeltaDifferenceResult({
     );
   };
   const getButtonClass = (currentMethod: string) =>
-    `rounded-[0px] ${
+    `rounded-[15px] ${
       method === currentMethod ? "bg-primary" : "bg-primary-300 bg-opacity-50"
     }`;
 

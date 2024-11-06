@@ -18,7 +18,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { component2IntegratedResponse } from "@/utils/Constants";
 import { LightbulbIcon } from "lucide-react";
 import dynamic from "next/dynamic";
-import React, { Suspense, useCallback, useMemo, useState } from "react";
+import React, { Suspense, useMemo, useState } from "react";
 const CodeHighlighter = dynamic(
   () => import("@/components/form/CodeHighlighter"),
   {
@@ -42,16 +42,9 @@ const Page = () => {
     ]?.trace;
   }, [testNumber, indexNumber]);
 
-  // const [code, setCode] = useState(sampleTraceLog);
-  const [fontSize, setFontSize] = useState(1);
-
-  const Highlight = useCallback(() => {
-    return <CodeHighlighter codeString={sampleTraceLog} fontSize={fontSize} />;
-  }, [fontSize, sampleTraceLog]);
-
   return (
     <div>
-      <Alert className="bg-yellow-300 bg-opacity-30 w-[550px] my-4">
+      <Alert className="rounded-[15px] bg-yellow-300 bg-opacity-30 w-[550px] my-4">
         <LightbulbIcon className="h-4 w-4 text-xs" />
         <AlertTitle>Notice</AlertTitle>
         <AlertDescription>
@@ -63,22 +56,6 @@ const Page = () => {
         </AlertDescription>
       </Alert>
       <div className="py-2 flex items-end">
-        <Button
-          className="rounded-full p-2 m-2 text-xl w-fit-content text-align-center bg-blue-500 text-white hover:bg-blue-600 select-none"
-          onClick={() => {
-            setFontSize(fontSize + 0.5);
-          }}
-        >
-          🔍➕
-        </Button>
-        <Button
-          className="rounded-full p-2 m-2 text-xl w-fit-content text-align-center bg-blue-500 text-white hover:bg-blue-600 select-none"
-          onClick={() => {
-            setFontSize(fontSize > 1 ? fontSize - 0.5 : 1);
-          }}
-        >
-          🔍➖
-        </Button>
         <h1 className="text-3xl my-2 mx-4">Trace Log</h1>
         <div className="gap-1 flex">
           {testNames.map((test) =>
@@ -89,13 +66,13 @@ const Page = () => {
                   setTestNumber(test.index);
                   setIndexNumber(0);
                 }}
-                className="rounded-full my-1 px-2 py-1 text-xs h-fit-content text-align-center bg-blue-500 text-white hover:bg-blue-600 select-none"
+                className="rounded-[15px] text-xs h-fit-content text-align-center bg-blue-500 text-white hover:bg-blue-600 select-none"
               >
                 {test.name}
               </Button>
             ) : (
               <AlertDialog key={test.index}>
-                <AlertDialogTrigger className="rounded-full my-1 px-2 py-1 text-xs h-fit-content text-align-center bg-warning-700 text-warning-200 hover:bg-primary-600 select-none">
+                <AlertDialogTrigger className="rounded-[15px] text-xs h-fit-content text-align-center bg-warning-700 text-warning-200 hover:bg-primary-600 select-none">
                   {test.name}
                 </AlertDialogTrigger>
                 <AlertDialogContent>
@@ -155,7 +132,7 @@ const Page = () => {
 
       <ScrollArea className="max-h-[60vh] flex flex-col items-center">
         <Suspense fallback={<Skeleton />}>
-          <Highlight />
+          <CodeHighlighter codeString={sampleTraceLog} />
         </Suspense>
       </ScrollArea>
     </div>

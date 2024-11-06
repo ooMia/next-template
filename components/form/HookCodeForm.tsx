@@ -25,7 +25,6 @@ export default function HookCodeForm({
 }: Readonly<{ router: AppRouterInstance }>) {
   // TODO: send request to server based on the input
   const [code, setCode] = useState<string>("");
-  const [fontSize, setFontSize] = useState(1.3);
 
   const onClickSamplePoolKeyHandler = (
     event: React.MouseEvent<HTMLButtonElement>,
@@ -71,27 +70,9 @@ export default function HookCodeForm({
             </button>
           </TabsContent>
           <TabsContent value="Preview">
-            <div className="py-2">
-              <Button
-                className="rounded-full p-2 m-2 text-xl w-fit-content text-align-center bg-blue-500 text-white hover:bg-blue-600 select-none"
-                onClick={() => {
-                  setFontSize(fontSize + 0.5);
-                }}
-              >
-                🔍➕
-              </Button>
-              <Button
-                className="rounded-full p-2 m-2 text-xl w-fit-content text-align-center bg-blue-500 text-white hover:bg-blue-600 select-none"
-                onClick={() => {
-                  setFontSize(fontSize > 1 ? fontSize - 0.5 : 1);
-                }}
-              >
-                🔍➖
-              </Button>
-            </div>
             {/* TODO: encapsulate scroll area */}
-            <ScrollArea className="max-h-[60vh] flex flex-col  items-center">
-              <CodeHighlighter codeString={code} fontSize={fontSize} />
+            <ScrollArea className="rounded-[15px] max-h-[60vh] flex flex-col  items-center">
+              <CodeHighlighter codeString={code} />
             </ScrollArea>
           </TabsContent>
         </Tabs>

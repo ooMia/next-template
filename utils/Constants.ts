@@ -1403,6 +1403,18 @@ export const tokenPriceCasesWithKeys: {
   },
 ];
 
+// @todo apply this data to delta case
+
+// export const tokenPriceCasesWithKeysMalicious: {
+//   Asset: string;
+//   Method: string;
+//   MintBurn: string;
+//   ExactInOut: string;
+//   PoolHookUser: string;
+//   Amount0Delta: number;
+//   Amount1Delta: number;
+// }: { }
+
 // response
 // 1. 2_2_0 MinimumTest
 // 2. 2_2_1 TimeBasedMinimumTest

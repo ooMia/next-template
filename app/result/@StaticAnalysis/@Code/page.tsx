@@ -1,13 +1,11 @@
 "use client";
 
 import CodeHighlighter from "@/components/form/CodeHighlighter";
-import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   sampleCodeTakeProfitHook,
   staticResponseOnPoolKey,
 } from "@/utils/Constants";
-import { useState } from "react";
 
 export default function StaticAnalysisResultPage() {
   // const sampleTraceLog = useMemo(() => {
@@ -16,29 +14,10 @@ export default function StaticAnalysisResultPage() {
   // }, []);
 
   // const [code, setCode] = useState(sampleTraceLog);
-  const [fontSize, setFontSize] = useState(1);
 
   return (
     <div>
       <div className="flex items-end">
-        <div className="py-2">
-          <Button
-            className="rounded-full p-2 m-2 text-xl w-fit-content text-align-center bg-blue-500 text-white hover:bg-blue-600 select-none"
-            onClick={() => {
-              setFontSize(fontSize + 0.5);
-            }}
-          >
-            🔍➕
-          </Button>
-          <Button
-            className="rounded-full p-2 m-2 text-xl w-fit-content text-align-center bg-blue-500 text-white hover:bg-blue-600 select-none"
-            onClick={() => {
-              setFontSize(fontSize > 1 ? fontSize - 0.5 : 1);
-            }}
-          >
-            🔍➖
-          </Button>
-        </div>
         <h1
           className="text-4xl m-3"
           style={{
@@ -66,10 +45,7 @@ export default function StaticAnalysisResultPage() {
         </div>
       </div>
       <ScrollArea className="max-h-[60vh] max-w-[100vh] flex flex-col items-center">
-        <CodeHighlighter
-          codeString={sampleCodeTakeProfitHook}
-          fontSize={fontSize}
-        />
+        <CodeHighlighter codeString={sampleCodeTakeProfitHook} />
       </ScrollArea>
     </div>
   );

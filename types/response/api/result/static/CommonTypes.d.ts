@@ -25,6 +25,7 @@ export interface Variable {
 }
 
 export type Parameter = Variable;
+export type Return = Variable;
 
 export interface FunctionScope {
   name: string;
@@ -38,16 +39,6 @@ export interface FunctionScope {
   returns: Return[];
   body: string;
   access_control: AccessControl[];
-}
-
-export interface Return {
-  name: string;
-  signature: string;
-  type: string;
-  location: string;
-  visibility: any;
-  scope: string;
-  mutability: string;
 }
 
 export interface AccessControl {

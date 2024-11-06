@@ -17,7 +17,7 @@ export default function Layout({
     <div>
       <ResizablePanelGroup
         direction="horizontal"
-        className="w-screen rounded-lg border md:min-w-[450px]"
+        className="w-screen rounded-[15px] border md:min-w-[450px]"
       >
         <ResizablePanel defaultSize={50}>
           <div className="flex items-center justify-center p-6 h-[200px]">

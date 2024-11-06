@@ -33,6 +33,8 @@ const priceDataSet: {
   Amount1Delta: number;
 }[] = tokenPriceCasesWithKeys;
 
+// @todo modify data as given
+
 const filteredPriceDataSet = priceDataSet.filter((item) => {
   if (item.Method !== "Swap" && item.ExactInOut === "ExactOut") {
     return false;
@@ -162,7 +164,11 @@ export default function ERC6909DeltaBurnResultPage() {
                   }
                 </TableCell>
               </TableRow>
-              <TableRow>
+              <TableRow
+                style={{
+                  borderTop: "3px solid grey",
+                }}
+              >
                 <TableCell>ERC20</TableCell>
                 <TableCell>User</TableCell>
                 <TableCell>
@@ -270,7 +276,12 @@ export default function ERC6909DeltaBurnResultPage() {
                   }
                 </TableCell>
               </TableRow>
-              <TableRow>
+
+              <TableRow
+                style={{
+                  borderTop: "3px solid grey",
+                }}
+              >
                 <TableCell>ERC6909</TableCell>
                 <TableCell>User</TableCell>
                 <TableCell>
@@ -306,19 +317,20 @@ export default function ERC6909DeltaBurnResultPage() {
                   }
                 </TableCell>
               </TableRow>
+
               <TableRow>
                 <TableCell>ERC6909</TableCell>
-                <TableCell>Manager</TableCell>
+                <TableCell>Hook</TableCell>
                 <TableCell>
                   {
-                    /*ERC6909 - Manager - amount0*/
+                    /*ERC6909 - Hook - amount0*/
 
                     filteredPriceDataSet.find(
                       (
                         item, // TODO: general is unique within the test, not bound to the asset and user
                       ) =>
                         item.Asset === "ERC6909" &&
-                        item.PoolHookUser === "PoolManager" &&
+                        item.PoolHookUser === "Hook" &&
                         item.Method === methodType &&
                         isMintBurnMatch(item.Asset, item.MintBurn) &&
                         isExactInOutMatch(item.Method, item.ExactInOut),
@@ -327,14 +339,14 @@ export default function ERC6909DeltaBurnResultPage() {
                 </TableCell>
                 <TableCell>
                   {
-                    /*ERC6909 - Manager - amount1*/
+                    /*ERC6909 - Hook - amount1*/
 
                     filteredPriceDataSet.find(
                       (
                         item, // TODO: general is unique within the test, not bound to the asset and user
                       ) =>
                         item.Asset === "ERC6909" &&
-                        item.PoolHookUser === "PoolManager" &&
+                        item.PoolHookUser === "Hook" &&
                         item.Method === methodType &&
                         isMintBurnMatch(item.Asset, item.MintBurn) &&
                         isExactInOutMatch(item.Method, item.ExactInOut),
