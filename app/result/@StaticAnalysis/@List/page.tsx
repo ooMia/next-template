@@ -2,7 +2,7 @@
 
 import { Input } from "@/components/ui/input";
 import { staticResponseOnPoolKey } from "@/utils/Constants";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 const response = staticResponseOnPoolKey;
 type Threat = {
@@ -44,7 +44,7 @@ object2 = object2.concat(object).filter((item) => {
 });
 
 export default function StaticAnalysisResultPage() {
-  const data = useMemo(() => object2, [object2]);
+  const data = object2;
   const [query, setQuery] = useState("");
   const [result, setResult] = useState<Threat[]>();
 
@@ -73,16 +73,15 @@ export default function StaticAnalysisResultPage() {
           {result &&
             result.map((item, index) => {
               return (
-                <div key={index}>
-                  <AnalysisResultLog
-                    title={item.name}
-                    description={item.description}
-                    markdown={item.markdown}
-                    severity={item.severity}
-                    check={item.check}
-                    type={item.type}
-                  />
-                </div>
+                <AnalysisResultLog
+                  key={index}
+                  title={item.name}
+                  description={item.description}
+                  markdown={item.markdown}
+                  severity={item.severity}
+                  check={item.check}
+                  type={item.type}
+                />
               );
             })}
         </ScrollArea>
@@ -104,13 +103,13 @@ export default function StaticAnalysisResultPage() {
 }
 // @remind RightSide - potential issues
 
-import { CopyIcon, ExclamationTriangleIcon } from "@radix-ui/react-icons";
+import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { CodeHighlighterNoLine } from "@/components/form/CodeHighlighter";
-import { DialogCloseButton } from "@/components/InformativeModal";
+
 import { Badge } from "@/components/ui/badge";
-import { Lightbulb, LightbulbIcon, Terminal, TextCursor } from "lucide-react";
+import { LightbulbIcon } from "lucide-react";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 
 export function AnalysisResultLog({
@@ -118,9 +117,6 @@ export function AnalysisResultLog({
   description,
   markdown,
   severity,
-  check,
-  type,
-  query,
 }: {
   title: string;
   description: string;
@@ -140,7 +136,7 @@ export function AnalysisResultLog({
     text: match[1],
     lineNumber: match[2],
   }));
-  const badgeStyles = severity && getBadgeStyles(severity);
+  // const badgeStyles = severity && getBadgeStyles(severity);
   const titleMatch = markdown
     ? markdown.match(/\s([\s\w]+?)\W+\[/)
     : description.match(/\s([\s\w]+?)\w+\[/);
@@ -167,15 +163,7 @@ export function AnalysisResultLog({
             />
           </div>
         ))}
-        <ResultDetailModal
-          key={title}
-          title={title}
-          description={description}
-          impact={severity}
-          recommendation={check}
-          type={type}
-          markdown={markdown}
-        />
+        <ResultDetailModal />
       </AlertDescription>
     </Alert>
   );
@@ -205,7 +193,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-function ResultDetailModal({}: {}) {
+function ResultDetailModal() {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -218,12 +206,12 @@ function ResultDetailModal({}: {}) {
           <DialogTitle>
             ERC-20 Representation of Native Currency Can Be Used to Drain Native
             Currency Pools
-            <Badge
-              className={`hover:bg-yellow-300 mr-2 text-xs select-none cursor-default font-fira-code py-0  ${getBadgeStyles("Info", 100)} mx-2`}
-            >
-              Semgrep
-            </Badge>
           </DialogTitle>
+          <Badge
+            className={`hover:bg-yellow-300 mr-2 text-xs select-none cursor-default font-fira-code py-0 w-min ${getBadgeStyles("Info", 100)} mx-2`}
+          >
+            Semgrep
+          </Badge>
           <DialogDescription>
             <Alert className="bg-yellow-300 bg-opacity-30 my-4">
               <LightbulbIcon className="h-4 w-4 text-xs" />
@@ -235,13 +223,12 @@ function ResultDetailModal({}: {}) {
             </Alert>
           </DialogDescription>
         </DialogHeader>
-
         <div className="grid grid-cols-[auto,1fr] border gap-4 p-4 text-xs">
           <p className="font-bold flex justify-center items-center">
             Description
           </p>
           <p>
-            The settle function, responsible for settling a user's debt,
+            The settle function, responsible for settling a user&apos;s debt,
             increases the account delta of the specified currency. There are two
             settlement flows: one for the native currency and another for all
             other currencies. If the currency is native, the amount used for
@@ -250,11 +237,7 @@ function ResultDetailModal({}: {}) {
             the last time sync or settle were called and the current settle
             invocation.
           </p>
-
-          <p
-            className="font-bold flex flex-col justify-center items-center
-          "
-          >
+          <p className="font-bold flex flex-col justify-center items-center">
             Impact
             <Badge
               className={`hover:bg-yellow-300 text-xs select-none cursor-default font-fira-code py-0  ${getBadgeStyles("Medium", 100)} w-min my-2`}

@@ -1,6 +1,6 @@
 {
   "name": "herb-front",
-  "version": "0.1.0",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@pythnetwork/hermes-client": "^1.1.0",
+    "@radix-ui/react-alert-dialog": "^1.1.2",
     "@radix-ui/react-avatar": "^1.1.1",
     "@radix-ui/react-collapsible": "^1.1.1",
     "@radix-ui/react-dialog": "^1.1.2",
@@ -42,6 +43,7 @@
     "react-scroll": "^1.9.0",
     "react-syntax-highlighter": "^15.6.1",
     "recharts": "^2.13.3",
+    "sonner": "^1.7.0",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
     "viem": "2.x",

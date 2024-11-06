@@ -120,9 +120,6 @@ function DynamicERC20DeltaDifferenceResult({
           </TableBody>
         </Table>
       </CardContent>
-      <CardFooter>
-        <p></p>
-      </CardFooter>
     </Card>
   );
 }
@@ -205,9 +202,6 @@ function DynamicPoolKeyResult({
           <p>Hooks</p> <p>{hooks}</p>
         </div>
       </CardContent>
-      <CardFooter>
-        <p></p>
-      </CardFooter>
     </Card>
   );
 }
@@ -240,9 +234,6 @@ function DynamicTokenPriceResult({
           </p>
         </div>
       </CardContent>
-      <CardFooter>
-        <p></p>
-      </CardFooter>
     </Card>
   );
 }
