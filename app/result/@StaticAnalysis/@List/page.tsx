@@ -1,6 +1,7 @@
 "use client";
-
+import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
 import { Input } from "@/components/ui/input";
 import { staticResponseOnPoolKey } from "@/utils/Constants";
@@ -8,7 +9,6 @@ import { staticResponseOnPoolKey } from "@/utils/Constants";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
@@ -249,7 +249,7 @@ export default function StaticAnalysisResultPage() {
           className="bg-white text-black pl-10"
         />
       </div>
-      <ScrollableWindow>
+      <ScrollableWindow className="space-y-2 h-full">
         {result &&
           result.map((item, index) => {
             return (
@@ -270,8 +270,8 @@ export default function StaticAnalysisResultPage() {
           })}
       </ScrollableWindow>
 
-      <Alert className="w-[96%]">
-        <LightbulbIcon className="h-4 w-4" />
+      {/* <Alert className='w-[96%]'>
+        <LightbulbIcon className='h-4 w-4' />
         <AlertTitle>Notice</AlertTitle>
         <AlertDescription>
           1. Due to the internal preprocessing that removes comments, the
@@ -281,18 +281,14 @@ export default function StaticAnalysisResultPage() {
           2. While rendering the source code, different char sets may be used,
           making search on browser not accurate.
         </AlertDescription>
-      </Alert>
+      </Alert> */}
     </div>
   );
 }
 // @remind RightSide - potential issues
 
-import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
-
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
-
-import { LightbulbIcon } from "lucide-react";
 
 export function AnalysisResultLog({
   title,
@@ -315,17 +311,17 @@ export function AnalysisResultLog({
     recommendation: string;
   };
 }) {
-  const regex = new RegExp(
-    `\\-? \\[([\\s\\S]+?)\\]\\(\\S+${contractName}\\.sol#L(\\d+)\\)`,
-    "g",
-  );
+  // const regex = new RegExp(
+  //   `\\-? \\[([\\s\\S]+?)\\]\\(\\S+${contractName}\\.sol#L(\\d+)\\)`,
+  //   "g",
+  // );
 
-  const matches = markdown ? [...markdown.matchAll(regex)] : [];
-  const results = matches.map((match) => ({
-    text: match[1],
-    lineNumber: match[2],
-  }));
-  const badgeStyles = severity && getBadgeStyles(severity);
+  // const matches = markdown ? [...markdown.matchAll(regex)] : [];
+  // const results = matches.map((match) => ({
+  //   text: match[1],
+  //   lineNumber: match[2],
+  // }));
+  // const badgeStyles = severity && getBadgeStyles(severity);
   const titleMatch = markdown
     ? markdown.match(/\s([\s\w]+?)\W+\[/)
     : description.match(/\s([\s\w]+?)\w+\[/);
@@ -334,46 +330,92 @@ export function AnalysisResultLog({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Alert className={`max-w-[40vw] ${getCardStyles(severity)}`}>
-          <AlertTitle className="flex">
-            <ExclamationTriangleIcon className="h-8 w-8 mx-2 opacity-100 text-yellow-700" />
-            <Badge
-              className={`hover:bg-yellow-300 mr-2 text-xs select-none cursor-default font-fira-code py-0  ${getBadgeStyles(severity)}`}
-            >
-              {severity}
-            </Badge>
-            <span className="text-[15px] text-black font-bold flex flex-col">
-              {extractedTitle.charAt(0).toUpperCase() + extractedTitle.slice(1)}
-              <span className="text-xs text-gray-400">
+        <Alert className={`max-w-[35vw] ${getCardStyles(severity)} mx-2 mb-4 `}>
+          <AlertTitle className="flex ">
+            <ExclamationTriangleIcon className="h-8 w-8 mx-2 opacity-100 text-yellow-700 " />
+
+            <span className="text-[15px] text-black font-bold flex flex-col break-words">
+              <div className="flex items-end gap-x-2 ">
+                {extractedTitle.charAt(0).toUpperCase() +
+                  extractedTitle.slice(1)}
+                <Badge
+                  className={` hover:bg-yellow-300 mr-2 text-xs select-none cursor-default font-fira-code py-0  ${getBadgeStyles(severity)} `}
+                >
+                  {severity}
+                </Badge>
+              </div>
+
+              <span className="text-xs text-gray-400 ">
                 {description.slice(0, 60)}...
               </span>
             </span>
           </AlertTitle>
-          <AlertDescription></AlertDescription>
         </Alert>
       </DialogTrigger>
-      <DialogContent className="max-w-lg w-full overflow-auto">
-        <DialogHeader>
-          <DialogTitle>{detail?.title}</DialogTitle>
-        </DialogHeader>
-        <div className="grid grid-cols-[1fr,auto] border gap-4 p-4 text-xs">
-          <p className="font-bold flex justify-center items-center">
-            Description
-          </p>
-          <p>{description}</p>
-          <p className="font-bold flex flex-col justify-center items-center">
-            Impact
-            {/* <Badge
-              className={`hover:bg-yellow-300 text-xs select-none cursor-default font-fira-code py-0  ${getCardStyles("Medium")} my-2`}
-            >
-              {detail?.impact}
-            </Badge> */}
-          </p>
-          <p>{detail?.impact}</p>
-          <p className="font-bold flex justify-center items-center">
-            Recommendation
-          </p>
-          <p>{detail?.recommendation}</p>
+
+      <DialogContent
+        className={cn(
+          "fixed left-[50%] top-[50%] z-50 grid translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-[15px]",
+          "max-w-[80vw]",
+        )}
+      >
+        <DialogTitle className="text-slate-200 text-2xl font-semibold p-4">
+          {titleMatch ? titleMatch : title}
+          <Badge
+            className={` hover:bg-yellow-300 mr-2 text-xs select-none cursor-default font-fira-code py-0 ml-2  ${getBadgeStyles(severity)}`}
+          >
+            {severity}
+          </Badge>
+        </DialogTitle>
+
+        <div className="divide-y divide-slate-700 rounded-lg border border-slate-700 bg-slate-900 overflow-hidden">
+          {/* Description Row */}
+          <div className="grid grid-cols-[200px,1fr] divide-x divide-slate-700">
+            <div className="bg-slate-800 p-4 flex items-center justify-center">
+              <h3 className="text-slate-200 font-semibold">Description</h3>
+            </div>
+            <div className="p-4 text-slate-300 leading-relaxed">
+              {description}
+            </div>
+          </div>
+
+          {/* Impact Row */}
+          <div className="grid grid-cols-[200px,1fr] divide-x divide-slate-700">
+            <div className="bg-slate-800 p-4 flex items-center justify-center">
+              <h3 className="text-slate-200 font-semibold">Impact</h3>
+            </div>
+            <div className="p-4 text-slate-300 leading-relaxed">
+              {detail?.impact &&
+                detail.impact.split("\n").map((line, index) =>
+                  line.trim().startsWith("-") ? (
+                    <li key={index} className="ml-4 list-disc">
+                      {line.replace("-", "").trim()}
+                    </li>
+                  ) : (
+                    <p key={index}>{line}</p>
+                  ),
+                )}
+            </div>
+          </div>
+
+          {/* Recommendation Row */}
+          <div className="grid grid-cols-[200px,1fr] divide-x divide-slate-700">
+            <div className="bg-slate-800 p-4 flex items-center justify-center">
+              <h3 className="text-slate-200 font-semibold">Recommendation</h3>
+            </div>
+            <div className="p-4 text-slate-300 leading-relaxed">
+              {detail?.recommendation &&
+                detail.recommendation.split("\n").map((line, index) =>
+                  line.trim().startsWith("-") ? (
+                    <li key={index} className="ml-4 list-disc">
+                      {line.replace("-", "").trim()}
+                    </li>
+                  ) : (
+                    <p key={index}>{line}</p>
+                  ),
+                )}
+            </div>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
@@ -386,10 +428,9 @@ const getCardStyles = (severity: string) => {
     case "High":
       return `border bg-red-500 text-red-900 `;
     case "Low":
-      return `text-xs border bg-[EAE436] text-[EAE436]  box-border p-3 h-[64px] min-h-[64px] max-h-[64px] bg-white border-[EAE436] rounded-lg`;
+      return `text-xs border bg-[EAE436] text-[EAE436]  box-border pr-8 h-[64px] min-h-[64px] max-h-[64px] bg-white border-[EAE436] rounded-lg select-none`;
     case "Medium":
-      return `text-xs border bg-[EA9C36] text-[EA9C36]  box-border p-3 h-[64px] min-h-[64px] max-h-[64px] bg-white border-[EA9C36] rounded-lg`;
-
+      return `text-xs border bg-[EA9C36] text-[EA9C36]  box-border  h-[64px] min-h-[64px] h-[70px] bg-white border-[EA9C36] rounded-lg select-none`;
     case "Info":
       return `border bg-blue-500 text-blue-900 `;
     default:

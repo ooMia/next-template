@@ -9,9 +9,11 @@ const ScrollableWindow = ({
 }) => {
   return (
     <ScrollArea.Root
-      className={`h-[500px] h-max-[30vh] w-full overflow-hidden rounded bg-white shadow-[0_2px_10px] shadow-blackA4 relative ${className}`}
+      className={`h-[500px] h-max-[30vh] w-full overflow-hidden rounded bg-background relative ${className} `}
     >
-      <ScrollArea.Viewport className="size-full rounded">
+      <ScrollArea.Viewport
+        className={`size-full rounded ${className} hover:focus bg-background`}
+      >
         {children}
       </ScrollArea.Viewport>
       <ScrollArea.Scrollbar

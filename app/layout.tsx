@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 
 import { TopStickMenuBar } from "@/components/root/ServerRootLayouts";
 import { ThemeSwitcher } from "@/components/root/ClientRootLayouts";
 
 import "./globals.css";
 import { Providers } from "./providers";
-
-import localFont from "next/font/local";
 
 const GeistMono = localFont({
   src: "../fonts/GeistMonoVF.woff",

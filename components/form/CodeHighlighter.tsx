@@ -4,9 +4,9 @@
 import { Prism } from "react-syntax-highlighter";
 // @ts-ignore
 import { solarizedlight } from "react-syntax-highlighter/dist/esm/styles/prism";
-import React, { useState } from "react";
-import { Button } from "../ui/button";
+import { useState } from "react";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
+import { Button } from "../ui/button";
 
 // @todo replace library to https://github.com/FormidableLabs/prism-react-renderer
 
