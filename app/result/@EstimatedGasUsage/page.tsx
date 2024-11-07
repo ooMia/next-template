@@ -1,5 +1,16 @@
 "use client";
 
+import { TrendingUp } from "lucide-react";
+import { useEffect, useState } from "react";
+import {
+  CartesianGrid,
+  YAxis,
+  XAxis,
+  Bar,
+  LabelList,
+  BarChart,
+} from "recharts";
+
 import {
   Card,
   CardHeader,
@@ -18,15 +29,6 @@ import {
   TransactionGasCostToChartProps,
   TransactionGasCostToChartData,
 } from "@/types/DynamicAnalysis";
-import { TrendingUp } from "lucide-react";
-import {
-  CartesianGrid,
-  YAxis,
-  XAxis,
-  Bar,
-  LabelList,
-  BarChart,
-} from "recharts";
 
 function givenData(): TransactionGasCostToChartProps {
   const chartData: TransactionGasCostToChartData[] = [
@@ -156,17 +158,28 @@ function Component({
   );
 }
 export default function GasDifferenceChart() {
+  const [isCode, setIsCode] = useState<boolean>(false);
+
+  useEffect(() => {
+    const source = localStorage.getItem("source");
+    setIsCode(source === "code");
+  }, []);
+
   const data: TransactionGasCostToChartProps = givenData();
   return (
-    <div className="flex flex-col items-center justify-center">
-      <Component
-        cardTitle="Estimated Gas Usage"
-        cardDescription="per method gas consumption enabled/disabled hooks"
-        chartData={data.data}
-      >
-        <GasDifferenceSummary />
-      </Component>
-    </div>
+    <>
+      {!isCode && (
+        <div className="flex flex-col items-center justify-center">
+          <Component
+            cardTitle="Estimated Gas Usage"
+            cardDescription="per method gas consumption enabled/disabled hooks"
+            chartData={data.data}
+          >
+            <GasDifferenceSummary />
+          </Component>
+        </div>
+      )}
+    </>
   );
 }
 

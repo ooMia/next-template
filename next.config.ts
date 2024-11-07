@@ -11,33 +11,33 @@ const nextConfig = (
 ): NextConfig => {
   // TODO: use environment variables
 
-  // if (phase === PHASE_DEVELOPMENT_SERVER) {
-  //   return {
-  //     ...defaultConfig,
-  //     async rewrites() {
-  //       return [
-  //         {
-  //           source: "/api/:path*",
-  //           destination: "/api/:path*",
-  //         },
-  //       ];
-  //     },
-  //   };
-  // }
+  if (phase === PHASE_DEVELOPMENT_SERVER) {
+    return {
+      ...defaultConfig,
+      async rewrites() {
+        return [
+          {
+            source: "/api/:path*",
+            destination: "/api/:path*",
+          },
+        ];
+      },
+    };
+  }
 
-  // if (phase === PHASE_PRODUCTION_BUILD) {
-  //   return {
-  //     ...defaultConfig,
-  //     async rewrites() {
-  //       return [
-  //         {
-  //           source: "/api/:path*",
-  //           destination: "/api/:path*",
-  //         },
-  //       ];
-  //     },
-  //   };
-  // }
+  if (phase === PHASE_PRODUCTION_BUILD) {
+    return {
+      ...defaultConfig,
+      async rewrites() {
+        return [
+          {
+            source: "/api/:path*",
+            destination: "/api/:path*",
+          },
+        ];
+      },
+    };
+  }
 
   return defaultConfig;
 };

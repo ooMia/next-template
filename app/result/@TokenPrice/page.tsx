@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 import { DynamicTokenPriceResult } from "@/components/result/dynamic";
 
 export async function getStaticParams() {
@@ -14,17 +18,23 @@ export async function getStaticParams() {
   };
 }
 
-export default function ERC6909DeltaBurnResultPage({
-  priceData,
-}: {
-  priceData: any;
-}) {
-  console.log(priceData);
+export default function ERC6909DeltaBurnResultPage() {
+  const [isCode, setIsCode] = useState<boolean>(false);
+
+  useEffect(() => {
+    const source = localStorage.getItem("source");
+    setIsCode(source === "code");
+  }, []);
+
   return (
-    <DynamicTokenPriceResult
-      realPrice={1.4}
-      expectedPrice={1.4}
-      oraclePrice={2.1}
-    />
+    <>
+      {!isCode && (
+        <DynamicTokenPriceResult
+          realPrice={1.4}
+          expectedPrice={1.4}
+          oraclePrice={2.1}
+        />
+      )}
+    </>
   );
 }

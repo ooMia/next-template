@@ -1,11 +1,10 @@
 "use client";
 
-import CodeHighlighter from "@/components/form/CodeHighlighter";
+import ScrollableCode from "@/components/form/CodeHighlighter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   sampleCodeTakeProfitHook,
-  staticResponseOnPoolKey,
+  staticResponseOnPoolKey2,
 } from "@/utils/Constants";
 
 export default function StaticAnalysisResultPage() {
@@ -28,26 +27,26 @@ export default function StaticAnalysisResultPage() {
               }}
             >
               {
-                staticResponseOnPoolKey.result.result.info.data.contract_scope
+                staticResponseOnPoolKey2.result.result.info.data.contract_scope
                   .name
               }
             </h1>
             <div className="flex items-end">
               <div className="flex flex-col text-xs font-fira-code m-2 ">
                 <h2 className="">
-                  {staticResponseOnPoolKey.result.result.info.chain_name}
+                  {staticResponseOnPoolKey2.result.result.info.chain_name}
                 </h2>
                 <h2 className="">
-                  {staticResponseOnPoolKey.result.result.info.evm_version}
+                  {staticResponseOnPoolKey2.result.result.info.evm_version}
                 </h2>
 
                 {/* @todo https://ui.shadcn.com/docs/components/hover-card */}
                 <a
                   className="text-info-500 hover:underline cursor-pointer max-w-[100px] truncate"
                   target="_blank"
-                  href={`https://sepolia.uniscan.xyz/address/${staticResponseOnPoolKey.result.hooks}`}
+                  href={`https://sepolia.uniscan.xyz/address/${staticResponseOnPoolKey2.result.hooks}`}
                 >
-                  {staticResponseOnPoolKey.result.hooks}
+                  {staticResponseOnPoolKey2.result.hooks}
                 </a>
               </div>
             </div>
@@ -55,11 +54,8 @@ export default function StaticAnalysisResultPage() {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="max-h-[60vh] max-w-[100vh] flex flex-col items-center">
-          <CodeHighlighter codeString={sampleCodeTakeProfitHook} />
-        </ScrollArea>
+        <ScrollableCode codeString={sampleCodeTakeProfitHook} />
       </CardContent>
     </Card>
   );
 }
-// @remind LeftSide - hook contract code

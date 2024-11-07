@@ -1,10 +1,13 @@
 "use client";
 
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { useState } from "react";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import TaskCreationRequest from "@/types/request/api/tasks/TaskCreationRequest";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { useState } from "react";
+import { doRequest } from "@/utils/SimpleRequest";
+
 import { Button } from "../ui/button";
 import {
   Card,
@@ -14,7 +17,6 @@ import {
   CardContent,
   CardFooter,
 } from "../ui/card";
-import { doRequest } from "@/utils/SimpleRequest";
 
 export { AddressInput, NumberInput };
 
@@ -143,10 +145,9 @@ export default function PoolKeyForm({
   }
 
   return (
-    <Card>
-      <CardHeader className="flex">
+    <Card className="border-4 border-solid w-[500px]">
+      <CardHeader className="flex space-y-8">
         <CardTitle>PoolKeyForm</CardTitle>
-        <CardDescription>desc</CardDescription>
       </CardHeader>
       <CardContent className="text-xs">
         <AddressInput

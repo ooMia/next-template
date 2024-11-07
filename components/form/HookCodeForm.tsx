@@ -1,10 +1,12 @@
 "use client";
 
-import { TaskCreationSourceOnlyRequest } from "@/types/request/api/tasks/TaskCreationRequest";
-import { sampleCodeTakeProfitHook } from "@/utils/Constants";
-
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useState } from "react";
+
+import { TaskCreationSourceOnlyRequest } from "@/types/request/api/tasks/TaskCreationRequest";
+import { sampleCodeTakeProfitHook } from "@/utils/Constants";
+import { doRequest } from "@/utils/SimpleRequest";
+
 import { Button } from "../ui/button";
 import {
   Card,
@@ -15,10 +17,9 @@ import {
   CardFooter,
 } from "../ui/card";
 import { Textarea } from "../ui/textarea";
-import CodeHighlighter from "./CodeHighlighter";
-import { doRequest } from "@/utils/SimpleRequest";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { ScrollArea } from "../ui/scroll-area";
+import ScrollableCode from "./CodeHighlighter";
 
 export default function HookCodeForm({
   router,
@@ -43,10 +44,9 @@ export default function HookCodeForm({
   }
 
   return (
-    <Card>
+    <Card className="w-[500px] border-4">
       <CardHeader>
         <CardTitle>HookCodeForm</CardTitle>
-        <CardDescription>desc</CardDescription>
       </CardHeader>
 
       <CardContent className="text-xs">
@@ -70,10 +70,7 @@ export default function HookCodeForm({
             </button>
           </TabsContent>
           <TabsContent value="Preview">
-            {/* TODO: encapsulate scroll area */}
-            <ScrollArea className="rounded-[15px] max-h-[60vh] flex flex-col  items-center">
-              <CodeHighlighter codeString={code} />
-            </ScrollArea>
+            <ScrollableCode codeString={code} />
           </TabsContent>
         </Tabs>
       </CardContent>
@@ -83,7 +80,7 @@ export default function HookCodeForm({
           onClick={(e) => {
             e.preventDefault();
             doRequest(makeHookCodeRequestBody()).then(() => {
-              router.push("/result");
+              router.push("/result2");
             });
           }}
         >

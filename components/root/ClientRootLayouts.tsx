@@ -1,9 +1,10 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+
+import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 
 export function ThemeSwitcher({ className }: { className?: string }) {
   const [mounted, setMounted] = useState(false);

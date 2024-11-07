@@ -1,9 +1,49 @@
 {
   "ignorePatterns": ["node_modules/*", ".next/*", "out/*", "components/ui/*"],
-  "extends": ["next/core-web-vitals", "next/typescript"],
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["import", "prettier"],
+
   "rules": {
     "@typescript-eslint/no-explicit-any": "off",
-    "no-unused-vars": "off",
-    "prefer-const": "off"
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "@/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@/components/ui/**",
+            "group": "external",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "newlines-between": "always"
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "./tsconfig.json"
+      }
+    }
   }
 }

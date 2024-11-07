@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+
 import {
   Card,
   CardContent,
@@ -8,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
 import ScanInputFormPage from "./scan/page";
 
 export default function RootPage() {
@@ -22,7 +24,7 @@ export default function RootPage() {
         className="flex flex-col items-center justify-center w-full"
       >
         <span className="bg-none text-primary p-4">
-          Scan for{" "}
+          Scan for
           <span
             style={{
               background:
@@ -32,7 +34,7 @@ export default function RootPage() {
               backgroundClip: "text",
               fill: "transparent",
             }}
-            className="select-none w-max-[1/2]"
+            className="p-3 select-none w-max-[1/2]"
           >
             Uniswap V4 - Hook
           </span>

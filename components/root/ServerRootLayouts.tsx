@@ -1,6 +1,7 @@
-import { Menubar, MenubarMenu } from "@/components/ui/menubar";
 import Image from "next/image";
 import Link from "next/link";
+
+import { Menubar, MenubarMenu } from "@/components/ui/menubar";
 
 export function TopStickMenuBar() {
   const SimpleRouteMenubarMenu = () => {

@@ -1,8 +1,18 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import { Input } from "@/components/ui/input";
 import { staticResponseOnPoolKey } from "@/utils/Constants";
-import React, { useEffect, useState } from "react";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import ScrollableWindow from "@/components/ScorllableWindow";
 
 const response = staticResponseOnPoolKey;
 type Threat = {
@@ -50,8 +60,6 @@ object2 = object2.concat(object).filter((item) => {
     .toLowerCase()
     .includes(contractName.toLowerCase());
 });
-
-// additional card content
 
 const gasGriefThreat: Threat = {
   name: "Gas Grief",
@@ -241,28 +249,27 @@ export default function StaticAnalysisResultPage() {
           className="bg-white text-black pl-10"
         />
       </div>
-      {
-        <ScrollArea className="flex flex-col my-4 space-y-2">
-          {result &&
-            result.map((item, index) => {
-              return (
-                <AnalysisResultLog
-                  key={index}
-                  title={item.name}
-                  description={item.description}
-                  markdown={item.markdown}
-                  severity={item.severity}
-                  check={item.check}
-                  type={item.type}
-                  query={query}
-                  detail={additionalThreatDetails.find(
-                    (threat) => threat.title === item.name,
-                  )}
-                />
-              );
-            })}
-        </ScrollArea>
-      }
+      <ScrollableWindow>
+        {result &&
+          result.map((item, index) => {
+            return (
+              <AnalysisResultLog
+                key={index}
+                title={item.name}
+                description={item.description}
+                markdown={item.markdown}
+                severity={item.severity}
+                check={item.check}
+                type={item.type}
+                query={query}
+                detail={additionalThreatDetails.find(
+                  (threat) => threat.title === item.name,
+                )}
+              />
+            );
+          })}
+      </ScrollableWindow>
+
       <Alert className="w-[96%]">
         <LightbulbIcon className="h-4 w-4" />
         <AlertTitle>Notice</AlertTitle>
@@ -283,10 +290,9 @@ export default function StaticAnalysisResultPage() {
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-
 import { Badge } from "@/components/ui/badge";
+
 import { LightbulbIcon } from "lucide-react";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
 
 export function AnalysisResultLog({
   title,
@@ -309,17 +315,17 @@ export function AnalysisResultLog({
     recommendation: string;
   };
 }) {
-  // const regex = new RegExp(
-  //   `\\-? \\[([\\s\\S]+?)\\]\\(\\S+${contractName}\\.sol#L(\\d+)\\)`,
-  //   "g"
-  // );
+  const regex = new RegExp(
+    `\\-? \\[([\\s\\S]+?)\\]\\(\\S+${contractName}\\.sol#L(\\d+)\\)`,
+    "g",
+  );
 
-  // const matches = markdown ? [...markdown.matchAll(regex)] : [];
-  // const results = matches.map((match) => ({
-  //   text: match[1],
-  //   lineNumber: match[2],
-  // }));
-  // const badgeStyles = severity && getBadgeStyles(severity);
+  const matches = markdown ? [...markdown.matchAll(regex)] : [];
+  const results = matches.map((match) => ({
+    text: match[1],
+    lineNumber: match[2],
+  }));
+  const badgeStyles = severity && getBadgeStyles(severity);
   const titleMatch = markdown
     ? markdown.match(/\s([\s\w]+?)\W+\[/)
     : description.match(/\s([\s\w]+?)\w+\[/);
@@ -406,197 +412,3 @@ const getBadgeStyles = (severity: string) => {
       return `border bg-gray-500 text-gray-900 `;
   }
 };
-
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-
-// function ResultDetailModal({
-//   children,
-//   title,
-//   description,
-//   impact,
-//   recommendation,
-// }: {
-//   children: React.ReactNode;
-//   title: string;
-//   description: string;
-//   impact: string;
-//   recommendation: string;
-// }) {
-//   return (
-//     <div>
-//       {!title && !description && !impact && !recommendation && (
-//         <Dialog>
-//           <DialogTrigger asChild>{children}</DialogTrigger>
-//           <DialogContent className='max-w-lg w-full overflow-auto'>
-//             <DialogHeader>
-//               <DialogTitle>
-//                 ERC-20 Representation of Native Currency Can Be Used to Drain
-//                 Native Currency Pools
-//               </DialogTitle>
-//               <DialogDescription>
-//                 <Alert className='  my-4'>
-//                   <LightbulbIcon className='h-4 w-4 text-xs' />
-//                   <AlertTitle>Notice</AlertTitle>
-//                   <AlertDescription>
-//                     Our features are still under development. This kind of
-//                     information will be available for all threats in the future.
-//                   </AlertDescription>
-//                 </Alert>
-//               </DialogDescription>
-//             </DialogHeader>
-//             <div className='grid grid-cols-[auto,1fr] border gap-4 p-4 text-xs'>
-//               <p className='font-bold flex justify-center items-center'>
-//                 Description
-//               </p>
-//               <p>
-//                 The settle function, responsible for settling a user&apos;s
-//                 debt, increases the account delta of the specified currency.
-//                 There are two settlement flows: one for the native currency and
-//                 another for all other currencies. If the currency is native, the
-//                 amount used for increasing the delta is msg.value. Otherwise, if
-//                 the currency is a regular ERC-20 token, the amount is the
-//                 balance difference between the last time sync or settle were
-//                 called and the current settle invocation.
-//               </p>
-//               <p className='font-bold flex flex-col justify-center items-center'>
-//                 Impact
-//                 <Badge
-//                   className={`hover:bg-yellow-300 text-xs select-none cursor-default font-fira-code py-0  ${getCardStyles("Medium")} my-2`}
-//                 >
-//                   Medium
-//                 </Badge>
-//               </p>
-//               <p>
-//                 The attacker has 2000 CELO and zero balance deltas, allowing
-//                 them to finish the transaction with a profit of 1000 CELO. By
-//                 repeating the steps above, it is possible to completely drain
-//                 the native currency pool.
-//               </p>
-//               <p className='font-bold flex justify-center items-center'>
-//                 Recommendation
-//               </p>
-//               <p>
-//                 Consider changing the way native currency pools work on chains
-//                 where the native currency has a corresponding ERC-20 token. For
-//                 example, make the NATIVE variable immutable and set it to the
-//                 ERC-20 token address for chains where native currency has a
-//                 corresponding ERC-20 token.
-//               </p>
-//             </div>
-//           </DialogContent>
-//         </Dialog>
-//       )}
-//       {
-//         <Dialog>
-//           <DialogTrigger asChild>{children}</DialogTrigger>
-//           <DialogContent className='max-w-lg w-full overflow-auto'>
-//             <DialogHeader>
-//               <DialogTitle>{title}</DialogTitle>
-//             </DialogHeader>
-//             <div className='grid grid-cols-[auto,1fr] border gap-4 p-4 text-xs'>
-//               <p className='font-bold flex justify-center items-center'>
-//                 Description
-//               </p>
-//               <p>{description}</p>
-//               <p className='font-bold flex flex-col justify-center items-center'>
-//                 Impact
-//                 <Badge
-//                   className={`hover:bg-yellow-300 text-xs select-none cursor-default font-fira-code py-0  ${getCardStyles("Medium")} my-2`}
-//                 >
-//                   {impact}
-//                 </Badge>
-//               </p>
-//               <p>{impact}</p>
-//               <p className='font-bold flex justify-center items-center'>
-//                 Recommendation
-//               </p>
-//               <p>{recommendation}</p>
-//             </div>
-//           </DialogContent>
-//         </Dialog>
-//       }
-//     </div>
-//   );
-// }
-
-// function ResultDetailModalTemplate({
-//   children,
-// }: {
-//   children: React.ReactNode;
-// }) {
-//   return (
-//     <div>
-//       <Dialog>
-//         <DialogTrigger asChild>{children}</DialogTrigger>
-//         <DialogContent className='max-w-lg w-full overflow-auto'>
-//           <DialogHeader>
-//             <DialogTitle>
-//               ERC-20 Representation of Native Currency Can Be Used to Drain
-//               Native Currency Pools
-//             </DialogTitle>
-//             <DialogDescription>
-//               <Alert className='bg-yellow-300 my-4'>
-//                 <LightbulbIcon className='h-4 w-4 text-xs' />
-//                 <AlertTitle>Notice</AlertTitle>
-//                 <AlertDescription>
-//                   Our features are still under development. This kind of
-//                   information will be available for all threats in the future.
-//                 </AlertDescription>
-//               </Alert>
-//             </DialogDescription>
-//           </DialogHeader>
-//           <div className='grid grid-cols-[auto,1fr] border gap-4 p-4 text-xs'>
-//             <p className='font-bold flex justify-center items-center'>
-//               Description
-//             </p>
-//             <p>
-//               The settle function, responsible for settling a user&apos;s debt,
-//               increases the account delta of the specified currency. There are
-//               two settlement flows: one for the native currency and another for
-//               all other currencies. If the currency is native, the amount used
-//               for increasing the delta is msg.value. Otherwise, if the currency
-//               is a regular ERC-20 token, the amount is the balance difference
-//               between the last time sync or settle were called and the current
-//               settle invocation.
-//             </p>
-//             <p className='font-bold flex flex-col justify-center items-center'>
-//               Impact
-//               <Badge
-//                 className={`hover:bg-yellow-300 text-xs select-none cursor-default font-fira-code py-0  ${getCardStyles("Medium", 100)} my-2`}
-//               >
-//                 Medium
-//               </Badge>
-//             </p>
-//             <p>
-//               The attacker has 2000 CELO and zero balance deltas, allowing them
-//               to finish the transaction with a profit of 1000 CELO. By repeating
-//               the steps above, it is possible to completely drain the native
-//               currency pool.
-//             </p>
-//             <p className='font-bold flex justify-center items-center'>
-//               Recommendation
-//             </p>
-//             <p>
-//               Consider changing the way native currency pools work on chains
-//               where the native currency has a corresponding ERC-20 token. For
-//               example, make the NATIVE variable immutable and set it to the
-//               ERC-20 token address for chains where native currency has a
-//               corresponding ERC-20 token.
-//             </p>
-//           </div>
-//         </DialogContent>
-//       </Dialog>
-//       {/* <Badge
-//         className={`hover:bg-yellow-300 mr-2 text-xs select-none cursor-default font-fira-code py-0 w-min ${getBadgeStyles("Info", 100)} mx-2`}
-//       >
-//         Semgrep
-//       </Badge> */}
-//     </div>
-//   );
-// }

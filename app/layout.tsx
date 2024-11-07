@@ -1,10 +1,21 @@
-import { ThemeSwitcher } from "@/components/root/ClientRootLayouts";
-import { TopStickMenuBar } from "@/components/root/ServerRootLayouts";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
+
+import { TopStickMenuBar } from "@/components/root/ServerRootLayouts";
+import { ThemeSwitcher } from "@/components/root/ClientRootLayouts";
+
 import "./globals.css";
 import { Providers } from "./providers";
+
+import localFont from "next/font/local";
+
+const GeistMono = localFont({
+  src: "../fonts/GeistMonoVF.woff",
+  display: "swap",
+});
+const GeistSans = localFont({
+  src: "../fonts/GeistVF.woff",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Herbicide",
