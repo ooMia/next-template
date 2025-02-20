@@ -69,5 +69,6 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  }
+  },
+  "packageManager": "pnpm@10.1.0"
 }
