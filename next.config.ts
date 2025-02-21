@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // @see https://nextjs.org/docs/architecture/nextjs-compiler
+  compiler: {
+    reactRemoveProperties: true,
+    removeConsole: {
+      exclude: ["error"],
+    },
+  },
+  experimental: {
+    typedRoutes: true,
+  },
 };
-
-export default nextConfig;
