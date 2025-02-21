@@ -35,5 +35,8 @@
     "onlyBuiltDependencies": [
       "sharp"
     ]
+  },
+  "overrides": {
+    "uri-js": "npm:uri-js-replace"
   }
 }
