@@ -1,5 +1,5 @@
 {
-  "name": "next-template",
+  "name": "fluent-react",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -14,7 +14,8 @@
   "dependencies": {
     "next": "^15.1.7",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-syntax-highlighter": "^15.6.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
@@ -22,6 +23,7 @@
     "@types/node": "^22.13.4",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "eslint": "^9.20.1",
     "eslint-config-next": "^15.1.7",
     "husky": "^9.1.7",
@@ -35,8 +37,5 @@
     "onlyBuiltDependencies": [
       "sharp"
     ]
-  },
-  "overrides": {
-    "uri-js": "npm:uri-js-replace"
   }
 }
