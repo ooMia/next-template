@@ -1,18 +1,18 @@
 interface Case {
   src: string;
-  render: () => void;
+  render: () => React.ReactNode;
 }
 
-const CaseHandler = {
-  cases: [] as Array<Case>,
+class CaseHandler {
+  cases: Array<Case> = [];
 
-  addCase(src: string, render: () => void) {
+  addCase(src: string, render: () => React.ReactNode) {
     this.cases.push({ src, render });
-  },
+  }
 
   getCases() {
-    return Object.keys(this.cases);
-  },
-};
+    return this.cases.map((c) => c.src);
+  }
+}
 
 export { CaseHandler };

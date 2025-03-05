@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const menubar = (
-    <div id="menubar" className="sticky top-0 w-full">
+    <div id="menubar" className="sticky top-0 w-full z-10">
       <Link href="/">Home</Link>
       <Link href="/jsx">
         Chapter 2

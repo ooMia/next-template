@@ -1,4 +1,8 @@
-import { CaseHandler as JsxCase } from "@/module/CaseHandler";
+import { CaseHandler } from "@/module/CaseHandler";
+
+const JsxCase = new CaseHandler();
+
+// ------------------------------ Case A ------------------------------
 
 const srcCaseA = `const amazingThings = [
     { id: 1, label: '햇살' },
@@ -38,6 +42,8 @@ const renderCaseA = () => {
 };
 JsxCase.addCase(srcCaseA, renderCaseA);
 
+// ------------------------------ Case B ------------------------------
+
 const srcCaseB = `const Box = ({ children }: { children: React.ReactNode }) => (
   <div className="p-2 border border-dashed">{children}</div>
 );
@@ -60,4 +66,7 @@ const renderCaseB = () => {
   return <Box>b가 a보다 큽니까? {b > a ? "네" : "아니오"}</Box>;
 };
 JsxCase.addCase(srcCaseB, renderCaseB);
+
+// ------------------------------ Export ------------------------------
+
 export { JsxCase };

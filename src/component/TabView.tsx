@@ -6,7 +6,7 @@ const TabView = ({ children }: { children: React.ReactNode[] }) => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div>
+    <div className="w-[50vw]">
       <div>
         {children.map((_, index) => (
           <button
