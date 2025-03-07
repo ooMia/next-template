@@ -10,8 +10,6 @@ export default function RootPage() {
       fill
       placeholder="blur"
       blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-      sizes="33vw"
-      style={{ objectFit: "contain" }}
     />
   );
   const bookImageBack = (
@@ -21,16 +19,14 @@ export default function RootPage() {
       fill
       placeholder="blur"
       blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-      sizes="33vw"
-      style={{ objectFit: "contain" }}
     />
   );
   return (
     <main>
       {title}
-      <div className="flex max-w-[50vw]">
-        <div className="relative h-[50vh] w-[50vw]">{bookImageFront}</div>
-        <div className="relative h-[50vh] w-[50vw]">{bookImageBack}</div>
+      <div className="flex gap-4 w-full">
+        <div className="relative w-1/2 aspect-[3/4]">{bookImageFront}</div>
+        <div className="relative w-1/2 aspect-[3/4]">{bookImageBack}</div>
       </div>
     </main>
   );

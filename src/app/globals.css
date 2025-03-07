@@ -32,11 +32,9 @@ main {
 }
 
 #menubar {
-  display: flex;
-  padding: 1rem;
-  gap: 1rem;
-  background: var(--background);
-  color: var(--foreground);
+  background-color: var(--background);
+  scrollbar-color: rgba(255, 255, 255, 0.5) var(--background);
+  scrollbar-width: thin;
 }
 
 #menubar a {
@@ -79,7 +77,6 @@ button {
   user-select: none;
   color: var(--foreground);
   border: 1px solid var(--foreground);
-  cursor: pointer;
   &:hover {
     background: var(--foreground);
     color: var(--background);
@@ -89,7 +86,6 @@ button {
     color: var(--background);
     font-weight: bold;
   }
-
   transition:
     background-color 0.3s ease,
     color 0.3s ease;

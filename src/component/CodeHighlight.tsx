@@ -2,11 +2,19 @@
 
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import jsx from "react-syntax-highlighter/dist/esm/languages/prism/jsx";
+import tsx from "react-syntax-highlighter/dist/esm/languages/prism/tsx";
 import prism from "react-syntax-highlighter/dist/esm/styles/prism/prism";
 
 SyntaxHighlighter.registerLanguage("jsx", jsx);
+SyntaxHighlighter.registerLanguage("tsx", tsx);
 
-export default function CodeHighlight({ children }: { children: string }) {
+export default function CodeHighlight({
+  children,
+  language,
+}: {
+  children: string;
+  language?: string;
+}) {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(children);
@@ -27,9 +35,9 @@ export default function CodeHighlight({ children }: { children: string }) {
   };
 
   return (
-    <div style={{ position: "relative" }}>
+    <div className="w-full" style={{ position: "relative" }}>
       <SyntaxHighlighter
-        language="jsx"
+        language={language ? language : "jsx"}
         style={{
           ...prism,
           'pre[class*="language-"]': {

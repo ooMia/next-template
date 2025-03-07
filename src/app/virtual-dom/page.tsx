@@ -38,10 +38,7 @@ export default function Chapter3_virtual_dom() {
         <>
           <RenderClientCaseE />
           <CodeHighlight>{JsxCase.cases[4].src}</CodeHighlight>
-
-          <div className="max-w-[50vw]">
-            <Image src={case_e} alt="case e" />
-          </div>
+          <Image src={case_e} alt="case e" />
         </>
       </TabView>
     </main>

@@ -30,48 +30,50 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const menubar = (
-    <div id="menubar" className="sticky top-0 w-full z-10">
-      <Link href="/">Home</Link>
-      <Link href="/jsx">
-        Chapter 2
-        <br />
-        JSX
-      </Link>
-      <Link href="/virtual-dom">
-        Chapter 3
-        <br />
-        Virtual DOM
-      </Link>
-      <Link href="/reconciliation">
-        Chapter 4
-        <br />
-        Reconciliation
-      </Link>
-      <Link href="/patterns">
-        Chapter 5
-        <br />
-        Patterns
-      </Link>
-      <Link href="/ssr">
-        Chapter 6
-        <br />
-        SSR
-      </Link>
-      <Link href="/concurrency">
-        Chapter 7
-        <br />
-        Concurrency
-      </Link>
-      <Link href="/framework">
-        Chapter 8
-        <br />
-        Framework
-      </Link>
-      <Link href="/rsc">
-        Chapter 9
-        <br />
-        RSC
-      </Link>
+    <div id="menubar" className="sticky top-0 z-10 overflow-x-auto">
+      <div className="flex gap-4 p-4">
+        <Link href="/">Home</Link>
+        <Link href="/jsx">
+          Chapter2
+          <br />
+          JSX
+        </Link>
+        <Link href="/virtual-dom">
+          Chapter3
+          <br />
+          VirtualDOM
+        </Link>
+        <Link href="/reconciliation">
+          Chapter4
+          <br />
+          Reconciliation
+        </Link>
+        <Link href="/patterns">
+          Chapter5
+          <br />
+          Patterns
+        </Link>
+        <Link href="/ssr">
+          Chapter6
+          <br />
+          SSR
+        </Link>
+        <Link href="/concurrency">
+          Chapter7
+          <br />
+          Concurrency
+        </Link>
+        <Link href="/framework">
+          Chapter8
+          <br />
+          Framework
+        </Link>
+        <Link href="/rsc">
+          Chapter9
+          <br />
+          RSC
+        </Link>
+      </div>
     </div>
   );
 
@@ -81,7 +83,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {menubar}
-        {children}
+        <div className="flex flex-col items-center">
+          <div className="w-full p-4 max-w-4xl">{children}</div>
+        </div>
       </body>
     </html>
   );
