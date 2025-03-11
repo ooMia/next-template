@@ -7,16 +7,6 @@ type ToDo = {
   title: string;
 };
 
-export const List = ({ todos }: { todos: ToDo[] }) => {
-  return (
-    <ul>
-      {todos.map((todo, index) => (
-        <li key={index}>{todo.title}</li>
-      ))}
-    </ul>
-  );
-};
-
 export function Component({
   title,
   ListComponent,
@@ -25,7 +15,7 @@ export function Component({
   ListComponent: React.ElementType<{ todos: ToDo[] }>;
 }) {
   const [todos, setTodos] = useState<Array<ToDo>>([]);
-  const [inputValue, setInputValue] = useState(""); // 입력값을 상태로 관리
+  const [inputValue, setInputValue] = useState("");
 
   const adder: React.MouseEventHandler<HTMLButtonElement> = () => {
     if (inputValue.trim()) {
@@ -47,9 +37,20 @@ export function Component({
         <button onClick={adder}>Add</button>
       </div>
       <ListComponent todos={todos} />
+      {/* FIXME: add src highlight which changed by input activation */}
     </section>
   );
 }
+
+export const List = ({ todos }: { todos: ToDo[] }) => {
+  return (
+    <ul>
+      {todos.map((todo, index) => (
+        <li key={index}>{todo.title}</li>
+      ))}
+    </ul>
+  );
+};
 
 export const BasicToDo = () => {
   const BasicList = asLoggableComponent(List, "BasicList");

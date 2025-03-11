@@ -1,16 +1,29 @@
 import { TabView } from "@/component/TabView";
+import { ReactNode } from "react";
+
+interface LayoutProps {
+  children: ReactNode;
+  memoAdd: ReactNode;
+  memoAddFetch: ReactNode;
+  memoToDo: ReactNode;
+  useMemo: ReactNode;
+  useCallback: ReactNode;
+  lazyload: ReactNode;
+  useReducer: ReactNode;
+  designs: ReactNode;
+}
 
 export default async function Layout({
   children,
   memoAdd,
   memoAddFetch,
   memoToDo,
-}: {
-  children: React.ReactNode;
-  memoAdd: React.ReactNode;
-  memoAddFetch: React.ReactNode;
-  memoToDo: React.ReactNode;
-}) {
+  useMemo,
+  useCallback,
+  lazyload,
+  useReducer,
+  designs,
+}: LayoutProps) {
   return (
     <main>
       {children}
@@ -27,7 +40,11 @@ export default async function Layout({
             {memoToDo}
           </TabView>
         </>
-        <></>
+        <>{useMemo}</>
+        <>{useCallback}</>
+        <>{lazyload}</>
+        <>{useReducer}</>
+        <>{designs}</>
       </TabView>
     </main>
   );
