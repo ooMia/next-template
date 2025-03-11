@@ -5,12 +5,22 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  --table-header-bg: #f2f2f2;
+  --table-hover-bg: #f9f9f9;
+  --border-color: #ddd;
+  --table-highlight: #4caf50;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+
+    --table-header-bg: #333;
+    --table-hover-bg: #222;
+    --border-color: #444;
+    --table-highlight: #5cbb60;
   }
 }
 
@@ -114,4 +124,309 @@ h1 {
 ul {
   list-style-type: circle;
   list-style-position: inside;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+  border-radius: 8px;
+  overflow: hidden; /* 테이블의 둥근 모서리를 위해 필요 */
+  border: 1px solid var(--border-color, #ddd);
+  transition: all 0.3s ease-in-out; /* 전체 테이블에 트랜지션 적용 */
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+table td,
+table th {
+  border: 1px solid var(--border-color, #ddd);
+  padding: 12px 15px; /* 수평 패딩 약간 증가 */
+  position: relative;
+  border-radius: 0;
+}
+
+table th {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+  background-color: var(--table-header-bg, #f2f2f2);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+table tr {
+  transition: background-color 0.2s ease-in-out;
+}
+
+table tr:hover {
+  background-color: var(--table-hover-bg, #f9f9f9);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* 셀 내부 애니메이션 효과 */
+table td::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--table-highlight, #4caf50);
+  transition: width 0.3s ease;
+}
+
+table tr:hover td::after {
+  width: 100%;
+}
+
+/* 추가된 스타일 */
+.table-container {
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+ul {
+  list-style-type: circle;
+  list-style-position: inside;
+}
+
+/* 헤더 스타일 */
+header {
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  border: 1px dashed var(--border-color);
+  background-color: var(--background);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  opacity: 0;
+  animation: slideDown 0.5s ease-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+header h1,
+header h2 {
+  margin: 0;
+  transition: transform 0.3s ease;
+}
+
+header h1:hover,
+header h2:hover {
+  transform: translateX(5px);
+}
+
+/* 섹션 스타일 */
+section {
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--background);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+section:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+/* 섹션 제목 스타일 */
+section h2,
+section h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--table-highlight);
+  position: relative;
+  display: inline-block;
+}
+
+/* 섹션 내부 콘텐츠 스타일 */
+section > p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+/* 섹션 배경 강조 효과 */
+section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 0;
+  background-color: var(--table-highlight);
+  transition: height 0.4s ease;
+}
+
+section:hover::before {
+  height: 100%;
+}
+
+/* 섹션 애니메이션 */
+section {
+  opacity: 0;
+  animation: fadeSlideUp 0.6s ease forwards;
+  animation-delay: calc(var(--animation-order, 0) * 0.1s);
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 기존 섹션 스타일과 충돌 방지 */
+section#list {
+  padding: 1rem;
+  border: dashed;
+}
+
+/* React.memo 강조 스타일 */
+.code-highlight {
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  background: linear-gradient(90deg, var(--table-highlight) 0%, #7cb9ff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: bold;
+  padding: 0.1em 0.2em;
+  position: relative;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  text-shadow: 0px 0px 5px rgba(76, 175, 80, 0.2);
+}
+
+.code-highlight::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--table-highlight) 0%, #7cb9ff 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.code-highlight:hover {
+  transform: translateY(-2px);
+  text-shadow: 0px 0px 8px rgba(76, 175, 80, 0.4);
+}
+
+.code-highlight:hover::before {
+  transform: scaleX(1);
+}
+
+/* 애니메이션 효과 */
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* 특수 효과가 있는 버전 */
+.code-highlight-special {
+  position: relative;
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  background: linear-gradient(90deg, #4caf50 0%, #2196f3 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: bold;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
+
+.code-highlight-special::after {
+  content: "{ }";
+  position: absolute;
+  font-size: 0.7em;
+  opacity: 0.6;
+  top: -0.5em;
+  right: -1em;
+  color: var(--table-highlight);
+}
+
+input {
+  color: var(--foreground);
+  background-color: var(--background);
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  outline: none;
+  width: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+input:focus {
+  border-color: var(--table-highlight);
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+  transform: translateY(-1px);
+}
+
+input::placeholder {
+  color: var(--foreground);
+  opacity: 0.5;
+}
+
+/* 비활성화된 input 스타일 */
+input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: rgba(128, 128, 128, 0.1);
 }
